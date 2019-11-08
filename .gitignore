@@ -1,3 +1,7 @@
+# generated folders
+coverage
+dependency-map
+
 # Logs
 logs
 *.log

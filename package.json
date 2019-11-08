@@ -1,0 +1,92 @@
+{
+  "name": "@au-re/ramen",
+  "version": "0.1.0",
+  "author": "Aurélien Franky",
+  "license": "MIT",
+  "description": "Node editor for visual programming",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "analyze": "rm -rf dependency-map && source-map-explorer ./lib/ramen.min.js ./lib/ramen.min.js.map --html dependency-map/index.html",
+    "coverage": "npm run test -- --coverage",
+    "start": "start-storybook -p 6060",
+    "commit": "git-cz",
+    "test": "jest --watch",
+    "clean": "rm -rf node_modules && npm i",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "prepare": "npm run build",
+    "browserify": "browserify --debug ./lib/index.js -s ramen | terser -m -c --source-map \"content=inline\" -o ./lib/ramen.min.js",
+    "build": "tsc --build && npm run browserify",
+    "build:storybook": "build-storybook",
+    "deploy": "gh-pages -d storybook-static",
+    "predeploy": "npm run build-storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/au-re/ramen.git"
+  },
+  "keywords": [
+    "node",
+    "editor"
+  ],
+  "bugs": {
+    "url": "https://github.com/au-re/ramen/issues"
+  },
+  "homepage": "https://github.com/au-re/ramen#readme",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.story.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jext/fileMock.js",
+      "\\.(css|sass|scss)$": "<rootDir>/config/jest/cssMock.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/react-test-renderer": "^16.9.1",
+    "@babel/core": "^7.7.2",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-links": "^5.2.5",
+    "@storybook/addon-options": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
+    "@storybook/theming": "^5.2.5",
+    "@types/jest": "^24.0.22",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "browserify": "^16.5.0",
+    "commitizen": "^4.0.3",
+    "cz-emoji": "^1.1.2",
+    "jest": "^24.9.0",
+    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "react-test-renderer": "^16.11.0",
+    "source-map-explorer": "^2.1.0",
+    "source-map-loader": "^0.2.4",
+    "terser": "^4.3.9",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.7.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "config": {
+    "cz-emoji": {},
+    "commitizen": {
+      "path": "cz-emoji"
+    }
+  }
+}
