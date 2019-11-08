@@ -56,7 +56,6 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "@types/react-test-renderer": "^16.9.1",
     "@babel/core": "^7.7.2",
     "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-links": "^5.2.5",
@@ -65,11 +64,13 @@
     "@storybook/react": "^5.2.5",
     "@storybook/theming": "^5.2.5",
     "@types/jest": "^24.0.22",
+    "@types/react-test-renderer": "^16.9.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "browserify": "^16.5.0",
     "commitizen": "^4.0.3",
     "cz-emoji": "^1.1.2",
+    "gh-pages": "^2.1.1",
     "jest": "^24.9.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^16.11.0",

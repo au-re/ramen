@@ -1,6 +1,7 @@
 # generated folders
 coverage
 dependency-map
+storybook-static
 
 # Logs
 logs
