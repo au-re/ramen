@@ -8,4 +8,7 @@ function EditorDemo() {
 }
 
 storiesOf("Editor", module)
-  .add("playground", () => <EditorDemo />);
+  .add("playground", () => (
+    <div style={{ height: "100vh", width: "100vw" }}>
+      <EditorDemo />
+    </div>));
