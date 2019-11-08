@@ -2,6 +2,7 @@
 coverage
 dependency-map
 storybook-static
+lib
 
 # Logs
 logs
