@@ -17,7 +17,7 @@ function EditorDemo() {
   );
 }
 
-storiesOf("Editor", module)
+storiesOf("internal|Editor", module)
   .add("playground", () => (
     <div style={{ height: "100vh", width: "100vw" }}>
       <ThemeProvider theme={{ mode: modes.LIGHT }}>

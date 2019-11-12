@@ -13,7 +13,7 @@ function ZoomPanDemo() {
 }
 
 storiesOf("internal|ZoomPan", module)
-  .add("playground", () => (
+  .add("zoomable and pan-able background", () => (
     <div style={{ height: "100vh", width: "100vw" }}>
       <ZoomPanDemo />
     </div>

@@ -1,8 +1,8 @@
 # generated folders
-coverage
-dependency-map
-storybook-static
-lib
+coverage/
+dependency-map/
+storybook-static/
+lib/
 
 # Logs
 logs
