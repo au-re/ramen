@@ -4,6 +4,8 @@
     "tslint-react"
   ],
   "rules": {
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
     "forin": false,
     "function-name": false,
     "max-classes-per-file": false,

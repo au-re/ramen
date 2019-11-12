@@ -67,6 +67,7 @@
     "@types/react": "^16.9.11",
     "@types/react-test-renderer": "^16.9.1",
     "@types/styled-components": "4.1.8",
+    "@types/styled-theming": "^2.2.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "browserify": "^16.5.0",
@@ -93,6 +94,7 @@
     }
   },
   "dependencies": {
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "styled-theming": "^2.2.0"
   }
 }

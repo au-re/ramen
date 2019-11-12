@@ -12,8 +12,9 @@ function ZoomPanDemo() {
   );
 }
 
-storiesOf("ZoomPan", module)
+storiesOf("internal|ZoomPan", module)
   .add("playground", () => (
     <div style={{ height: "100vh", width: "100vw" }}>
       <ZoomPanDemo />
-    </div>));
+    </div>
+  ));

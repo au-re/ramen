@@ -3,5 +3,5 @@ import * as React from "react";
 
 import Pin from "./Pin";
 
-storiesOf("Pin", module)
+storiesOf("internal|Pin", module)
   .add("simple pin", () => <Pin />);
