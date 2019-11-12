@@ -94,6 +94,7 @@
     }
   },
   "dependencies": {
+    "react-draggable": "^4.1.0",
     "styled-components": "^4.4.1",
     "styled-theming": "^2.2.0"
   }
