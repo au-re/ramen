@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import theme from "../../theme";
 
 const Pin: any = styled.div`
   height: ${(props: any) => `${props.radius * 2}px`};
   width: ${(props: any) => `${props.radius * 2}px`};
-  border-radius: ${(props: any) => `${props.radius}px`};
-  border: 1px solid #fff;
+  border-radius: ${(props: any) => `${props.radius * 2}px`};
+  border: 2px solid ${theme.borderColor};
   background: #2D9CDB;
   align-self: center;
 `;
@@ -35,13 +36,13 @@ function Field(props: any) {
       height={height}
       hasInput={hasInput}
       onMouseUp={onMouseUp}
-      radius={6}
+      radius={8}
     >
-      {hasInput && <Pin className="noDrag" radius={6} onMouseDown={handleMouseDown} />}
+      {hasInput && <Pin className="noDrag" radius={8} onMouseDown={handleMouseDown} />}
       <div style={{ padding: "0 .5rem" }} onMouseDown={handleMouseDown}>
         {children}
       </div>
-      {hasOutput && <Pin className="noDrag" radius={6} onMouseDown={handleMouseDown} />}
+      {hasOutput && <Pin className="noDrag" radius={8} onMouseDown={handleMouseDown} />}
     </Background>
   );
 }

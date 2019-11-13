@@ -64,5 +64,7 @@ export interface IEditorProps {
   editorWidth: number;
   schema: ISchema;
   graph: IGraph;
+  onConnectionCanceled?: (connection: IGraphConnection) => void;
   onGraphChange?: (graph: IGraph) => void;
+  onConnectionComplete?: (connection: IGraphConnection) => void;
 }

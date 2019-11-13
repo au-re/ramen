@@ -56,15 +56,15 @@ export const graph: IGraph = {
   nodes: [
     {
       id: "0",
-      x: 0,
-      y: 0,
+      x: 50,
+      y: 50,
       name: "my tile",
       type: "tile",
     },
     {
       id: "1",
-      x: 0,
-      y: 0,
+      x: 250,
+      y: 250,
       name: "other tile",
       type: "tile",
     },

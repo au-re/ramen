@@ -14,6 +14,18 @@ storiesOf("internal|Noodle", module)
           start={{ x: 100, y: 200 }}
           end={{ x: 200, y: 400 }}
         />
+        <Noodle
+          start={{ x: 100, y: 200 }}
+          end={{ x: 100, y: 400 }}
+        />
+        <Noodle
+          start={{ x: 100, y: 200 }}
+          end={{ x: 1000, y: 210 }}
+        />
+        <Noodle
+          start={{ x: 500, y: 200 }}
+          end={{ x: 100, y: 100 }}
+        />
       </Noodles>
-    </ThemeProvider>
+    </ThemeProvider >
   ));

@@ -11,11 +11,12 @@ const NodeContainer: any = styled.div`
   width: ${(props: IGraphNodeProps) => props.width}px;
   color: ${theme.textPrimary};
   background: ${theme.backgroundSecondary};
-  border-radius: 4px;
+  border-radius: 8px;
   min-height: 108px;
   display: inline-block;
   cursor: move;
-  border: 1px solid ${theme.borderColor};
+  border: 2px solid ${theme.borderColor};
+  opacity: .9;
 `;
 
 const NodeTitle = styled.div`

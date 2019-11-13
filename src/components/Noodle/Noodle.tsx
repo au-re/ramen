@@ -40,8 +40,8 @@ function Noodle(props: any) {
   if (!start || !end) return null;
 
   const dist = distance(start, end);
-  const cp1 = { x: start.x + dist * 0.25, y: start.y };
-  const cp2 = { x: end.x - dist * 0.75, y: end.y };
+  const cp1 = { x: start.x + dist * 0.15, y: start.y };
+  const cp2 = { x: end.x - dist * 0.15, y: end.y };
 
   const pathString = bezierCurve(
     start.x,
@@ -59,7 +59,7 @@ function Noodle(props: any) {
         d={pathString}
         fill="none"
         stroke="#FAFCFE"
-        strokeWidth="2"
+        strokeWidth="4"
       />
       <path
         onMouseDown={onMouseDown}
