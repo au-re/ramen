@@ -13,6 +13,8 @@
 
 [![npm][npm-image]][npm-url]
 [![commitizen friendly][commitizen-image]][commitizen-url]
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=au-re_ramen&metric=alert_status)](https://sonarcloud.io/dashboard?id=au-re_ramen)
+[![Build Status](https://travis-ci.org/au-re/ramen.svg?branch=master)](https://travis-ci.org/au-re/ramen)
 
 ## Getting Started
 
