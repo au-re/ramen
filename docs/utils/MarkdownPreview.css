@@ -1,10 +1,10 @@
 .richtext {
   font-family: 'Lato', 'Roboto', sans-serif;
   text-align: left;
+  padding: 2rem;
   padding-bottom: 0;
   overflow: auto;
   height: 100%;
-  padding: 2rem;
   max-width: 64rem;
   margin: 0 auto;
 }

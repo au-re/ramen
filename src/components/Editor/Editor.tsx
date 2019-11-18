@@ -87,19 +87,19 @@ function Editor(props: IEditorProps) {
   const yOffset = boundingBoxRect.y;
 
   // TODO: performance issues, this rerenders everythig on mouse move
-  // React.useEffect(() => {
-  //
-  //   const onMouseMove = (e: MouseEvent) => setMousePos({ x: e.x - xOffset, y: e.y - yOffset });
-  //   const onMouseUp = (e: MouseEvent) => setDragging(null);
-  //
-  //   window.addEventListener("mousemove", onMouseMove);
-  //   window.addEventListener("mouseup", onMouseUp);
-  //
-  //   return () => {
-  //     window.removeEventListener("mousemove", onMouseMove);
-  //     window.removeEventListener("mouseup", onMouseUp);
-  //   };
-  // }, [xOffset, yOffset]);
+  React.useEffect(() => {
+
+    const onMouseMove = (e: MouseEvent) => setMousePos({ x: e.x - xOffset, y: e.y - yOffset });
+    const onMouseUp = (e: MouseEvent) => setDragging(null);
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+  }, [xOffset, yOffset]);
 
   function startConnection(nodeId: string, pinId: string) {
     setDragging({ originNode: nodeId, originPin: pinId });

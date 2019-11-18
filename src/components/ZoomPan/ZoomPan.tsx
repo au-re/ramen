@@ -22,7 +22,7 @@ function normalizeScroll(delta: number) {
 }
 
 function ZoomPan(props: any) {
-  const { children, zoomSpeed = 1.8, onScaleChange = () => { }, onPosChange = () => { } } = props;
+  const { children, zoomSpeed = 4, onScaleChange = () => { }, onPosChange = () => { } } = props;
   const { maxX = 0, minX = -4116, maxY = 0, minY = -4116, minZoom = 0.5, maxZoom = 1.7 } = props;
   const wrapper = React.useRef(null);
   const [zoomLevel, setZoomLevel] = React.useState(1);
@@ -36,15 +36,15 @@ function ZoomPan(props: any) {
     const zoomArea = wrapper.current;
 
     // zoom into the container
-    function zoom(zoom: number, ox = 0, oy = 0) {
-      const d = (zoomLevel - zoom) / ((zoomLevel - zoom) || 1);
+    function zoom(zoomChange: number, ox = 0, oy = 0) {
+      const d = (zoomLevel - zoomChange) / ((zoomLevel - zoomChange) || 1);
 
-      if (isInBoundary(zoom, minZoom, maxZoom)) {
+      if (isInBoundary(zoomChange, minZoom, maxZoom)) {
 
         const newXPos = (xPos + ox) * d;
         const newYPos = (yPos + oy) * d;
-        const minXBoundary = (minX * zoom + window.innerWidth);
-        const minYBoundary = (minY * zoom + window.innerHeight);
+        const minXBoundary = (minX * zoomChange + window.innerHeight);
+        const minYBoundary = (minY * zoomChange + window.innerWidth);
 
         if (newXPos >= maxX) setXPos(maxX);
         else if (newXPos <= minXBoundary) setXPos(minXBoundary);
@@ -54,8 +54,8 @@ function ZoomPan(props: any) {
         else if (newYPos <= minYBoundary) setYPos(minYBoundary);
         else setYPos(newYPos);
 
-        setZoomLevel(zoom || 1);
-        onScaleChange(zoom);
+        setZoomLevel(zoomChange || 1);
+        onScaleChange(zoomChange);
         onPosChange({ x: xPos * -1, y: yPos * -1 });
       }
     }
