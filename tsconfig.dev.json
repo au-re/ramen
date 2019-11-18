@@ -4,17 +4,22 @@
       "dom"
     ],
     "jsx": "react",
-    "declaration": true,
+    "declaration": false,
     "target": "es5",
     "module": "commonjs",
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "./lib",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictNullChecks": false
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "ignoreDiagnostics": [
+      7005
+    ]
   },
   "include": [
     "src/**/*"

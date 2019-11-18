@@ -38,7 +38,7 @@ export const schema: ISchema = {
           {
             id: "number",
             name: "Number",
-            type: "nummber",
+            type: "number",
           },
         ],
       },
@@ -60,7 +60,6 @@ export const graph: IGraph = {
       id: "0",
       x: 100,
       y: 50,
-      name: "0",
       type: "number",
     },
     {

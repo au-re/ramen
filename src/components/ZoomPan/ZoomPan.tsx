@@ -16,6 +16,11 @@ function isInBoundary(val: number, min: number, max: number) {
   return val >= min && val <= max;
 }
 
+function normalizeScroll(delta: number) {
+  const direction = delta > 0 ? -1 : 1;
+  return direction;
+}
+
 function ZoomPan(props: any) {
   const { children, zoomSpeed = 1.8, onScaleChange = () => { }, onPosChange = () => { } } = props;
   const { maxX = 0, minX = -4116, maxY = 0, minY = -4116, minZoom = 0.5, maxZoom = 1.7 } = props;
@@ -75,8 +80,9 @@ function ZoomPan(props: any) {
     function onWheelScroll(e: WheelEvent) {
       e.preventDefault();
 
+      const scrollSpeed = normalizeScroll(e.deltaY);
       const rect = zoomArea.getBoundingClientRect();
-      const delta = (-e.deltaY ? -e.deltaY / 120 : -e.deltaY / 3) * zoomSpeed;
+      const delta = (scrollSpeed ? scrollSpeed / 120 : scrollSpeed / 3) * zoomSpeed;
       const ox = (rect.left - e.clientX) * delta;
       const oy = (rect.top - e.clientY) * delta;
 

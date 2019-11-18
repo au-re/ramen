@@ -3,6 +3,7 @@ coverage/
 dependency-map/
 storybook-static/
 lib/
+.awcache
 
 # Logs
 logs
