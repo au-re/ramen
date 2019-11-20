@@ -130,83 +130,75 @@ function Editor(props: IEditorProps) {
   }
 
   return (
-    <ZoomPan
-      minX={-editorHeight}
-      minY={-editorWidth}
-      zoom={zoom}
-      pan={pan}
-      minZoom={0.5}
-      maxZoom={1.7}
-      onScaleChange={setZoomLevel}
-    >
-      <Background id="GraphEditor" height={editorHeight} width={editorWidth} ref={boundingBox}>
-        {
-          filteredNodes.map((node) => (
-            <Node
-              zoomLevel={zoomLevel}
-              key={node.id}
-              x={node.x}
-              y={node.y}
-              name={node.name || get(schema, `nodeTypes.${node.type}.name`, "")}
-              onDrag={(e: any, data: any) => updateNodeLocation(node.id, data)}
-              onDrop={() => onGraphChange({ nodes, ...graph })}
-            >
-              {
-                get(schema, `nodeTypes.${node.type}.fields.out`, []).map((field: any, idx: number) => (
-                  <Field
-                    key={idx}
-                    hasOutput={true}
-                    height={PIN_SPACING}
-                    onMouseDown={() => startConnection(node.id, field.id)}
-                  >
-                    {field.label}
-                  </Field>
-                ))
-              }
-              {
-                get(schema, `nodeTypes.${node.type}.fields.in`, []).map((field: any, idx: number) => (
-                  <Field
-                    key={idx}
-                    hasInput={true}
-                    height={PIN_SPACING}
-                    onMouseUp={() => completeConnection(node.id, field.id)}
-                  >
-                    {field.label}
-                  </Field>
-                ))
-              }
-            </Node>
-          ))
-        }
-        <Noodles>
-          {
-            connections.map((connection, idx: number) => {
-              const startNode = getNode(nodes, connection.originNode);
-              const startNodeType = schema.nodeTypes[startNode.type];
-              const endNode = getNode(nodes, connection.targetNode);
-              const endNodeType = schema.nodeTypes[endNode.type];
-              return (
-                <Noodle
+    <Background id="GraphEditor" height={editorHeight} width={editorWidth} ref={boundingBox}>
+      {
+        filteredNodes.map((node) => (
+          <Node
+            zoomLevel={zoomLevel}
+            key={node.id}
+            x={node.x}
+            y={node.y}
+            name={node.name || get(schema, `nodeTypes.${node.type}.name`, "")}
+            onDrag={(e: any, data: any) => updateNodeLocation(node.id, data)}
+            onDrop={() => onGraphChange({ nodes, ...graph })}
+          >
+            {
+              get(schema, `nodeTypes.${node.type}.fields.out`, []).map((field: any, idx: number) => (
+                <Field
+                  color={get(schema, `socketTypes.${field.type}.color`)}
                   key={idx}
-                  start={getConnectionStart(startNodeType, startNode, connection)}
-                  end={getConnectionEnd(endNodeType, endNode, connection)}
-                  onMouseDown={() => cancelConnection(idx)}
-                />
-              );
-            })
-          }
-          {
-            dragging && (
+                  hasOutput={true}
+                  height={PIN_SPACING}
+                  onMouseDown={() => startConnection(node.id, field.id)}
+                >
+                  {field.name}
+                </Field>
+              ))
+            }
+            {
+              get(schema, `nodeTypes.${node.type}.fields.in`, []).map((field: any, idx: number) => (
+                <Field
+                  color={get(schema, `socketTypes.${field.type}.color`)}
+                  key={idx}
+                  hasInput={true}
+                  height={PIN_SPACING}
+                  onMouseUp={() => completeConnection(node.id, field.id)}
+                >
+                  {field.name}
+                </Field>
+              ))
+            }
+          </Node>
+        ))
+      }
+      <Noodles>
+        {
+          connections.map((connection, idx: number) => {
+            const startNode = getNode(nodes, connection.originNode);
+            const startNodeType = schema.nodeTypes[startNode.type];
+            const endNode = getNode(nodes, connection.targetNode);
+            const endNodeType = schema.nodeTypes[endNode.type];
+            return (
               <Noodle
-                start={getConnectionStart(schema.nodeTypes[getNode(nodes, dragging.originNode).type],
-                  getNode(nodes, dragging.originNode), dragging)}
-                end={mousePos}
+                key={idx}
+                start={getConnectionStart(startNodeType, startNode, connection)}
+                end={getConnectionEnd(endNodeType, endNode, connection)}
+                onMouseDown={() => cancelConnection(idx)}
               />
-            )
-          }
-        </Noodles>
-      </Background>
-    </ZoomPan>
+            );
+          })
+        }
+        {
+          dragging && (
+            <Noodle
+              start={getConnectionStart(schema.nodeTypes[getNode(nodes, dragging.originNode).type],
+                getNode(nodes, dragging.originNode), dragging)}
+              end={mousePos}
+            />
+          )
+        }
+      </Noodles>
+    </Background>
   );
 }
 

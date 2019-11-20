@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { lightTheme } from "../../themes";
+
 const NoodlePath = styled.path`
-  stroke: ${({ theme }) => theme.noodleColor};
+  stroke: ${({ theme }) => theme.noodleColor || lightTheme.noodleColor};
 `;
 
 interface IVector {

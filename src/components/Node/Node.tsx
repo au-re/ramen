@@ -1,6 +1,8 @@
 import React from "react";
 import Draggable from "react-draggable";
 import styled from "styled-components";
+
+import { lightTheme } from "../../themes";
 import { IGraphNodeProps } from "../../types";
 
 const NodeContainer: any = styled.div`
@@ -8,13 +10,13 @@ const NodeContainer: any = styled.div`
   position: absolute;
   display: inline-block;
   width: ${(props: IGraphNodeProps) => props.width}px;
-  color: ${({ theme }) => theme.textColor};
-  background: ${({ theme }) => theme.nodeBackground};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  color: ${({ theme }) => theme.textColor || lightTheme.textColor};
+  background: ${({ theme }) => theme.nodeBackground || lightTheme.nodeBackground};
+  border-radius: ${({ theme }) => theme.borderRadius || lightTheme.borderRadius};
   min-height: 108px;
   display: inline-block;
   cursor: move;
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.borderColor};
+  border: ${({ theme }) => theme.borderWidth || lightTheme.borderWidth} solid ${({ theme }) => theme.borderColor || lightTheme.borderColor};
 `;
 
 const NodeTitle = styled.div`

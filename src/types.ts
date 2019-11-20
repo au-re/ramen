@@ -60,12 +60,13 @@ export interface IGraph {
 }
 
 export interface IEditorProps {
-  editorHeight: number;
-  editorWidth: number;
+  editorHeight?: number;
+  editorWidth?: number;
   zoom?: boolean;
   pan?: boolean;
   schema: ISchema;
-  graph: IGraph;
+  initialGraph?: IGraph;
+  graph?: IGraph;
   onConnectionCanceled?: (connection: IGraphConnection) => void;
   onGraphChange?: (graph: IGraph) => void;
   onConnectionComplete?: (connection: IGraphConnection) => void;

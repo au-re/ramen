@@ -46,7 +46,7 @@ export const schema: ISchema = {
   },
   socketTypes: {
     number: {
-      color: "#333",
+      color: "#29abe1",
       validTargets: [
         "number",
       ],

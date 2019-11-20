@@ -24,7 +24,7 @@ const darkTheme = {
   borderColor: "#6f767c",
   editorBackground: "#14222D",
   editorBackgroundMuted: "#96A1A9",
-  nodeBackground: "rgb(46, 67, 84, .8)",
+  nodeBackground: "rgb(32, 46, 59, .9)",
   nodeBackgroundSelected: "#333",
   pinBorder: "#6f767c",
   noodleColor: "#a8b5bf",

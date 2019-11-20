@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const RamenContext = React.createContext({});
+export const RamenContext = React.createContext({});
 
 /**
  * Provides the state of the editor through a context.

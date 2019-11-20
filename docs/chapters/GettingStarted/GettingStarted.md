@@ -10,10 +10,6 @@ $ npm i -S @au-re/ramen
 
 ### Example Usage
 
-```js
-import NodeEditor  from "@au-re/ramen";
-```
-
 Start by creating a schema. The schema defines the types of nodes and fields as well as what connections can exist in your graph.
 
 ```js
@@ -39,4 +35,33 @@ const schema = {
     },
   },
 };
+```
+
+You can also pass an initial state to the editor, this is optional. Only nodes with types declared in the schema will be displayed.
+
+```js
+const graph = {
+  nodes: [
+    {
+      id: "0",
+      x: 100,
+      y: 50,
+      type: "number",
+    }
+  ],
+  connections: [],
+};
+```
+
+With the schema and the initial graph state ready we can initialize our editor:
+
+```js
+import Editor, { RamenProvider } from "ramen";
+
+<RamenProvider
+  initialGraph={graph}
+  schema={schema}
+  >
+  <Editor />
+</RamenProvider>
 ```

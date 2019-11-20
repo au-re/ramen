@@ -21,7 +21,6 @@ function GettingStarted() {
             schema={schema}
             graph={graph}
             editorHeight={400}
-            editorWidth={4096}
           />
         </ThemeProvider>
       </div>
