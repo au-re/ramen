@@ -219,23 +219,16 @@ const graph = {
 
 You can customize every aspect of the editor by either passing a custom theme or custom components.
 
-Ramen uses the `styled-components` library for styling and `styled-theming` for theming. Passing a new theme is quite simple:
+The simplest way to customize the look of the editor is by swapping the theme. Ramen ships with two
+themes, `dark` and `light`.
+
+Ramen uses the `styled-components` library for styling. You can use styled-components `ThemeProvider` to pass a new theme:
 
 ```jsx
 import { ThemeProvider } from "styled-components";
-import styledTheme from "styled-theming";
 
 // example theme
-const theme = {
-  background: styledTheme("mode", {
-    light: "#fafcfe",
-    dark: "#14222D",
-  }),
-  borderColor: styledTheme("mode", {
-    light: "#D9E1E7",
-    dark: "#14222D",
-  }),
-};
+const theme = {};
 
 <ThemeProvider theme={theme}>
   <NodeEditor />

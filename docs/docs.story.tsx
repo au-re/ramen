@@ -1,7 +1,9 @@
 import { storiesOf } from "@storybook/react";
 
-import GettingStarted from "./chapters/GettingStarted";
-import Nodes from "./chapters/Nodes";
+import GettingStarted from "./chapters/GettingStarted/GettingStarted";
+import Nodes from "./chapters/Nodes/Nodes";
+import Playground from "./chapters/Playground/Playground";
+import Theming from "./chapters/Theming/Theming";
 import WriteMe from "./chapters/WriteMe";
 
 storiesOf("Documentation|Introduction", module)
@@ -12,7 +14,7 @@ storiesOf("Documentation|Introduction", module)
   .add("Controls", WriteMe);
 
 storiesOf("Documentation|Customization", module)
-  .add("Theming", WriteMe)
+  .add("Theming", Theming)
   .add("Replacing Components", WriteMe)
   .add("Custom Controls", WriteMe)
   .add("Extending Functionality", WriteMe);
@@ -21,3 +23,6 @@ storiesOf("Documentation|API", module)
   .add("Editor API", WriteMe)
   .add("Schema Definition", WriteMe)
   .add("Graph Definition", WriteMe);
+
+storiesOf("Documentation|Playground", module)
+  .add("Playground", Playground);

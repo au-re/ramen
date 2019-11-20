@@ -43,7 +43,7 @@ function getConnectionEnd(nodeType: any, node: any, connection: any) {
 }
 
 function Editor(props: IEditorProps) {
-  const { editorHeight, editorWidth, graph, schema, onGraphChange = () => { } } = props;
+  const { editorHeight, editorWidth, graph, schema, onGraphChange = () => { }, zoom, pan } = props;
   const { onConnectionCanceled = () => { }, onConnectionComplete = () => { } } = props;
   const { nodeTypes = {} } = schema;
 
@@ -133,6 +133,8 @@ function Editor(props: IEditorProps) {
     <ZoomPan
       minX={-editorHeight}
       minY={-editorWidth}
+      zoom={zoom}
+      pan={pan}
       minZoom={0.5}
       maxZoom={1.7}
       onScaleChange={setZoomLevel}

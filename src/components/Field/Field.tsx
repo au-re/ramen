@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import theme from "../../theme";
 
 const Pin: any = styled.div`
   height: ${(props: any) => `${props.radius * 2}px`};
   width: ${(props: any) => `${props.radius * 2}px`};
   border-radius: ${(props: any) => `${props.radius * 2}px`};
-  border: 2px solid ${theme.borderColor};
+  border: 2px solid ${({ theme }) => theme.pinBorder};
   background: #2D9CDB;
   align-self: center;
 `;

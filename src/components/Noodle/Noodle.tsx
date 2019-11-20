@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import theme from "styled-theming";
-
-const noodleColor = theme("mode", {
-  light: "#4F4F4F",
-  dark: "#FAFCFE",
-});
 
 const NoodlePath = styled.path`
-  stroke: ${noodleColor};
+  stroke: ${({ theme }) => theme.noodleColor};
 `;
 
 interface IVector {
@@ -58,7 +52,6 @@ function Noodle(props: any) {
       <NoodlePath
         d={pathString}
         fill="none"
-        stroke="#FAFCFE"
         strokeWidth="4"
       />
       <path

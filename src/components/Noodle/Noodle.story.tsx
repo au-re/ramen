@@ -2,13 +2,13 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 
 import { ThemeProvider } from "styled-components";
-import { modes } from "../../constants";
+import { lightTheme } from "../../themes";
 import Noodles from "../Noodles/Noodles";
 import Noodle from "./Noodle";
 
 storiesOf("internal|Noodle", module)
   .add("simple noodle", () => (
-    <ThemeProvider theme={{ mode: modes.LIGHT }}>
+    <ThemeProvider theme={lightTheme}>
       <Noodles>
         <Noodle
           start={{ x: 100, y: 200 }}

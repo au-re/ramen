@@ -1,11 +1,11 @@
 import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
-import Editor from "../../src/components/Editor/Editor";
-import { modes } from "../../src/constants";
-import { graph, schema } from "../schemas/simpleAddition";
+import Editor from "../../../src/components/Editor/Editor";
+import { lightTheme } from "../../../src/themes";
+import { graph, schema } from "../../schemas/simpleAddition";
 
-import MarkdownPreview from "../utils/MarkdownPreview";
+import MarkdownPreview from "../../utils/MarkdownPreview";
 import GettingStartedDoc from "./GettingStarted.md";
 import IntroDoc from "./Intro.md";
 
@@ -14,11 +14,13 @@ function GettingStarted() {
     <div style={{ height: "100%", width: "100%" }}>
       <MarkdownPreview text={IntroDoc} />
       <div style={{ width: "100%", height: "400px" }}>
-        <ThemeProvider theme={{ mode: modes.LIGHT }}>
+        <ThemeProvider theme={lightTheme}>
           <Editor
+            zoom={false}
+            pan={false}
             schema={schema}
             graph={graph}
-            editorHeight={2000}
+            editorHeight={400}
             editorWidth={4096}
           />
         </ThemeProvider>

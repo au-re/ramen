@@ -1,4 +1,4 @@
-import "highlight.js/styles/docco.css";
+import "highlight.js/styles/monokai.css";
 import "./MarkdownPreview.css";
 
 import highlighter from "highlight.js/lib/highlight";

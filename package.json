@@ -67,7 +67,7 @@
     "@types/react-test-renderer": "^16.9.1",
     "@types/storybook-readme": "5.0.2",
     "@types/styled-components": "4.1.8",
-    "@types/styled-theming": "^2.2.2",
+    "ace-builds": "^1.4.7",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "browserify": "^16.5.0",
@@ -79,6 +79,7 @@
     "markdown-it": "^10.0.0",
     "markdown-loader": "^5.1.0",
     "raw-loader": "^3.1.0",
+    "react-ace": "^8.0.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^16.11.0",
     "source-map-explorer": "^2.1.0",
@@ -101,7 +102,6 @@
   "dependencies": {
     "lodash.get": "^4.4.2",
     "react-draggable": "^4.1.0",
-    "styled-components": "^4.4.1",
-    "styled-theming": "^2.2.0"
+    "styled-components": "^4.4.1"
   }
 }

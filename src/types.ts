@@ -62,9 +62,17 @@ export interface IGraph {
 export interface IEditorProps {
   editorHeight: number;
   editorWidth: number;
+  zoom?: boolean;
+  pan?: boolean;
   schema: ISchema;
   graph: IGraph;
   onConnectionCanceled?: (connection: IGraphConnection) => void;
   onGraphChange?: (graph: IGraph) => void;
   onConnectionComplete?: (connection: IGraphConnection) => void;
+}
+
+export interface IZoomPanProps {
+  zoom: boolean;
+  pan: boolean;
+
 }

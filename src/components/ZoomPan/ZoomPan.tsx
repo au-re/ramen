@@ -24,6 +24,7 @@ function normalizeScroll(delta: number) {
 function ZoomPan(props: any) {
   const { children, zoomSpeed = 4, onScaleChange = () => { }, onPosChange = () => { } } = props;
   const { maxX = 0, minX = -4116, maxY = 0, minY = -4116, minZoom = 0.5, maxZoom = 1.7 } = props;
+  const { zoom: canZoom = true, pan: canPan = true } = props;
   const wrapper = React.useRef(null);
   const [zoomLevel, setZoomLevel] = React.useState(1);
   const [xPos, setXPos] = React.useState(0);
@@ -37,6 +38,7 @@ function ZoomPan(props: any) {
 
     // zoom into the container
     function zoom(zoomChange: number, ox = 0, oy = 0) {
+      if (!canZoom) return;
       const d = (zoomLevel - zoomChange) / ((zoomLevel - zoomChange) || 1);
 
       if (isInBoundary(zoomChange, minZoom, maxZoom)) {
@@ -62,6 +64,7 @@ function ZoomPan(props: any) {
 
     // pan through the container
     function translate(x: number, y: number) {
+      if (!canPan) return;
       const minXBoundary = (minX * zoomLevel + window.innerWidth);
       const minYBoundary = (minY * zoomLevel + window.innerHeight);
 
