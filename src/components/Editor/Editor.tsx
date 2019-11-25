@@ -1,13 +1,13 @@
 import get from "lodash.get";
 import * as React from "react";
 
-import { IEditorProps, IGraph, IGraphNode } from "../../types";
+import { RamenContext } from "../../context/RamenContext/RamenContext";
+import { IEditorProps } from "../../types";
 import Background from "../Background/Background";
 import Field from "../Field/Field";
 import Node from "../Node/Node";
 import Noodle from "../Noodle/Noodle";
 import Noodles from "../Noodles/Noodles";
-import ZoomPan from "../ZoomPan/ZoomPan";
 
 const NODE_WIDTH = 200;
 const PIN_SPACING = 42;
@@ -43,53 +43,30 @@ function getConnectionEnd(nodeType: any, node: any, connection: any) {
 }
 
 function Editor(props: IEditorProps) {
-  const { editorHeight, editorWidth, graph, schema, onGraphChange = () => { }, zoom, pan } = props;
+  const { schema, graph, editorHeight, editorWidth, updateNodeLocation, setGraph } = React.useContext(RamenContext);
+  const { nodes, zoom } = graph;
   const { onConnectionCanceled = () => { }, onConnectionComplete = () => { } } = props;
-  const { nodeTypes = {} } = schema;
-
-  const filteredNodes = graph.nodes.filter((node) => !!nodeTypes[node.type]);
-  // todo: filter connections
 
   const [dragging, setDragging] = React.useState(null);
-  const [zoomLevel, setZoomLevel] = React.useState(1);
-  const [nodes = [], setNodes] = React.useState(filteredNodes);
   const [connections = [], setConnections] = React.useState(graph.connections);
   const [mousePos, setMousePos] = React.useState({});
 
-  /**
-   * when dragging the node, update the node location in the editor state
-   * updating the node location is necessary to rerender the noodles.
-   * @param id
-   * @param data
-   */
-  function updateNodeLocation(id: string, data: any) {
-    const rest: IGraphNode[] = [];
-    let node: IGraphNode;
-
-    nodes.forEach((_node) => {
-      if (_node.id === id) node = _node;
-      else rest.push(_node);
-    });
-
-    const newNode = {
-      ...node,
-      x: data.x,
-      y: data.y,
-    };
-
-    setNodes([newNode, ...rest]);
-  }
-
   // add an offset based on the main div offset from 0 0
   const boundingBox = React.useRef(null);
-  const boundingBoxRect = boundingBox.current ? boundingBox.current.getBoundingClientRect() : {};
-  const xOffset = boundingBoxRect.x;
-  const yOffset = boundingBoxRect.y;
 
-  // TODO: performance issues, this rerenders everythig on mouse move
   React.useEffect(() => {
+    const boundingBoxRect = boundingBox.current ? boundingBox.current.getBoundingClientRect() : {};
+    const xOffset = boundingBoxRect.x;
+    const yOffset = boundingBoxRect.y;
 
-    const onMouseMove = (e: MouseEvent) => setMousePos({ x: e.x - xOffset, y: e.y - yOffset });
+    const onMouseMove = (e: MouseEvent) => {
+      const newMousePos = {
+        x: ((e.x / zoom) - (xOffset / zoom)) + scrollX,
+        y: ((e.y / zoom) - (yOffset / zoom)) + scrollY,
+      };
+      setMousePos(newMousePos);
+    };
+
     const onMouseUp = (e: MouseEvent) => setDragging(null);
 
     window.addEventListener("mousemove", onMouseMove);
@@ -99,7 +76,7 @@ function Editor(props: IEditorProps) {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
     };
-  }, [xOffset, yOffset]);
+  }, [zoom, boundingBox]);
 
   function startConnection(nodeId: string, pinId: string) {
     setDragging({ originNode: nodeId, originPin: pinId });
@@ -132,15 +109,14 @@ function Editor(props: IEditorProps) {
   return (
     <Background id="GraphEditor" height={editorHeight} width={editorWidth} ref={boundingBox}>
       {
-        filteredNodes.map((node) => (
+        graph.nodes.map((node) => (
           <Node
-            zoomLevel={zoomLevel}
+            zoomLevel={graph.zoom}
             key={node.id}
             x={node.x}
             y={node.y}
             name={node.name || get(schema, `nodeTypes.${node.type}.name`, "")}
-            onDrag={(e: any, data: any) => updateNodeLocation(node.id, data)}
-            onDrop={() => onGraphChange({ nodes, ...graph })}
+            onDrag={(e: any, location: any) => updateNodeLocation(node.id, location)}
           >
             {
               get(schema, `nodeTypes.${node.type}.fields.out`, []).map((field: any, idx: number) => (

@@ -7,6 +7,8 @@ import AceEditor from "react-ace";
 import styled, { ThemeProvider } from "styled-components";
 
 import Editor from "../../../src/components/Editor/Editor";
+import ZoomPan from "../../../src/components/ZoomPan/ZoomPan";
+import RamenProvider from "../../../src/context/RamenContext/RamenContext";
 import { lightTheme } from "../../../src/themes";
 
 const EditorContainer = styled.div`
@@ -38,12 +40,12 @@ const defaultSchema = {
       fields: {
         in: [
           {
-            id: "number",
+            id: "number1",
             name: "Number",
             type: "number",
           },
           {
-            id: "number",
+            id: "number2",
             name: "Number",
             type: "number",
           }],
@@ -61,6 +63,7 @@ const defaultSchema = {
 };
 
 const defaultGraph = {
+  zoom: 1,
   xPos: 100,
   yPos: 200,
   nodes: [
@@ -140,12 +143,16 @@ function Playground() {
           </div>
         </div>
         <ThemeProvider theme={lightTheme}>
-          <Editor
+          <RamenProvider
             editorHeight={4096}
             editorWidth={4096}
             schema={parsedSchema}
             graph={parsedGraph}
-          />
+          >
+            <ZoomPan>
+              <Editor />
+            </ZoomPan>
+          </RamenProvider>
         </ThemeProvider>
       </div>
     </EditorContainer>

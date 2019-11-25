@@ -55,25 +55,44 @@ export interface IGraphConnection {
 }
 
 export interface IGraph {
+  xPos?: number;
+  yPos?: number;
+  zoom?: number;
   nodes: IGraphNode[];
   connections: IGraphConnection[];
 }
 
 export interface IEditorProps {
-  editorHeight?: number;
-  editorWidth?: number;
-  zoom?: boolean;
-  pan?: boolean;
-  schema: ISchema;
-  initialGraph?: IGraph;
-  graph?: IGraph;
   onConnectionCanceled?: (connection: IGraphConnection) => void;
-  onGraphChange?: (graph: IGraph) => void;
   onConnectionComplete?: (connection: IGraphConnection) => void;
 }
 
 export interface IZoomPanProps {
   zoom: boolean;
   pan: boolean;
+}
 
+export interface ILocation {
+  x: number;
+  y: number;
+}
+
+export interface IRamenContext {
+  editorHeight: number;
+  editorWidth: number;
+  graph: IGraph;
+  schema: ISchema;
+  updateNodeLocation: (nodeId: string, location: ILocation) => void;
+  setGraph: (graph: IGraph) => void;
+  setZoomLevel: (zoomLevel: number) => void;
+}
+
+export interface IRamenProviderProps {
+  children: any;
+  schema: ISchema;
+  initialGraph?: IGraph;
+  graph?: IGraph;
+  editorHeight?: number;
+  editorWidth?: number;
+  onGraphChange?: (graph: IGraph) => void;
 }

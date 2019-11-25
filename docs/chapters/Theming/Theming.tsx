@@ -2,8 +2,9 @@ import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
 import Editor from "../../../src/components/Editor/Editor";
+import RamenProvider from "../../../src/context/RamenContext/RamenContext";
 import { darkTheme, lightTheme } from "../../../src/themes";
-import { graph, schema } from "../../schemas/simpleAddition";
+import * as simpleAddition from "../../schemas/simpleAddition";
 
 import MarkdownPreview from "../../utils/MarkdownPreview";
 import ThemingIntro from "./ThemingIntro.md";
@@ -44,14 +45,15 @@ function Theming() {
       </select>
       <div style={{ width: "100%", height: "400px" }}>
         <ThemeProvider theme={themes[theme]}>
-          <Editor
-            zoom={false}
-            pan={false}
-            schema={schema}
-            graph={graph}
-            editorHeight={400}
-            editorWidth={4096}
-          />
+          <ThemeProvider theme={lightTheme}>
+            <RamenProvider
+              editorHeight={400}
+              schema={simpleAddition.schema}
+              initialGraph={simpleAddition.graph}
+            >
+              <Editor />
+            </RamenProvider>
+          </ThemeProvider>
         </ThemeProvider>
       </div>
       <MarkdownPreview text={ThemingDoc} />

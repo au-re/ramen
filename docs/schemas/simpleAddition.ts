@@ -55,6 +55,7 @@ export const schema: ISchema = {
 };
 
 export const graph: IGraph = {
+  zoom: 1,
   nodes: [
     {
       id: "0",

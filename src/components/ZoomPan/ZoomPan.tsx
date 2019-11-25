@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { RamenContext } from "../../context/RamenContext/RamenContext";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -25,8 +26,10 @@ function ZoomPan(props: any) {
   const { children, zoomSpeed = 4, onScaleChange = () => { }, onPosChange = () => { } } = props;
   const { maxX = 0, minX = -4116, maxY = 0, minY = -4116, minZoom = 0.5, maxZoom = 1.7 } = props;
   const { zoom: canZoom = true, pan: canPan = true } = props;
+
+  const { graph, setZoomLevel } = React.useContext(RamenContext);
+
   const wrapper = React.useRef(null);
-  const [zoomLevel, setZoomLevel] = React.useState(1);
   const [xPos, setXPos] = React.useState(0);
   const [yPos, setYPos] = React.useState(0);
   const [dragStartPos, setDragStartPos]: [any, any] = React.useState(null);
@@ -39,7 +42,7 @@ function ZoomPan(props: any) {
     // zoom into the container
     function zoom(zoomChange: number, ox = 0, oy = 0) {
       if (!canZoom) return;
-      const d = (zoomLevel - zoomChange) / ((zoomLevel - zoomChange) || 1);
+      const d = (graph.zoom - zoomChange) / ((graph.zoom - zoomChange) || 1);
 
       if (isInBoundary(zoomChange, minZoom, maxZoom)) {
 
@@ -65,8 +68,8 @@ function ZoomPan(props: any) {
     // pan through the container
     function translate(x: number, y: number) {
       if (!canPan) return;
-      const minXBoundary = (minX * zoomLevel + window.innerWidth);
-      const minYBoundary = (minY * zoomLevel + window.innerHeight);
+      const minXBoundary = (minX * graph.zoom + window.innerWidth);
+      const minYBoundary = (minY * graph.zoom + window.innerHeight);
 
       if (x >= maxX) setXPos(maxX);
       else if (x <= minXBoundary) setXPos(minXBoundary);
@@ -89,7 +92,7 @@ function ZoomPan(props: any) {
       const ox = (rect.left - e.clientX) * delta;
       const oy = (rect.top - e.clientY) * delta;
 
-      zoom(zoomLevel * (1 + delta), ox, oy);
+      zoom(graph.zoom * (1 + delta), ox, oy);
     }
 
     // start pan on middle mouse button down
@@ -136,7 +139,6 @@ function ZoomPan(props: any) {
 
   }, [
       zoomSpeed,
-      zoomLevel,
       xPos,
       yPos,
       dragStartPos,
@@ -151,7 +153,7 @@ function ZoomPan(props: any) {
 
   return (
     <Wrapper ref={wrapper}>
-      <ZoomPanContainer xPos={xPos} yPos={yPos} scale={zoomLevel}>
+      <ZoomPanContainer xPos={xPos} yPos={yPos} scale={graph.zoom}>
         {children}
       </ZoomPanContainer>
     </Wrapper>

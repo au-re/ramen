@@ -10,7 +10,7 @@ $ npm i -S @au-re/ramen
 
 ### Example Usage
 
-Start by creating a schema. The schema defines the types of nodes and fields as well as what connections can exist in your graph.
+Start by creating a schema. The schema defines the types of nodes and sockets as well as what connections can exist in your graph.
 
 ```js
 const schema = {
@@ -58,10 +58,9 @@ With the schema and the initial graph state ready we can initialize our editor:
 ```js
 import Editor, { RamenProvider } from "ramen";
 
-<RamenProvider
-  initialGraph={graph}
-  schema={schema}
-  >
+<RamenProvider initialGraph={graph} schema={schema}>
   <Editor />
 </RamenProvider>
 ```
+
+You can see the resulting graph below, it consists of a single Node with no connections:
