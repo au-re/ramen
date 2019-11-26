@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
-import Editor from "../../../src/components/Editor/Editor";
+import Editor from "../../../src/components/Editor/EditorContainer";
 import RamenProvider from "../../../src/context/RamenContext/RamenContext";
 import { lightTheme } from "../../../src/themes";
 import * as simpleAddition from "../../schemas/simpleAddition";
@@ -14,26 +14,28 @@ function GettingStarted() {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <MarkdownPreview text={IntroDoc} />
-      <div style={{ width: "100%", height: "400px" }}>
+      <div style={{ width: "100%", height: "400px", overflow: "hidden" }}>
         <ThemeProvider theme={lightTheme}>
           <RamenProvider
-            editorHeight={400}
             schema={simpleAddition.schema}
             initialGraph={simpleAddition.graph}
           >
-            <Editor />
+            <Editor
+              height={400}
+            />
           </RamenProvider>
         </ThemeProvider>
       </div>
       <MarkdownPreview text={GettingStartedDoc} />
-      <div style={{ width: "100%", height: "400px" }}>
+      <div style={{ width: "100%", height: "400px", overflow: "hidden" }}>
         <ThemeProvider theme={lightTheme}>
           <RamenProvider
-            editorHeight={400}
             schema={simpleNode.schema}
             initialGraph={simpleNode.graph}
           >
-            <Editor />
+            <Editor
+              height={400}
+            />
           </RamenProvider>
         </ThemeProvider>
       </div>

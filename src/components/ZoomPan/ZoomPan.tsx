@@ -21,7 +21,7 @@ function normalizeScroll(delta: number) {
   const direction = delta > 0 ? -1 : 1;
   return direction;
 }
-
+// TODO: fetch minX, minY from component height, width
 function ZoomPan(props: any) {
   const { children, zoomSpeed = 4, onScaleChange = () => { }, onPosChange = () => { } } = props;
   const { maxX = 0, minX = -4116, maxY = 0, minY = -4116, minZoom = 0.5, maxZoom = 1.7 } = props;

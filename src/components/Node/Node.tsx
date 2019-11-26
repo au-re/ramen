@@ -1,11 +1,10 @@
 import React from "react";
-import Draggable from "react-draggable";
 import styled from "styled-components";
 
 import { lightTheme } from "../../themes";
 import { IGraphNodeProps } from "../../types";
 
-const NodeContainer: any = styled.div`
+const NodeWrapper: any = styled.div`
   z-index: 100;
   position: absolute;
   display: inline-block;
@@ -25,27 +24,17 @@ const NodeTitle = styled.div`
 `;
 
 function Node(props: IGraphNodeProps) {
-  const { children, x = 0, y = 0, width = 200, name, zoomLevel = 1 } = props;
-  const { onDrop = () => { }, onDrag = () => { } } = props;
+  const { children, width = 200, name, ...rest } = props;
 
   return (
-    <Draggable
-      scale={zoomLevel}
-      bounds="#GraphEditor"
-      defaultPosition={{ x, y }}
-      cancel=".noDrag"
-      onDrag={onDrag}
-      onStop={onDrop}
-    >
-      <NodeContainer width={width}>
-        <NodeTitle>
-          {name}
-        </NodeTitle>
-        <div>
-          {children}
-        </div>
-      </NodeContainer>
-    </Draggable>
+    <NodeWrapper width={width} {...rest}>
+      <NodeTitle>
+        {name}
+      </NodeTitle>
+      <div>
+        {children}
+      </div>
+    </NodeWrapper>
   );
 }
 

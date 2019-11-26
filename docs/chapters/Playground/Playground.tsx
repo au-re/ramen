@@ -6,7 +6,7 @@ import * as React from "react";
 import AceEditor from "react-ace";
 import styled, { ThemeProvider } from "styled-components";
 
-import Editor from "../../../src/components/Editor/Editor";
+import Editor from "../../../src/components/Editor/EditorContainer";
 import ZoomPan from "../../../src/components/ZoomPan/ZoomPan";
 import RamenProvider from "../../../src/context/RamenContext/RamenContext";
 import { lightTheme } from "../../../src/themes";
@@ -144,18 +144,17 @@ function Playground() {
         </div>
         <ThemeProvider theme={lightTheme}>
           <RamenProvider
-            editorHeight={4096}
-            editorWidth={4096}
             schema={parsedSchema}
             graph={parsedGraph}
+            onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 1))}
           >
             <ZoomPan>
-              <Editor />
+              <Editor height={4096} width={4096} />
             </ZoomPan>
           </RamenProvider>
         </ThemeProvider>
       </div>
-    </EditorContainer>
+    </EditorContainer >
   );
 }
 

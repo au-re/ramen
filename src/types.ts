@@ -63,6 +63,9 @@ export interface IGraph {
 }
 
 export interface IEditorProps {
+  children?: any;
+  height?: number;
+  width?: number;
   onConnectionCanceled?: (connection: IGraphConnection) => void;
   onConnectionComplete?: (connection: IGraphConnection) => void;
 }
@@ -78,13 +81,15 @@ export interface ILocation {
 }
 
 export interface IRamenContext {
-  editorHeight: number;
-  editorWidth: number;
   graph: IGraph;
   schema: ISchema;
   updateNodeLocation: (nodeId: string, location: ILocation) => void;
   setGraph: (graph: IGraph) => void;
   setZoomLevel: (zoomLevel: number) => void;
+  createConnection: (connection: IGraphConnection) => void;
+  deleteConnection: (connectionId: number) => void;
+  getConnectionStart: (connection: IGraphConnection) => ILocation | null;
+  getConnectionEnd: (connection: IGraphConnection) => ILocation | null;
 }
 
 export interface IRamenProviderProps {
@@ -92,7 +97,10 @@ export interface IRamenProviderProps {
   schema: ISchema;
   initialGraph?: IGraph;
   graph?: IGraph;
-  editorHeight?: number;
-  editorWidth?: number;
   onGraphChange?: (graph: IGraph) => void;
+}
+
+export interface INodeLayer {
+  onNodeDrag: (nodeId: string, newLocation: ILocation) => void;
+  onNodeDrop: (nodeId: string, newLocation: ILocation) => void;
 }

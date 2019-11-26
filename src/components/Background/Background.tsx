@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Background: any = styled.div`
+const Background: any = styled.div.attrs(() => ({ id: "GraphEditor" }))`
   height: ${(props: any) => props.height ? `${props.height}px` : "100%"};
   width: ${(props: any) => props.width ? `${props.width}px` : "100%"};
   position: relative;
