@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Noodles = styled.svg`
+const Noodles = styled.svg.attrs({ id: "Noodles" })`
   position: absolute;
   z-index: 90;
   height: 100%;

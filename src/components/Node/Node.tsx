@@ -24,10 +24,10 @@ const NodeTitle = styled.div`
 `;
 
 function Node(props: IGraphNodeProps) {
-  const { children, width = 200, name, ...rest } = props;
+  const { children, width = 200, name, className, ...rest } = props;
 
   return (
-    <NodeWrapper width={width} {...rest}>
+    <NodeWrapper width={width} className={"node " + className} {...rest}>
       <NodeTitle>
         {name}
       </NodeTitle>

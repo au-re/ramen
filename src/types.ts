@@ -37,6 +37,7 @@ export interface IGraphNodeProps {
   onDrop?: (e: any, data: any) => void;
   onDrag?: (e: any, data: any) => void;
   children?: any;
+  className?: string;
 }
 
 export interface IGraphNode {

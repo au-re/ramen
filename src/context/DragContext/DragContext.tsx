@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import Background from "../../components/Background/Background";
 import { RamenContext } from "../RamenContext/RamenContext";
 
 export const DragContext = React.createContext({} as any);

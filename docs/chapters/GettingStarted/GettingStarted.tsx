@@ -20,9 +20,7 @@ function GettingStarted() {
             schema={simpleAddition.schema}
             initialGraph={simpleAddition.graph}
           >
-            <Editor
-              height={400}
-            />
+            <Editor />
           </RamenProvider>
         </ThemeProvider>
       </div>

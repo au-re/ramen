@@ -7,9 +7,11 @@ import AceEditor from "react-ace";
 import styled, { ThemeProvider } from "styled-components";
 
 import Editor from "../../../src/components/Editor/EditorContainer";
+import BoxSelectionLayer from "../../../src/components/Layers/BoxSelectionLayer/BoxSelectionLayer";
 import ZoomPan from "../../../src/components/ZoomPan/ZoomPan";
 import RamenProvider from "../../../src/context/RamenContext/RamenContext";
 import { lightTheme } from "../../../src/themes";
+import SelectionProvider from "../../../src/context/SelectionContext/SelectionContext";
 
 const EditorContainer = styled.div`
   display: block;
@@ -148,9 +150,13 @@ function Playground() {
             graph={parsedGraph}
             onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 1))}
           >
-            <ZoomPan>
-              <Editor height={4096} width={4096} />
-            </ZoomPan>
+            <SelectionProvider>
+              <ZoomPan>
+                <Editor height={4096} width={4096}>
+                  <BoxSelectionLayer />
+                </Editor>
+              </ZoomPan>
+            </SelectionProvider>
           </RamenProvider>
         </ThemeProvider>
       </div>

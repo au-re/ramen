@@ -40,7 +40,11 @@ function NodeContainer(props: any) {
     ));
 
   return (
-    <Node {...rest} name={node.name || get(schema, `nodeTypes.${node.type}.name`, "")}>
+    <Node
+      {...rest}
+      id={node.id}
+      name={node.name || get(schema, `nodeTypes.${node.type}.name`, "")}
+    >
       {outFields}
       {inFields}
     </Node>

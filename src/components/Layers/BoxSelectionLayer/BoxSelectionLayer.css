@@ -1,0 +1,5 @@
+.selection-area {
+  background: rgba(0, 0, 255, 0.01);
+  border-radius: 0.1em;
+  border: 0.05em solid rgba(0, 0, 255, 0.02);
+}

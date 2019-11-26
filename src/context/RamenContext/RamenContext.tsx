@@ -27,7 +27,7 @@ const emptyGraph: IGraph = {
  * @param {*} props
  */
 function RamenProvider(props: IRamenProviderProps) {
-  const { initialGraph, graph = emptyGraph, schema = emptySchema } = props;
+  const { initialGraph, graph = emptyGraph, schema = emptySchema, children } = props;
   const { onGraphChange = () => { } } = props;
 
   const [_graph, _setGraph] = React.useState(initialGraph || graph);
@@ -164,7 +164,7 @@ function RamenProvider(props: IRamenProviderProps) {
 
   return (
     <RamenContext.Provider value={contextValue}>
-      {props.children}
+      {children}
     </RamenContext.Provider>
   );
 }
