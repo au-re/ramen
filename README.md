@@ -20,7 +20,7 @@
 
 > **work in progress** - this library is not ready for use yet
 
-**Ramen** is a simple but extensive react library for building node editors for visual programming.
+**Ramen** is a simple but extensible react library for building node editors for visual programming.
 
 [![npm][npm-image]][npm-url]
 [![commitizen friendly][commitizen-image]][commitizen-url]

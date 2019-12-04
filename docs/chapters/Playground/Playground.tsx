@@ -6,12 +6,9 @@ import * as React from "react";
 import AceEditor from "react-ace";
 import styled, { ThemeProvider } from "styled-components";
 
-import Editor from "../../../src/components/Editor/EditorContainer";
-import BoxSelectionLayer from "../../../src/components/Layers/BoxSelectionLayer/BoxSelectionLayer";
-import ZoomPan from "../../../src/components/ZoomPan/ZoomPan";
-import RamenProvider from "../../../src/context/RamenContext/RamenContext";
+import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
+import RamenProvider from "../../../src/context/RamenProvider";
 import { lightTheme } from "../../../src/themes";
-import SelectionProvider from "../../../src/context/SelectionContext/SelectionContext";
 
 const EditorContainer = styled.div`
   display: block;
@@ -65,9 +62,6 @@ const defaultSchema = {
 };
 
 const defaultGraph = {
-  zoom: 1,
-  xPos: 100,
-  yPos: 200,
   nodes: [
     {
       id: "0",
@@ -91,15 +85,15 @@ const defaultGraph = {
   connections: [
     {
       originNode: "0",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number1",
+      targetField: "number1",
     },
     {
       originNode: "1",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number2",
+      targetField: "number2",
     },
   ],
 };
@@ -150,13 +144,10 @@ function Playground() {
             graph={parsedGraph}
             onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 1))}
           >
-            <SelectionProvider>
-              <ZoomPan>
-                <Editor height={4096} width={4096}>
-                  <BoxSelectionLayer />
-                </Editor>
-              </ZoomPan>
-            </SelectionProvider>
+            <DefaultEditor
+              height={4096}
+              width={4096}
+            />
           </RamenProvider>
         </ThemeProvider>
       </div>

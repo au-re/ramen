@@ -1,34 +1,30 @@
-import "highlight.js/styles/monokai.css";
 import "./MarkdownPreview.css";
 
-import highlighter from "highlight.js/lib/highlight";
-import bash from "highlight.js/lib/languages/bash";
-import javascript from "highlight.js/lib/languages/javascript";
-import json from "highlight.js/lib/languages/json";
-
-import md from "markdown-it";
 import React from "react";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { materialLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-highlighter.registerLanguage("json", json);
-highlighter.registerLanguage("javascript", javascript);
-highlighter.registerLanguage("bash", bash);
-
-const markdown = md({
-  html: true,
-  highlight: (str, lang) => {
-    if (!lang || !highlighter.getLanguage(lang)) return "";
-    try {
-      return `<pre class="hljs"><code>${highlighter.highlight(lang, str, true).value}</code></pre>`;
-    } catch (err) {
-      throw err;
-    }
-  },
-});
+function CodeBlock(props) {
+  const { language = null, value } = props;
+  return (
+    <SyntaxHighlighter language={language} style={materialLight}>
+      {value}
+    </SyntaxHighlighter>
+  );
+}
 
 function MarkdownPreview(props: any) {
-  const { text = "", ...rest } = props;
-  const html = markdown.render(text);
-  return (<div {...rest} className="richtext" dangerouslySetInnerHTML={{ __html: html }} />);
+  const { text = "" } = props;
+  return (
+    <div className="richtext">
+      <ReactMarkdown
+        source={text}
+        escapeHtml={false}
+        renderers={{ code: CodeBlock }}
+      />
+    </div>
+  );
 }
 
 export default MarkdownPreview;

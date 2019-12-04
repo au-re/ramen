@@ -55,9 +55,6 @@ export const schema: ISchema = {
 };
 
 export const graph: IGraph = {
-  zoom: 1,
-  xPos: 0,
-  yPos: 0,
   nodes: [
     {
       id: "0",
@@ -81,15 +78,15 @@ export const graph: IGraph = {
   connections: [
     {
       originNode: "0",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number1",
+      targetField: "number1",
     },
     {
       originNode: "1",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number2",
+      targetField: "number2",
     },
   ],
 };

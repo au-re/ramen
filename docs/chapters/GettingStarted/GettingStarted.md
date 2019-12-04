@@ -59,7 +59,11 @@ With the schema and the initial graph state ready we can initialize our editor:
 import Editor, { RamenProvider } from "ramen";
 
 <RamenProvider initialGraph={graph} schema={schema}>
-  <Editor />
+  <Editor
+    canZoom={false}
+    canPan={false}
+    height={400}
+  />
 </RamenProvider>
 ```
 

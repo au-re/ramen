@@ -1,12 +1,12 @@
 import * as React from "react";
 import { ThemeProvider } from "styled-components";
 
-import Editor from "../../../src/components/Editor/EditorContainer";
-import RamenProvider from "../../../src/context/RamenContext/RamenContext";
+import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
+import RamenProvider from "../../../src/context/RamenProvider";
 import { darkTheme, lightTheme } from "../../../src/themes";
 import * as simpleAddition from "../../schemas/simpleAddition";
-
 import MarkdownPreview from "../../utils/MarkdownPreview";
+
 import ThemingIntro from "./ThemingIntro.md";
 import ThemingDoc from "./ThemingMain.md";
 
@@ -49,7 +49,7 @@ function Theming() {
             schema={simpleAddition.schema}
             initialGraph={simpleAddition.graph}
           >
-            <Editor />
+            <DefaultEditor canPan={false} canZoom={false} height={400} />
           </RamenProvider>
         </ThemeProvider>
       </div>

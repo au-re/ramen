@@ -13,7 +13,7 @@ import { ThemeProvider } from "styled-components";
 
 <ThemeProvider theme={darkTheme}>
   <NodeEditor />
-<ThemeProvider
+<ThemeProvider>
 ```
 
 #### Custom themes
@@ -31,7 +31,7 @@ const myTheme = {
 
 <ThemeProvider theme={myTheme}>
   <NodeEditor />
-<ThemeProvider
+<ThemeProvider>
 ```
 
 These are the themable properties of ramen:
