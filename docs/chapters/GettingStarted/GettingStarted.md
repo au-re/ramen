@@ -3,14 +3,14 @@
 Ramen allows you to view and edit the struture of a node graph of the type often used for visual
 programming.
 
-> **Ramen** does not provide any way to execute code, it's goal is the generate a graph object representing the current state of the graph whenever the user makes changes to it.
+> **Ramen** does not provide any way to execute code, its goal is to generate a graph object representing the current state of the graph whenever the user makes changes to it.
 
 ### Installation
 
 Ramen can be installed via [npm](https://www.npmjs.com/package/ramen).
 
 ```bash
-$ npm i -S @au-re/ramen
+npm i -S @au-re/ramen
 ```
 
 ### Example Usage

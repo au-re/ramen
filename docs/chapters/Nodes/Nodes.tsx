@@ -70,7 +70,7 @@ function Nodes() {
                 nodeTypes: {
                   example: parsedSchema,
                 },
-                socketTypes: {},
+                fieldTypes: {},
               }}
             />
           </div>

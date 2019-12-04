@@ -57,7 +57,6 @@ const schema = {
         out: [
         {
           id: "number",
-          name: "Number",
           type: "number",
         }]
       }
@@ -67,19 +66,18 @@ const schema = {
         in: [
         {
           id: "number",
-          name: "Number",
           type: "number",
         },
         {
           id: "number",
-          name: "Number",
           type: "number",
         }]
       }
     }
   },
-  socketTypes: {
+  fieldTypes: {
     number: {
+      name: "Number",
       color: "#333",
       validTargets: [
         "number",

@@ -12,8 +12,7 @@ const defaultSchema = {
         out: [
           {
             id: "number",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           }],
       },
     },
@@ -22,19 +21,18 @@ const defaultSchema = {
         in: [
           {
             id: "number1",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           },
           {
             id: "number2",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           }],
       },
     },
   },
-  socketTypes: {
+  fieldTypes: {
     number: {
+      name: "Number",
       color: "#333",
       validTargets: [
         "number",
