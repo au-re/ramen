@@ -6,7 +6,8 @@ addParameters({
     theme: create({
       base: "light",
       brandTitle: "ramen",
-      brandUrl: "https://github.com/au-re/ramen"
+      brandUrl: "https://github.com/au-re/ramen",
+      brandImage: "https://raw.githubusercontent.com/au-re/ramen/master/assets/ramen.png",
     }),
   },
 });

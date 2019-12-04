@@ -46,7 +46,7 @@ export const schema: ISchema = {
   },
   socketTypes: {
     number: {
-      color: "#333",
+      color: "#29abe1",
       validTargets: [
         "number",
       ],
@@ -78,15 +78,15 @@ export const graph: IGraph = {
   connections: [
     {
       originNode: "0",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number1",
+      targetField: "number1",
     },
     {
       originNode: "1",
-      originPin: "number",
+      originField: "number",
       targetNode: "2",
-      targetPin: "number2",
+      targetField: "number2",
     },
   ],
 };

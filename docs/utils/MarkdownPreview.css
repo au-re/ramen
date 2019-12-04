@@ -1,15 +1,14 @@
 .richtext {
-  font-family: 'Lato', 'Roboto', sans-serif;
+  font-family: "Oswald", "Helvetica", "Roboto", sans-serif;
   text-align: left;
+  padding: 2rem;
   padding-bottom: 0;
   overflow: auto;
-  height: 100%;
-  padding: 2rem;
   max-width: 64rem;
   margin: 0 auto;
 }
 
-.richtext p {
+p {
   display: flex;
   margin-top: 0;
   margin-bottom: 1rem;
@@ -19,17 +18,17 @@
   line-height: 1.7rem;
 }
 
-.richtext strong,
-.richtext em {
+strong,
+em {
   display: contents;
   margin: 0 4px;
 }
 
-.richtext a {
+a {
   display: contents;
 }
 
-.richtext h1 {
+h1 {
   font-size: 2.8rem;
   font-weight: 600;
   line-height: 2.8rem;
@@ -38,7 +37,7 @@
   padding-bottom: 1rem;
 }
 
-.richtext h2 {
+h2 {
   font-size: 2.1rem;
   font-weight: 600;
   line-height: 2.6rem;
@@ -47,24 +46,24 @@
   padding-bottom: 1rem;
 }
 
-.richtext h3 {
+h3 {
   font-size: 1.4rem;
 }
 
-.richtext li {
+li {
   margin: .4rem 0;
 }
 
-.richtext li li {
+li li {
   margin: .1rem 0;
 }
 
-.richtext img {
+img {
   margin: 0 auto;
   max-width: 100%;
 }
 
-.richtext blockquote {
+blockquote {
   margin: 1em 0;
   background-color: #f8ffff;
   color: #276f86;
@@ -73,15 +72,13 @@
   border-radius: .28571429rem;
 }
 
-.richtext blockquote p {
+blockquote p {
   opacity: .85;
   margin: .75em 0;
 }
 
-.richtext .katex-block .katex {
-  margin: 0;
-}
-
-.richtext .katex {
-  margin: 0 .5rem;
+pre {
+  font-family: "Oxygen", monospace;
+  font-size: 1.05rem;
+  border-radius: 4px;
 }

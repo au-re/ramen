@@ -4,6 +4,7 @@
     "tslint-react"
   ],
   "rules": {
+    "no-unused-variable": true,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "forin": false,
