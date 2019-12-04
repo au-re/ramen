@@ -1,9 +1,9 @@
-## Fields
+# Fields
 
 Fields represent input values, or output values of a code block. Fields are located on Nodes and can
 be connected to each other. They too need to be of a type defined in the schema.
 
-### Field Types
+## Field Types
 
 ```js
 const schema = {
@@ -32,7 +32,7 @@ of field types, this field can be connected to.
 
 If a controlType is defined, a control item will be displayed in the field.
 
-### Field Instance
+## Field Instances
 
 A node can contain various fields: inputs and outputs. Each one of these Field Instances can contain
 some additional data, such as an **id**.
@@ -45,6 +45,7 @@ const schema = {
         in: [
           {
             id: "example1",
+            name: "Number 1",
             fieldType: "numberField",
           }
         ]
@@ -56,5 +57,8 @@ const schema = {
 
 | Name | Type | Description | Required |
 | --- | --- | --- | --- |
-| `fieldType` | `string` | id of the field type | - |
-| `id` | `string` | id of the field instance | - |
+| `fieldType` | `string` | id of the field type | X |
+| `name` | `string` | name for this instance (replaces the type name) | - |
+| `id` | `string` | id of the field instance | X |
+
+In the example below, the node uses our custom field. You can modify the schema and see the changes.

@@ -1,11 +1,11 @@
-## Nodes
+# Nodes
 
 Nodes represent chunks of logic that you can wire together through **ramen**.
 
 When you define a new graph you need to specify all node types that the graph should support, this
 is done through a _schema_ that you pass to **ramen**.
 
-### Node Types
+## Node Types
 
 ```js
 const schema = {
@@ -35,7 +35,7 @@ Besides **fields** a node can contain **controls**. A control is an interface us
 of a node. Which controls a node has are specified by you. You can find more about controls in the
 [Controls]() chapter.
 
-### Node Type API
+## Node Type API
 
 | Name | Type | Description | Required |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ of a node. Which controls a node has are specified by you. You can find more abo
 | `fields.in` | `array` | fields that act as properties for the node | - |
 | `fields.out` | `array` | fields that act as return values for the node | - |
 
-### Example
+## Example
 
 The example below represents a procedure that take two values as properties and returns the result
 of adding these two numbers. Edit the schema to see it change.

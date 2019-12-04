@@ -1,4 +1,4 @@
-### Accessing graph changes
+## Accessing graph changes
 
 You can access changes to the graph with the **onGraphChange** property.
 

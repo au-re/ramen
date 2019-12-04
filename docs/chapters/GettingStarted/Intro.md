@@ -16,7 +16,7 @@
   <img src="https://raw.githubusercontent.com/au-re/ramen/master/assets/ramen.png"/>
 </p>
 
-# ramen
+# Ramen
 
 > **work in progress** - this library is not ready for use yet
 

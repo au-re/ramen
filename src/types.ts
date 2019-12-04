@@ -1,5 +1,6 @@
 export interface ISchemaField {
   id: string;
+  name?: string;
   fieldType: string;
 }
 
@@ -19,7 +20,7 @@ export interface ISchema {
       },
     },
   };
-  fieldTypes: {
+  fieldTypes?: {
     [fieldTypeId: string]: {
       name?: string,
       color?: string,

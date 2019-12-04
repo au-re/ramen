@@ -4,23 +4,6 @@ export const schema: ISchema = {
   nodeTypes: {
     numberNode: {
       name: "My Node",
-      fields: {
-        out: [
-          {
-            id: "number",
-            fieldType: "numberField",
-          },
-        ],
-      },
-    },
-  },
-  fieldTypes: {
-    numberField: {
-      name: "Number",
-      color: "#29abe1",
-      validTargets: [
-        "numberField",
-      ],
     },
   },
 };

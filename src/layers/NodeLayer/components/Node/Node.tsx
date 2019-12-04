@@ -29,7 +29,7 @@ function Node(props: INodeProps) {
         height={FIELD_HEIGHT}
         onMouseDown={() => onFieldOutMouseDown(id, field.id)}
       >
-        {get(schema, `fieldTypes.${field.fieldType}.name`)}
+        {field.name || get(schema, `fieldTypes.${field.fieldType}.name`)}
       </CustomField>
     ));
 
@@ -42,7 +42,7 @@ function Node(props: INodeProps) {
         height={FIELD_HEIGHT}
         onMouseUp={() => onFieldInMouseUp(id, field.id)}
       >
-        {get(schema, `fieldTypes.${field.fieldType}.name`)}
+        {field.name || get(schema, `fieldTypes.${field.fieldType}.name`)}
       </CustomField>
     ));
 

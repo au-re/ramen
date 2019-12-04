@@ -1,11 +1,11 @@
-## Getting Started
+# Getting Started
 
 Ramen allows you to view and edit the struture of a node graph of the type often used for visual
 programming.
 
 > **Ramen** does not provide any way to execute code, its goal is to generate a graph object representing the current state of the graph whenever the user makes changes to it.
 
-### Installation
+## Installation
 
 Ramen can be installed via [npm](https://www.npmjs.com/package/ramen).
 
@@ -13,7 +13,7 @@ Ramen can be installed via [npm](https://www.npmjs.com/package/ramen).
 npm i -S @au-re/ramen
 ```
 
-### Example Usage
+## Example Usage
 
 Start by creating a schema. The schema defines the types of nodes and sockets as well as what connections can exist in your graph.
 
@@ -22,22 +22,6 @@ const schema = {
   nodeTypes: {
     numberNode: {
       name: "My Node",
-      fields: {
-        out: [
-        {
-          id: "number",
-          name: "Number",
-          type: "numberField",
-        }]
-      }
-    },
-  },
-  fieldTypes: {
-    numberField: {
-      color: "#29abe1",
-      validTargets: [
-        "numberField",
-      ],
     },
   },
 };
@@ -73,4 +57,4 @@ import Editor, { RamenProvider } from "ramen";
 </RamenProvider>
 ```
 
-You can see the resulting graph below, it consists of a single Node with one output field and with no connections:
+You can see the resulting graph below, it consists of a single Node with no fields and with no connections:

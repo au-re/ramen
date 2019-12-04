@@ -8,6 +8,7 @@ import * as simpleAddition from "../../schemas/simpleAddition";
 import * as simpleNode from "../../schemas/simpleNode";
 import MarkdownPreview from "../../utils/MarkdownPreview";
 
+import AddingFields from "./AddingFields.md";
 import GettingStartedDoc from "./GettingStarted.md";
 import IntroDoc from "./Intro.md";
 import OnGraphChange from "./OnGraphChange.md";
@@ -45,6 +46,7 @@ function GettingStarted() {
           </RamenProvider>
         </ThemeProvider>
       </div>
+      <MarkdownPreview text={AddingFields} />
       <MarkdownPreview text={OnGraphChange} />
     </div>
   );
