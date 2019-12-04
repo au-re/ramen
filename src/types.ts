@@ -1,11 +1,10 @@
 export interface ISchemaField {
   id: string;
-  name?: string;
-  type: string;
+  fieldType: string;
 }
 
 export interface ISchemaFieldInput extends ISchemaField {
-  control?: string;
+  controlType?: string;
 }
 
 export interface ISchema {
@@ -20,8 +19,9 @@ export interface ISchema {
       },
     },
   };
-  socketTypes: {
-    [socketTypeId: string]: {
+  fieldTypes: {
+    [fieldTypeId: string]: {
+      name?: string,
       color?: string,
       validTargets?: string[],
     },
@@ -148,9 +148,10 @@ export interface INoodleLayerProps {
 }
 
 export interface INodeProps {
-  x?: number;
-  y?: number;
-  node: IGraphNode;
+  id: string;
+  name?: string;
+  type: string;
+  schema: ISchema;
   children?: any;
   className?: string;
   CustomNode?: any;

@@ -26,33 +26,33 @@ const EditorContainer = styled.div`
 const defaultSchema = {
   nodeTypes: {
     number: {
+      name: "Number",
       fields: {
         out: [
           {
             id: "number",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           }],
       },
     },
     add: {
+      name: "Add",
       fields: {
         in: [
           {
             id: "number1",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           },
           {
             id: "number2",
-            name: "Number",
-            type: "number",
+            fieldType: "number",
           }],
       },
     },
   },
-  socketTypes: {
+  fieldTypes: {
     number: {
+      name: "Number",
       color: "#333",
       validTargets: [
         "number",
@@ -99,8 +99,8 @@ const defaultGraph = {
 };
 
 function Playground() {
-  const [schema, setSchema] = React.useState(JSON.stringify(defaultSchema, null, 1));
-  const [graph, setGraph] = React.useState(JSON.stringify(defaultGraph, null, 1));
+  const [schema, setSchema] = React.useState(JSON.stringify(defaultSchema, null, 4));
+  const [graph, setGraph] = React.useState(JSON.stringify(defaultGraph, null, 4));
 
   let parsedSchema;
   let parsedGraph;

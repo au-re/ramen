@@ -1,5 +1,6 @@
 import { storiesOf } from "@storybook/react";
 
+import FieldsDoc from "./chapters/Fields/Fields";
 import GettingStarted from "./chapters/GettingStarted/GettingStarted";
 import Nodes from "./chapters/Nodes/Nodes";
 import Playground from "./chapters/Playground/Playground";
@@ -10,8 +11,8 @@ import WriteMe from "./chapters/WriteMe";
 storiesOf("Documentation|Introduction", module)
   .add("Getting Started", GettingStarted)
   .add("Nodes", Nodes)
+  .add("Fields", FieldsDoc)
   .add("Connections", WriteMe)
-  .add("Fields", WriteMe)
   .add("Controls", WriteMe);
 
 storiesOf("Documentation|Customization", module)

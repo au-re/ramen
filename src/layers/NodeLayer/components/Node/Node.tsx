@@ -2,14 +2,16 @@ import get from "lodash.get";
 import React from "react";
 
 import { FIELD_HEIGHT, NODE_WIDTH } from "../../../../constants";
-import { GraphContext } from "../../../../context/GraphProvider/GraphProvider";
-import { INodeProps } from "../../../../types";
+import { INodeProps, ISchemaField, ISchemaFieldInput } from "../../../../types";
 import DefaultField from "../Field/Field";
-import { NodeTitle, NodeWrapper as DefaultNode } from "./Node.styles";
+import { NodeSubtitle, NodeTitle, NodeWrapper as DefaultNode } from "./Node.styles";
 
 function Node(props: INodeProps) {
   const {
-    node,
+    id,
+    name,
+    type,
+    schema,
     CustomNode = DefaultNode,
     CustomField = DefaultField,
     className,
@@ -18,43 +20,44 @@ function Node(props: INodeProps) {
     ...rest
   } = props;
 
-  const { schema } = React.useContext(GraphContext);
-
-  const outFields = get(schema, `nodeTypes.${node.type}.fields.out`, [])
-    .map((field: any, idx: number) => (
+  const outFields = get(schema, `nodeTypes.${type}.fields.out`, [])
+    .map((field: ISchemaField, idx: number) => (
       <CustomField
-        color={get(schema, `socketTypes.${field.type}.color`)}
+        color={get(schema, `fieldTypes.${field.fieldType}.color`)}
         key={idx}
         hasOutput={true}
         height={FIELD_HEIGHT}
-        onMouseDown={() => onFieldOutMouseDown(node.id, field.id)}
+        onMouseDown={() => onFieldOutMouseDown(id, field.id)}
       >
-        {field.name}
+        {get(schema, `fieldTypes.${field.fieldType}.name`)}
       </CustomField>
     ));
 
-  const inFields = get(schema, `nodeTypes.${node.type}.fields.in`, [])
-    .map((field: any, idx: number) => (
+  const inFields = get(schema, `nodeTypes.${type}.fields.in`, [])
+    .map((field: ISchemaFieldInput, idx: number) => (
       <CustomField
-        color={get(schema, `socketTypes.${field.type}.color`)}
+        color={get(schema, `fieldTypes.${field.fieldType}.color`)}
         key={idx}
         hasInput={true}
         height={FIELD_HEIGHT}
-        onMouseUp={() => onFieldInMouseUp(node.id, field.id)}
+        onMouseUp={() => onFieldInMouseUp(id, field.id)}
       >
-        {field.name}
+        {get(schema, `fieldTypes.${field.fieldType}.name`)}
       </CustomField>
     ));
+
+  const typeName = get(schema, `nodeTypes.${type}.name`, "");
 
   return (
     <CustomNode
       {...rest}
-      id={node.id}
+      id={id}
       width={NODE_WIDTH}
       className={"node " + className}
     >
       <NodeTitle>
-        {node.name}
+        {name || typeName}
+        {name && <NodeSubtitle>{typeName}</NodeSubtitle>}
       </NodeTitle>
       <div>
         {outFields}

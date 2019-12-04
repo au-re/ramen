@@ -10,9 +10,13 @@ import Node from "./components/Node/Node";
 function NodeLayer(props: any) {
   const { onNodeDrop, onNodeDrag, onFieldOutMouseDown, onFieldInMouseUp } = props;
 
-  const { graph } = React.useContext(GraphContext);
+  const { graph, schema } = React.useContext(GraphContext);
   const { zoom } = React.useContext(EditorContext);
   const { nodes } = graph;
+
+  // TODO fix:
+  // - draggable needs the information from graph
+  // - node needs the information from schema
 
   return (
     <div style={{ position: "relative", height: "100%", width: "100%" }}>
@@ -28,7 +32,10 @@ function NodeLayer(props: any) {
             onStop={(e: any, location: ILocation) => onNodeDrop(node.id, location)}
           >
             <Node
-              node={node}
+              id={node.id}
+              name={node.name}
+              type={node.type}
+              schema={schema}
               onFieldOutMouseDown={onFieldOutMouseDown}
               onFieldInMouseUp={onFieldInMouseUp}
             />

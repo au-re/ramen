@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { NODE_WIDTH } from "../../../../constants";
 import { lightTheme } from "../../../../themes";
-import { INodeProps } from "../../../../types";
 
 export const NodeWrapper: any = styled.div`
   z-index: 100;
@@ -20,5 +19,11 @@ export const NodeWrapper: any = styled.div`
 
 export const NodeTitle = styled.div`
   padding: .5rem .8rem;
+  font-size: 1.1rem;
   height: 36px;
+`;
+
+export const NodeSubtitle = styled.div`
+  color: ${({ theme }) => theme.textSecondary || lightTheme.textSecondary};
+  font-size: .9rem;
 `;

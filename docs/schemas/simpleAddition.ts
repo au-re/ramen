@@ -9,22 +9,19 @@ export const schema: ISchema = {
         in: [
           {
             id: "number1",
-            name: "Number",
-            type: "number",
-            control: "numberControl",
+            fieldType: "numberField",
+            controlType: "numberControl",
           },
           {
             id: "number2",
-            name: "Number",
-            type: "number",
-            control: "numberControl",
+            fieldType: "numberField",
+            controlType: "numberControl",
           },
         ],
         out: [
           {
             id: "result",
-            name: "Number",
-            type: "number",
+            fieldType: "numberField",
           },
         ],
       },
@@ -37,15 +34,15 @@ export const schema: ISchema = {
         out: [
           {
             id: "number",
-            name: "Number",
-            type: "number",
+            fieldType: "numberField",
           },
         ],
       },
     },
   },
-  socketTypes: {
-    number: {
+  fieldTypes: {
+    numberField: {
+      name: "Number",
       color: "#29abe1",
       validTargets: [
         "number",

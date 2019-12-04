@@ -10,6 +10,7 @@ import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import GettingStartedDoc from "./GettingStarted.md";
 import IntroDoc from "./Intro.md";
+import OnGraphChange from "./OnGraphChange.md";
 
 function GettingStarted() {
   return (
@@ -44,6 +45,7 @@ function GettingStarted() {
           </RamenProvider>
         </ThemeProvider>
       </div>
+      <MarkdownPreview text={OnGraphChange} />
     </div>
   );
 }

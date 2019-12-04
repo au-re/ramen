@@ -2,23 +2,24 @@ import { IGraph, ISchema } from "../../src/types";
 
 export const schema: ISchema = {
   nodeTypes: {
-    number: {
+    numberNode: {
+      name: "My Node",
       fields: {
         out: [
           {
             id: "number",
-            name: "Number",
-            type: "numberSocket",
+            fieldType: "numberField",
           },
         ],
       },
     },
   },
-  socketTypes: {
-    numberSocket: {
+  fieldTypes: {
+    numberField: {
+      name: "Number",
       color: "#29abe1",
       validTargets: [
-        "numberSocket",
+        "numberField",
       ],
     },
   },
@@ -30,7 +31,7 @@ export const graph: IGraph = {
       id: "0",
       x: 100,
       y: 50,
-      type: "number",
+      type: "numberNode",
     },
   ],
   connections: [],

@@ -34,7 +34,7 @@ const myTheme = {
 <ThemeProvider>
 ```
 
-These are the themable properties of ramen:
+#### Themable properties
 
 | Name | Default Value |
 | --- | --- |
