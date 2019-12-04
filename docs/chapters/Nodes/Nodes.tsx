@@ -1,5 +1,3 @@
-import "ace-builds/src-noconflict/theme-github";
-
 import * as React from "react";
 import AceEditor from "react-ace";
 
@@ -10,6 +8,8 @@ import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import NodeInstances from "./NodeInstances.md";
 import NodeOverview from "./NodeOverview.md";
+
+import "ace-builds/src-noconflict/theme-github";
 
 const defaultNode = {
   name: "Addition",

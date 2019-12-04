@@ -1,7 +1,3 @@
-import "ace-builds/src-noconflict/ace";
-import "ace-builds/src-noconflict/mode-json";
-import "ace-builds/src-noconflict/theme-github";
-
 import * as React from "react";
 import AceEditor from "react-ace";
 import styled, { ThemeProvider } from "styled-components";
@@ -9,6 +5,10 @@ import styled, { ThemeProvider } from "styled-components";
 import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
 import RamenProvider from "../../../src/context/RamenProvider";
 import { lightTheme } from "../../../src/themes";
+
+import "ace-builds/src-noconflict/ace";
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/theme-github";
 
 const EditorContainer = styled.div`
   display: block;
