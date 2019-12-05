@@ -16,26 +16,26 @@ const defaultSchema = {
       fields: [
         {
           id: "number1",
-          fieldType: "myFieldType",
+          dataType: "myDataType",
           input: true,
         },
         {
           id: "number2",
-          fieldType: "myFieldType",
+          dataType: "myDataType",
           input: true,
         },
         {
           id: "result",
           name: "Result",
-          fieldType: "myFieldType",
+          dataType: "myDataType",
           output: true,
         },
       ],
     },
   },
-  fieldTypes: {
-    myFieldType: {
-      name: "My Field",
+  dataTypes: {
+    myDataType: {
+      name: "My Data Type",
       color: "#eb529a",
     },
   },
@@ -60,7 +60,7 @@ function FieldsDoc() {
           <div>schema</div>
           <AceEditor
             style={{ fontSize: "1rem", border: "2px solid #e2e2e2", borderRadius: "4px", width: "100%" }}
-            value={JSON.stringify(get(parsedSchema, "fieldTypes.myFieldType", {}), null, 4)}
+            value={JSON.stringify(get(parsedSchema, "dataTypes.myFieldType", {}), null, 4)}
             onChange={setSchema}
             mode="json"
             theme="github"

@@ -11,7 +11,7 @@ const defaultSchema = {
       fields: [
         {
           id: "number",
-          fieldType: "number",
+          dataType: "number",
           output: true,
         },
       ],
@@ -20,18 +20,18 @@ const defaultSchema = {
       fields: [
         {
           id: "number1",
-          fieldType: "number",
+          dataType: "number",
           input: true,
         },
         {
           id: "number2",
-          fieldType: "number",
+          dataType: "number",
           input: true,
         },
       ],
     },
   },
-  fieldTypes: {
+  dataTypes: {
     number: {
       name: "Number",
       color: "#333",

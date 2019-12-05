@@ -18,5 +18,4 @@ import Editor, { RamenProvider } from "ramen";
 </RamenProvider>
 ```
 
-Moving a node, creating/deleting a connection or editing a control are all actions that will cause
-onGraphChange to trigger.
+Moving a node, creating/deleting a connection or editing a control are all actions that will cause onGraphChange to trigger.

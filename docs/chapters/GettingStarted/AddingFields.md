@@ -1,6 +1,6 @@
 ## Adding fields
 
-A Node that nothing can connect to is not very useful. Now lets connect something to it. Before we can do that, we need to add a Field to the Node. Just as we had to defined a nodeType to instantiate nodes from, we need a fieldType to instantiate fields from. We add a fieldType to our schema, and a field to our nodeType "numberNode". There are
+A Node that nothing can connect to is not very useful. Now lets connect something to it. Before we can do that, we need to add a Field to the Node. Just as we had to defined a nodeType to instantiate nodes from, we need a dataType to instantiate fields from. We add a dataType to our schema, and a field to our nodeType "numberNode". There are
 
 ```js
 const schema = {
@@ -10,14 +10,14 @@ const schema = {
       fields: [
         {
           id: "field1",
-          fieldType: "numberField",
+          dataType: "number",
           output: true,
         }
       ]
     },
   },
-  fieldTypes: {
-    numberField: {
+  dataTypes: {
+    number: {
       name: "Number",
       color: "#7454a1"
     },

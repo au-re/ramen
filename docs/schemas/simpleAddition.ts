@@ -8,19 +8,19 @@ export const schema: ISchema = {
       fields: [
         {
           id: "number1",
-          fieldType: "numberField",
+          dataType: "number",
           controlType: "numberControl",
           input: true,
         },
         {
           id: "number2",
-          fieldType: "numberField",
+          dataType: "number",
           controlType: "numberControl",
           input: true,
         },
         {
           id: "result",
-          fieldType: "numberField",
+          dataType: "number",
           output: true,
         },
       ],
@@ -31,14 +31,14 @@ export const schema: ISchema = {
       fields: [
         {
           id: "number",
-          fieldType: "numberField",
+          dataType: "number",
           output: true,
         },
       ],
     },
   },
-  fieldTypes: {
-    numberField: {
+  dataTypes: {
+    number: {
       name: "Number",
       color: "#29abe1",
       validTargets: [

@@ -56,7 +56,7 @@ const schema = {
       fields: [
         {
           id: "number",
-          fieldType: "number",
+          dataType: "number",
           output: true,
         }
       ]
@@ -65,23 +65,23 @@ const schema = {
       fields: [
         {
           id: "number1",
-          fieldType: "number",
+          dataType: "number",
           input: true,
         },
         {
           id: "number2",
-          fieldType: "number",
+          dataType: "number",
           input: true,
         },
         {
           id: "result",
-          fieldType: "number",
+          dataType: "number",
           output: true,
         }
       ]
     }
   },
-  fieldTypes: {
+  dataTypes: {
     number: {
       name: "Number",
       color: "#333",
@@ -184,7 +184,7 @@ const schema = {
       fields: [
         {
           id: "input",
-          fieldType: "numberField",
+          dataType: "number",
           controlType: "numberControl"
         }
       ]

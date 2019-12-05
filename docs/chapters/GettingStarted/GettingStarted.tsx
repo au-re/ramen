@@ -12,6 +12,7 @@ import MarkdownPreview from "../../utils/MarkdownPreview";
 import AddingFields from "./AddingFields.md";
 import GettingStartedDoc from "./GettingStarted.md";
 import IntroDoc from "./Intro.md";
+import ConnectingNodes from "./ConnectingNodes.md";
 import OnGraphChange from "./OnGraphChange.md";
 
 function GettingStarted() {
@@ -62,6 +63,7 @@ function GettingStarted() {
           </RamenProvider>
         </ThemeProvider>
       </div>
+      <MarkdownPreview text={ConnectingNodes} />
       <MarkdownPreview text={OnGraphChange} />
     </div>
   );

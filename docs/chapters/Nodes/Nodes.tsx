@@ -68,7 +68,7 @@ function Nodes() {
                 nodeTypes: {
                   example: parsedSchema,
                 },
-                fieldTypes: {},
+                dataTypes: {},
               }}
             />
           </div>

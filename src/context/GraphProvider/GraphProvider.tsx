@@ -8,7 +8,7 @@ export const GraphContext = React.createContext({} as IGraphContext);
 
 const emptySchema: ISchema = {
   nodeTypes: {},
-  fieldTypes: {},
+  dataTypes: {},
 };
 
 const emptyGraph: IGraph = {

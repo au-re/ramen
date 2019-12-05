@@ -15,7 +15,7 @@ const schema = {
         {
           id: "number",
           name: "Number",
-          fieldType: "numberField",
+          dataType: "number",
           output: true,
         }
       ]
@@ -24,16 +24,11 @@ const schema = {
 };
 ```
 
-The **nodeTypes** property of the schema is a map containing all different node types of the graph.
-The graph above only contains a single node type called **numberNode**.
+The **nodeTypes** property of the schema is a map containing all different node types of the graph. The graph above only contains a single node type called **numberNode**.
 
-Each node type contains a map of **fields**. There are two types of fields, _out_ and _in_. Fields
-represent properties or return values of the node. You can find more about properties in the
-[Fields]() chapter.
+Each node type contains a map of **fields**. There are two types of fields, _out_ and _in_. Fields represent properties or return values of the node. You can find more about properties in the [Fields]() chapter.
 
-Besides **fields** a node can contain **controls**. A control is an interface used to edit the state
-of a node. Which controls a node has are specified by you. You can find more about controls in the
-[Controls]() chapter.
+Besides **fields** a node can contain **controls**. A control is an interface used to edit the state of a node. Which controls a node has are specified by you. You can find more about controls in the [Controls]() chapter.
 
 ## Node Type API
 
@@ -48,7 +43,7 @@ of a node. Which controls a node has are specified by you. You can find more abo
 | --- | --- | --- | --- |
 | `id` | `string` | id of the field | X |
 | `name` | `string` | name for the field instance (overrides the field type name) | - |
-| `fieldType` | `string` | type of the field (needs to be defined in fieldTypes) | - |
+| `dataType` | `string` | data type of the field (needs to be defined in dataTypes) | - |
 | `controlType` | `string` | type of the control (no control is displayed if omited) | - |
 | `input` | `boolean` | does the field contain an output node  | - |
 | `output` | `boolean` |  does the field contain an input node  | - |

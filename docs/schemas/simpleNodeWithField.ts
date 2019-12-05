@@ -7,14 +7,14 @@ export const schema: ISchema = {
       fields: [
         {
           id: "field1",
-          fieldType: "numberField",
+          dataType: "number",
           output: true,
         },
       ],
     },
   },
-  fieldTypes: {
-    numberField: {
+  dataTypes: {
+    number: {
       name: "Number",
       color: "#7454a1",
     },

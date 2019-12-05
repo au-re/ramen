@@ -1,7 +1,7 @@
 export interface ISchemaField {
   id: string;
   name?: string;
-  fieldType: string;
+  dataType: string;
   controlType?: string;
   input?: boolean;
   output?: boolean;
@@ -15,8 +15,8 @@ export interface ISchema {
       fields?: ISchemaField[],
     },
   };
-  fieldTypes?: {
-    [fieldTypeId: string]: {
+  dataTypes?: {
+    [dataTypeId: string]: {
       name?: string,
       color?: string,
       validTargets?: string[],

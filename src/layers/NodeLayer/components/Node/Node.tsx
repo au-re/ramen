@@ -25,10 +25,10 @@ function Node(props: INodeProps) {
 
   const nodeFields = get(nodeType, `fields`, [])
     .map((field: ISchemaField) => {
-      const fieldType = get(schema, `fieldTypes.${field.fieldType}`, {});
+      const dataType = get(schema, `dataTypes.${field.dataType}`, {});
       return (
         <CustomField
-          color={fieldType.color}
+          color={dataType.color}
           key={field.id}
           hasInput={field.input}
           hasOutput={field.output}
@@ -36,7 +36,7 @@ function Node(props: INodeProps) {
           onMouseDown={() => onFieldOutMouseDown(id, field.id)}
           onMouseUp={() => onFieldInMouseUp(id, field.id)}
         >
-          {field.name || fieldType.name}
+          {field.name || dataType.name}
         </CustomField>
       );
     });
