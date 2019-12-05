@@ -11,14 +11,14 @@ is done through a _schema_ that you pass to **ramen**.
 const schema = {
   nodeTypes: {
     numberNode: {
-      fields: {
-        out: [
+      fields: [
         {
           id: "number",
           name: "Number",
-          type: "numberField",
-        }]
-      }
+          fieldType: "numberField",
+          output: true,
+        }
+      ]
     },
   }
 };
@@ -40,10 +40,18 @@ of a node. Which controls a node has are specified by you. You can find more abo
 | Name | Type | Description | Required |
 | --- | --- | --- | --- |
 | `name` | `string` | name for the node type | - |
-| `controls` | `array` | array of controlType ids (?) | - |
-| `fields` | `object` | map of fields the node type  | - |
-| `fields.in` | `array` | fields that act as properties for the node | - |
-| `fields.out` | `array` | fields that act as return values for the node | - |
+| `fields` | `array` | array of fields in the node  | - |
+
+### field
+
+| Name | Type | Description | Required |
+| --- | --- | --- | --- |
+| `id` | `string` | id of the field | X |
+| `name` | `string` | name for the field instance (overrides the field type name) | - |
+| `fieldType` | `string` | type of the field (needs to be defined in fieldTypes) | - |
+| `controlType` | `string` | type of the control (no control is displayed if omited) | - |
+| `input` | `boolean` | does the field contain an output node  | - |
+| `output` | `boolean` |  does the field contain an input node  | - |
 
 ## Example
 

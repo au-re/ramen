@@ -53,26 +53,32 @@ Start by creating a schema. The schema defines the types of nodes, fields and co
 const schema = {
   nodeTypes: {
     number: {
-      fields: {
-        out: [
+      fields: [
         {
           id: "number",
-          type: "number",
-        }]
-      }
+          fieldType: "number",
+          output: true,
+        }
+      ]
     },
     add: {
-      fields: {
-        in: [
+      fields: [
         {
-          id: "number",
-          type: "number",
+          id: "number1",
+          fieldType: "number",
+          input: true,
         },
         {
-          id: "number",
-          type: "number",
-        }]
-      }
+          id: "number2",
+          fieldType: "number",
+          input: true,
+        },
+        {
+          id: "result",
+          fieldType: "number",
+          output: true,
+        }
+      ]
     }
   },
   fieldTypes: {
@@ -175,15 +181,13 @@ function NumberControl(props) {
 const schema = {
   nodeTypes: {
     type1: {
-      fields: {
-        in: [
-          {
-            id: "input",
-            type: "number",
-            control: "number"
-          }
-        ]
-      }
+      fields: [
+        {
+          id: "input",
+          fieldType: "numberField",
+          controlType: "numberControl"
+        }
+      ]
     }
   }
 };
@@ -191,7 +195,7 @@ const schema = {
 <NodeEditor
   schema={schema}
   controls={{
-    number: NumberControl,
+    numberControl: NumberControl,
   }}
   onControlChange={(nodeId, fieldId, data) => {}}
 />

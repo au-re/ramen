@@ -8,26 +8,27 @@ import { lightTheme } from "../../../src/themes";
 const defaultSchema = {
   nodeTypes: {
     number: {
-      fields: {
-        out: [
-          {
-            id: "number",
-            fieldType: "number",
-          }],
-      },
+      fields: [
+        {
+          id: "number",
+          fieldType: "number",
+          output: true,
+        },
+      ],
     },
     add: {
-      fields: {
-        in: [
-          {
-            id: "number1",
-            fieldType: "number",
-          },
-          {
-            id: "number2",
-            fieldType: "number",
-          }],
-      },
+      fields: [
+        {
+          id: "number1",
+          fieldType: "number",
+          input: true,
+        },
+        {
+          id: "number2",
+          fieldType: "number",
+          input: true,
+        },
+      ],
     },
   },
   fieldTypes: {

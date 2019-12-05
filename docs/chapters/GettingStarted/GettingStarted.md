@@ -1,9 +1,9 @@
 # Getting Started
 
-Ramen allows you to view and edit the struture of a node graph of the type often used for visual
+Ramen allows you to view and edit the structure of a node graph of the type often used for visual
 programming.
 
-> **Ramen** does not provide any way to execute code, its goal is to generate a graph object representing the current state of the graph whenever the user makes changes to it.
+> **Ramen** does not provide a way to execute code, its goal is to generate a graph object representing the current state of the graph whenever the user makes changes to it.
 
 ## Installation
 

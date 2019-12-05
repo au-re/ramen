@@ -11,7 +11,6 @@ const schema = {
     numberField: {
       name: "number",
       color: "#eb529a",
-      controlType: "numberControl",
       validTargets: [
         "number",
       ],
@@ -27,7 +26,6 @@ of field types, this field can be connected to.
 | --- | --- | --- | --- |
 | `name` | `string` | name for the field type | - |
 | `color` | `string` | color value for the pin of the field | - |
-| `controlType` | `string` | id of the controlType to use  | - |
 | `validTargets` | `array` | array of fieldTypeId  | - |
 
 If a controlType is defined, a control item will be displayed in the field.
@@ -41,15 +39,13 @@ some additional data, such as an **id**.
 const schema = {
   nodeTypes: {
     number: {
-      fields: {
-        in: [
-          {
-            id: "example1",
-            name: "Number 1",
-            fieldType: "numberField",
-          }
-        ]
-      }
+      fields: [
+        {
+          id: "example1",
+          name: "Number 1",
+          fieldType: "numberField",
+        }
+      ]
     },
   }
 };
@@ -57,8 +53,11 @@ const schema = {
 
 | Name | Type | Description | Required |
 | --- | --- | --- | --- |
-| `fieldType` | `string` | id of the field type | X |
-| `name` | `string` | name for this instance (replaces the type name) | - |
-| `id` | `string` | id of the field instance | X |
+| `id` | `string` | id of the field | X |
+| `name` | `string` | name for the field instance (overrides the field type name) | - |
+| `fieldType` | `string` | type of the field (needs to be defined in fieldTypes) | - |
+| `controlType` | `string` | type of the control (no control is displayed if omited) | - |
+| `input` | `boolean` | does the field contain an output node  | - |
+| `output` | `boolean` |  does the field contain an input node  | - |
 
 In the example below, the node uses our custom field. You can modify the schema and see the changes.

@@ -14,10 +14,6 @@ function NodeLayer(props: any) {
   const { zoom } = React.useContext(EditorContext);
   const { nodes } = graph;
 
-  // TODO fix:
-  // - draggable needs the information from graph
-  // - node needs the information from schema
-
   return (
     <div style={{ position: "relative", height: "100%", width: "100%" }}>
       {

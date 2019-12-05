@@ -2,22 +2,17 @@ export interface ISchemaField {
   id: string;
   name?: string;
   fieldType: string;
-}
-
-export interface ISchemaFieldInput extends ISchemaField {
   controlType?: string;
+  input?: boolean;
+  output?: boolean;
 }
 
 export interface ISchema {
-  nodeTypes: {
+  nodeTypes?: {
     [nodeTypeId: string]: {
       name?: string,
       icon?: string,
-      controls?: string[],
-      fields?: {
-        in?: ISchemaFieldInput[],
-        out?: ISchemaField[],
-      },
+      fields?: ISchemaField[],
     },
   };
   fieldTypes?: {
@@ -25,6 +20,11 @@ export interface ISchema {
       name?: string,
       color?: string,
       validTargets?: string[],
+    },
+  };
+  controlTypes?: {
+    [controlTypeId: string]: {
+      name?: string,
     },
   };
 }

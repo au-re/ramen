@@ -6,6 +6,7 @@ import RamenProvider from "../../../src/context/RamenProvider";
 import { lightTheme } from "../../../src/themes";
 import * as simpleAddition from "../../schemas/simpleAddition";
 import * as simpleNode from "../../schemas/simpleNode";
+import * as simpleNodeWithField from "../../schemas/simpleNodeWithField";
 import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import AddingFields from "./AddingFields.md";
@@ -47,6 +48,20 @@ function GettingStarted() {
         </ThemeProvider>
       </div>
       <MarkdownPreview text={AddingFields} />
+      <div style={{ width: "100%", height: "400px", overflow: "hidden" }}>
+        <ThemeProvider theme={lightTheme}>
+          <RamenProvider
+            schema={simpleNodeWithField.schema}
+            initialGraph={simpleNodeWithField.graph}
+          >
+            <DefaultEditor
+              canZoom={false}
+              canPan={false}
+              height={400}
+            />
+          </RamenProvider>
+        </ThemeProvider>
+      </div>
       <MarkdownPreview text={OnGraphChange} />
     </div>
   );

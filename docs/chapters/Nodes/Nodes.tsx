@@ -13,25 +13,23 @@ import "ace-builds/src-noconflict/theme-github";
 
 const defaultNode = {
   name: "Addition",
-  controls: [],
-  fields: {
-    in: [
-      {
-        id: "number1",
-        name: "Number 1",
-      },
-      {
-        id: "number2",
-        name: "Number 2",
-      },
-    ],
-    out: [
-      {
-        id: "result",
-        name: "Result",
-      },
-    ],
-  },
+  fields: [
+    {
+      id: "result",
+      name: "Result",
+      output: true,
+    },
+    {
+      id: "number1",
+      name: "Number 1",
+      input: true,
+    },
+    {
+      id: "number2",
+      name: "Number 2",
+      input: true,
+    },
+  ],
 };
 
 function Nodes() {

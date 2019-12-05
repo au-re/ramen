@@ -19,7 +19,7 @@ function useRamenActions() {
 
   const { connections } = graph;
 
-  /** start a connection given the origin pin and node id
+  /** start a connection given the origin field and node id
    * @param originNodeId
    * @param originFieldId
    */
@@ -27,7 +27,7 @@ function useRamenActions() {
     setDragOrigin({ originNode: originNodeId, originField: originFieldId });
   }
 
-  /** complete a connection given the target pin and node id
+  /** complete a connection given the target field and node id
    * @param targetNodeId
    * @param targetFieldId
    */

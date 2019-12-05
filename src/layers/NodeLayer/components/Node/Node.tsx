@@ -2,7 +2,7 @@ import get from "lodash.get";
 import React from "react";
 
 import { FIELD_HEIGHT, NODE_WIDTH } from "../../../../constants";
-import { INodeProps, ISchemaField, ISchemaFieldInput } from "../../../../types";
+import { INodeProps, ISchemaField } from "../../../../types";
 import DefaultField from "../Field/Field";
 import { NodeSubtitle, NodeTitle, NodeWrapper as DefaultNode } from "./Node.styles";
 
@@ -20,33 +20,26 @@ function Node(props: INodeProps) {
     ...rest
   } = props;
 
-  const outFields = get(schema, `nodeTypes.${type}.fields.out`, [])
-    .map((field: ISchemaField, idx: number) => (
-      <CustomField
-        color={get(schema, `fieldTypes.${field.fieldType}.color`)}
-        key={idx}
-        hasOutput={true}
-        height={FIELD_HEIGHT}
-        onMouseDown={() => onFieldOutMouseDown(id, field.id)}
-      >
-        {field.name || get(schema, `fieldTypes.${field.fieldType}.name`)}
-      </CustomField>
-    ));
+  const nodeType = get(schema, `nodeTypes.${type}`, {});
+  const typeName = nodeType.name;
 
-  const inFields = get(schema, `nodeTypes.${type}.fields.in`, [])
-    .map((field: ISchemaFieldInput, idx: number) => (
-      <CustomField
-        color={get(schema, `fieldTypes.${field.fieldType}.color`)}
-        key={idx}
-        hasInput={true}
-        height={FIELD_HEIGHT}
-        onMouseUp={() => onFieldInMouseUp(id, field.id)}
-      >
-        {field.name || get(schema, `fieldTypes.${field.fieldType}.name`)}
-      </CustomField>
-    ));
-
-  const typeName = get(schema, `nodeTypes.${type}.name`, "");
+  const nodeFields = get(nodeType, `fields`, [])
+    .map((field: ISchemaField) => {
+      const fieldType = get(schema, `fieldTypes.${field.fieldType}`, {});
+      return (
+        <CustomField
+          color={fieldType.color}
+          key={field.id}
+          hasInput={field.input}
+          hasOutput={field.output}
+          height={FIELD_HEIGHT}
+          onMouseDown={() => onFieldOutMouseDown(id, field.id)}
+          onMouseUp={() => onFieldInMouseUp(id, field.id)}
+        >
+          {field.name || fieldType.name}
+        </CustomField>
+      );
+    });
 
   return (
     <CustomNode
@@ -60,8 +53,7 @@ function Node(props: INodeProps) {
         {name && <NodeSubtitle>{typeName}</NodeSubtitle>}
       </NodeTitle>
       <div>
-        {outFields}
-        {inFields}
+        {nodeFields}
       </div>
     </CustomNode>
   );

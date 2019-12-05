@@ -37,7 +37,7 @@ function GraphProvider(props: IGraphProviderProps) {
   }
 
   /** when dragging the node, update the node location in the editor state
-   * updating the node location is necessary to rerender the noodles.
+   * updating the node location is necessary to re-render the noodles.
    * @param id
    * @param data
    */
@@ -71,7 +71,7 @@ function GraphProvider(props: IGraphProviderProps) {
    */
   function createConnection(connection: IGraphConnection) {
     const newGraph = { ..._graph, connections: [connection, ..._graph.connections] };
-    // TODO: avoid dupplicate connections
+    // TODO: avoid duplicate connections
     setGraph(newGraph);
   }
 
@@ -88,12 +88,12 @@ function GraphProvider(props: IGraphProviderProps) {
   function getConnectionStart(connection: IGraphConnection) {
     const node = getNode(connection.originNode);
     const nodeSchema = get(schema, `nodeTypes[${get(node, "type")}]`);
-    const startPinIdx = get(nodeSchema, "fields.out", [])
+    const fieldIdx = get(nodeSchema, "fields", [])
       .findIndex((pin: any) => pin.id === connection.originField);
 
-    if (!node || !nodeSchema || startPinIdx === -1) return null;
+    if (!node || !nodeSchema || fieldIdx === -1) return null;
 
-    const y = node.y + (startPinIdx * FIELD_HEIGHT) + NODE_HEADER_HEIGHT + (FIELD_HEIGHT / 2);
+    const y = node.y + (fieldIdx * FIELD_HEIGHT) + NODE_HEADER_HEIGHT + (FIELD_HEIGHT / 2);
     const x = node.x + NODE_WIDTH;
     return { x, y };
   }
@@ -104,14 +104,14 @@ function GraphProvider(props: IGraphProviderProps) {
   function getConnectionEnd(connection: IGraphConnection) {
     const node = getNode(connection.targetNode);
     const nodeSchema = get(schema, `nodeTypes[${get(node, "type")}]`);
-    const endPinIdx = get(nodeSchema, "fields.in", [])
+    const fieldIdx = get(nodeSchema, "fields", [])
       .findIndex((pin: any) => pin.id === connection.targetField);
 
-    if (!node || !nodeSchema || endPinIdx === -1) return null;
+    if (!node || !nodeSchema || fieldIdx === -1) return null;
 
-    const endPinTotalIdx = endPinIdx + get(nodeSchema, "fields.out.length", 0);
-    const y = node.y + (endPinTotalIdx * FIELD_HEIGHT) + NODE_HEADER_HEIGHT + (FIELD_HEIGHT / 2);
-    return { x: node.x, y };
+    const y = node.y + (fieldIdx * FIELD_HEIGHT) + NODE_HEADER_HEIGHT + (FIELD_HEIGHT / 2);
+    const x = node.x;
+    return { x, y };
   }
 
   const contextValues: IGraphContext = {

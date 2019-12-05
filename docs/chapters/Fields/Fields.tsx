@@ -1,39 +1,36 @@
+import get from "lodash.get";
 import * as React from "react";
 import AceEditor from "react-ace";
+import { ThemeProvider } from "styled-components";
 
+import Node from "../../../src/layers/NodeLayer/components/Node/Node";
+import { lightTheme } from "../../../src/themes";
 import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import FieldsOverview from "./FieldsOverview.md";
-import { lightTheme } from "../../../src/themes";
-import { ThemeProvider } from "styled-components";
-import Node from "../../../src/layers/NodeLayer/components/Node/Node";
 
 const defaultSchema = {
   nodeTypes: {
     demoNode: {
       name: "Addition",
-      controls: [],
-      fields: {
-        in: [
-          {
-            id: "number1",
-            name: "Number 1",
-            fieldType: "myFieldType",
-          },
-          {
-            id: "number2",
-            name: "Number 2",
-            fieldType: "myFieldType",
-          },
-        ],
-        out: [
-          {
-            id: "result",
-            name: "Result",
-            fieldType: "myFieldType",
-          },
-        ],
-      },
+      fields: [
+        {
+          id: "number1",
+          fieldType: "myFieldType",
+          input: true,
+        },
+        {
+          id: "number2",
+          fieldType: "myFieldType",
+          input: true,
+        },
+        {
+          id: "result",
+          name: "Result",
+          fieldType: "myFieldType",
+          output: true,
+        },
+      ],
     },
   },
   fieldTypes: {
@@ -63,7 +60,7 @@ function FieldsDoc() {
           <div>schema</div>
           <AceEditor
             style={{ fontSize: "1rem", border: "2px solid #e2e2e2", borderRadius: "4px", width: "100%" }}
-            value={JSON.stringify(parsedSchema.fieldTypes.myFieldType, null, 4)}
+            value={JSON.stringify(get(parsedSchema, "fieldTypes.myFieldType", {}), null, 4)}
             onChange={setSchema}
             mode="json"
             theme="github"

@@ -5,39 +5,36 @@ export const schema: ISchema = {
     add: {
       name: "Add",
       icon: "",
-      fields: {
-        in: [
-          {
-            id: "number1",
-            fieldType: "numberField",
-            controlType: "numberControl",
-          },
-          {
-            id: "number2",
-            fieldType: "numberField",
-            controlType: "numberControl",
-          },
-        ],
-        out: [
-          {
-            id: "result",
-            fieldType: "numberField",
-          },
-        ],
-      },
+      fields: [
+        {
+          id: "number1",
+          fieldType: "numberField",
+          controlType: "numberControl",
+          input: true,
+        },
+        {
+          id: "number2",
+          fieldType: "numberField",
+          controlType: "numberControl",
+          input: true,
+        },
+        {
+          id: "result",
+          fieldType: "numberField",
+          output: true,
+        },
+      ],
     },
     number: {
       name: "Number",
       icon: "",
-      controls: ["numberControl"],
-      fields: {
-        out: [
-          {
-            id: "number",
-            fieldType: "numberField",
-          },
-        ],
-      },
+      fields: [
+        {
+          id: "number",
+          fieldType: "numberField",
+          output: true,
+        },
+      ],
     },
   },
   fieldTypes: {

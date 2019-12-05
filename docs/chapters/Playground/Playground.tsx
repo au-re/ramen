@@ -27,27 +27,28 @@ const defaultSchema = {
   nodeTypes: {
     number: {
       name: "Number",
-      fields: {
-        out: [
-          {
-            id: "number",
-            fieldType: "number",
-          }],
-      },
+      fields: [
+        {
+          id: "number",
+          fieldType: "number",
+          output: true,
+        },
+      ],
     },
     add: {
       name: "Add",
-      fields: {
-        in: [
-          {
-            id: "number1",
-            fieldType: "number",
-          },
-          {
-            id: "number2",
-            fieldType: "number",
-          }],
-      },
+      fields: [
+        {
+          id: "number1",
+          fieldType: "number",
+          input: true,
+        },
+        {
+          id: "number2",
+          fieldType: "number",
+          input: true,
+        },
+      ],
     },
   },
   fieldTypes: {
@@ -142,7 +143,7 @@ function Playground() {
           <RamenProvider
             schema={parsedSchema}
             graph={parsedGraph}
-            onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 1))}
+            onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 4))}
           >
             <DefaultEditor
               height={4096}
