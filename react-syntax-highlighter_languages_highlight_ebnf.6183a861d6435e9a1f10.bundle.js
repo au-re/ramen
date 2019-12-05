@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[49],{1234:function(module,exports){module.exports=function(hljs){var commentMode=hljs.COMMENT(/\(\*/,/\*\)/);return{illegal:/\S/,contains:[commentMode,{className:"attribute",begin:/^[ ]*[a-zA-Z][a-zA-Z-]*([\s-]+[a-zA-Z][a-zA-Z]*)*/},{begin:/=/,end:/;/,contains:[commentMode,{className:"meta",begin:/\?.*\?/},hljs.APOS_STRING_MODE,hljs.QUOTE_STRING_MODE]}]}}}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_highlight_ebnf.6183a861d6435e9a1f10.bundle.js.map
