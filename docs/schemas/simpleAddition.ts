@@ -46,6 +46,11 @@ export const schema: ISchema = {
       ],
     },
   },
+  controlTypes: {
+    defaultControl: {
+      type: "number"
+    }
+  }
 };
 
 export const graph: IGraph = {

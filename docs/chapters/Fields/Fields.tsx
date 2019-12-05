@@ -60,7 +60,7 @@ function FieldsDoc() {
           <div>schema</div>
           <AceEditor
             style={{ fontSize: "1rem", border: "2px solid #e2e2e2", borderRadius: "4px", width: "100%" }}
-            value={JSON.stringify(get(parsedSchema, "dataTypes.myFieldType", {}), null, 4)}
+            value={JSON.stringify(get(parsedSchema, "dataTypes.myDataType", {}), null, 4)}
             onChange={setSchema}
             mode="json"
             theme="github"

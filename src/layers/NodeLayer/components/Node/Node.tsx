@@ -3,6 +3,7 @@ import React from "react";
 
 import { FIELD_HEIGHT, NODE_WIDTH } from "../../../../constants";
 import { INodeProps, ISchemaField } from "../../../../types";
+import DefaultControl from "../DefaultControl/DefaultControl";
 import DefaultField from "../Field/Field";
 import { NodeSubtitle, NodeTitle, NodeWrapper as DefaultNode } from "./Node.styles";
 
@@ -26,17 +27,18 @@ function Node(props: INodeProps) {
   const nodeFields = get(nodeType, `fields`, [])
     .map((field: ISchemaField) => {
       const dataType = get(schema, `dataTypes.${field.dataType}`, {});
+      const fieldName = field.name || dataType.name;
       return (
         <CustomField
           color={dataType.color}
           key={field.id}
-          hasInput={field.input}
-          hasOutput={field.output}
+          input={field.input}
+          output={field.output}
           height={FIELD_HEIGHT}
           onMouseDown={() => onFieldOutMouseDown(id, field.id)}
           onMouseUp={() => onFieldInMouseUp(id, field.id)}
         >
-          {field.name || dataType.name}
+          {!field.controlType ? fieldName : <DefaultControl name={fieldName} />}
         </CustomField>
       );
     });

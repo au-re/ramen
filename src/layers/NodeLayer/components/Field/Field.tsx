@@ -1,8 +1,8 @@
 import React from "react";
-import { Background, Pin } from "./Field.styles";
+import { Background, OutputPin, InputPin, FieldContent } from "./Field.styles";
 
 function Field(props: any) {
-  const { hasInput, hasOutput, children, height, color } = props;
+  const { input, output, children, height, color } = props;
   const { onMouseUp = () => { }, onMouseDown = () => { } } = props;
 
   const handleMouseDown = (e: any) => {
@@ -11,18 +11,39 @@ function Field(props: any) {
     onMouseDown();
   };
 
+  let textAlign = "center";
+  if (input && !output) textAlign = "left";
+  if (output && !input) textAlign = "right";
+
   return (
     <Background
       height={height}
-      hasInput={hasInput}
-      onMouseUp={onMouseUp}
+      hasInput={input}
       radius={8}
     >
-      {hasInput && <Pin className="noDrag" radius={8} onMouseDown={handleMouseDown} color={color} />}
-      <div style={{ padding: "0 .5rem" }} onMouseDown={handleMouseDown}>
+      {
+        input && (
+          <InputPin
+            className="noDrag"
+            radius={8}
+            onMouseUp={onMouseUp}
+            color={color}
+          />
+        )
+      }
+      <FieldContent textAlign={textAlign}>
         {children}
-      </div>
-      {hasOutput && <Pin className="noDrag" radius={8} onMouseDown={handleMouseDown} color={color} />}
+      </FieldContent>
+      {
+        output && (
+          <OutputPin
+            className="noDrag"
+            radius={8}
+            onMouseDown={handleMouseDown}
+            color={color}
+          />
+        )
+      }
     </Background>
   );
 }

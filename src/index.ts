@@ -1,2 +1,3 @@
-export { default as Editor } from "./components/DefaultEditor/DefaultEditor";
+export { default } from "./components/DefaultEditor/DefaultEditor";
+export { default as RamenProvider } from "./context/RamenProvider";
 export { lightTheme, darkTheme } from "./themes";
