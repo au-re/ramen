@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-import { NODE_WIDTH } from "../../../../constants";
 import { lightTheme } from "../../../../themes";
 
 export const NodeWrapper: any = styled.div`
   z-index: 100;
   position: absolute;
   display: inline-block;
-  width: ${NODE_WIDTH}px;
+  width: ${({ width }: any) => width}px;
   color: ${({ theme }) => theme.textColor || lightTheme.textColor};
   background: ${({ theme }) => theme.nodeBackground || lightTheme.nodeBackground};
   border-radius: ${({ theme }) => theme.borderRadius || lightTheme.borderRadius};

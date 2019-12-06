@@ -3,28 +3,40 @@ import styled from "styled-components";
 
 const StyledInput = styled.input`
   flex: 1;
-  border: 1px solid #d9e1e7;
-  border-radius: 8px;
-  height: 26px;
+  border: 1px solid ${({ theme }) => theme.borderColor};
+  background: ${({ theme }) => theme.inputBackground};
+  border-radius: 4px;
+  height: 28px;
   align-self: center;
   min-width: 0;
+  color: ${({ theme }) => theme.textColor};
+  padding: 0 8px;
+  font-size: .9rem;
 `;
 
 const ControlBackground = styled.div`
   display: flex;
   overflow: hidden;
   span {
-    font-size: .9rem;
-    margin-right: 8px;
+    color: ${({ theme }) => theme.textSecondary};
+    margin-right: 2rem;
   }
 `;
 
 function DefaultControl(props: any) {
+  const { name, ...rest } = props;
+
+  const onInputClick = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
-    <ControlBackground>
-      <span>{props.name}</span>
-      <StyledInput />
-    </ControlBackground>);
+    <ControlBackground className="noDrag">
+      <span>{name}</span>
+      <StyledInput onClick={onInputClick} {...rest} />
+    </ControlBackground>
+  );
 }
 
 export default DefaultControl;

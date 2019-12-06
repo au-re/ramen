@@ -94,7 +94,7 @@ function GraphProvider(props: IGraphProviderProps) {
     if (!node || !nodeSchema || fieldIdx === -1) return null;
 
     const y = node.y + (fieldIdx * FIELD_HEIGHT) + NODE_HEADER_HEIGHT + (FIELD_HEIGHT / 2);
-    const x = node.x + NODE_WIDTH;
+    const x = node.x + (nodeSchema.width || NODE_WIDTH);
     return { x, y };
   }
 

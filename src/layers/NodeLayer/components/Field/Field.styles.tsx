@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
-export const Pin: any = styled.div`
+export const PinContainer: any = styled.div`
   height: ${(props: any) => `${props.radius * 2}px`};
   width: ${(props: any) => `${props.radius * 2}px`};
-  border-radius: ${(props: any) => `${props.radius * 2}px`};
-  border: 2px solid ${({ theme }) => theme.pinBorder};
-  background: ${(props) => props.color || "#2D9CDB"};
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
   align-self: center;
+`;
+
+export const Pin: any = styled(PinContainer)`
+  border-radius: ${(props: any) => `${props.radius * 2}px`};
+  border-color: ${({ theme }) => theme.pinBorder};
+  background: ${(props) => props.color || "#2D9CDB"};
   cursor: pointer;
 `;
 
@@ -30,9 +36,9 @@ export const Background: any = styled.div`
   color: #96A1A9;
 `;
 
-export const FieldContent = styled.div`
+export const FieldContent: any = styled.div`
   overflow: hidden;
-  padding: 0 .25rem;
   flex: 1;
-  text-align: ${(props) => props.textAlign};
+  color: ${({ theme }) => theme.textSecondary};
+  text-align: ${(props: any) => props.textAlign};
 `;

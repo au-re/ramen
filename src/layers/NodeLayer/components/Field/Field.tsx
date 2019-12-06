@@ -1,5 +1,7 @@
 import React from "react";
-import { Background, OutputPin, InputPin, FieldContent } from "./Field.styles";
+
+import { PIN_RADIUS } from "../../../../constants";
+import { Background, FieldContent, InputPin, OutputPin, PinContainer } from "./Field.styles";
 
 function Field(props: any) {
   const { input, output, children, height, color } = props;
@@ -19,30 +21,33 @@ function Field(props: any) {
     <Background
       height={height}
       hasInput={input}
-      radius={8}
     >
       {
-        input && (
-          <InputPin
-            className="noDrag"
-            radius={8}
-            onMouseUp={onMouseUp}
-            color={color}
-          />
-        )
+        input
+          ? (
+            <InputPin
+              className="noDrag"
+              radius={PIN_RADIUS}
+              onMouseUp={onMouseUp}
+              color={color}
+            />
+          )
+          : <PinContainer radius={PIN_RADIUS} />
       }
       <FieldContent textAlign={textAlign}>
         {children}
       </FieldContent>
       {
-        output && (
-          <OutputPin
-            className="noDrag"
-            radius={8}
-            onMouseDown={handleMouseDown}
-            color={color}
-          />
-        )
+        output
+          ? (
+            <OutputPin
+              className="noDrag"
+              radius={PIN_RADIUS}
+              onMouseDown={handleMouseDown}
+              color={color}
+            />
+          )
+          : <PinContainer radius={PIN_RADIUS} />
       }
     </Background>
   );

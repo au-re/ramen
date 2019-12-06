@@ -12,22 +12,24 @@ const lightTheme = {
   nodeBackgroundSelected: "#333",
   pinBorder: "#333",
   noodleColor: "#333",
+  inputBackground: "#ffffff",
 };
 
 const darkTheme = {
   fontName: "Helvetica, Oswald, sans-serif",
   fontSize: "12px",
   borderRadius: "2px",
-  borderWidth: "4px",
-  textColor: "#a8b5bf",
+  borderWidth: "2px",
+  textColor: "#dce2e6",
   textSecondary: "#96A1A9",
-  borderColor: "#6f767c",
+  borderColor: "#3c4955",
   editorBackground: "#14222D",
   editorBackgroundMuted: "#96A1A9",
   nodeBackground: "rgb(32, 46, 59, .9)",
   nodeBackgroundSelected: "#333",
-  pinBorder: "#6f767c",
-  noodleColor: "#a8b5bf",
+  pinBorder: "#dce2e6",
+  noodleColor: "#dce2e6",
+  inputBackground: "#14222D",
 };
 
 export { lightTheme, darkTheme };

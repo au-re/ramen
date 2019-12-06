@@ -16,7 +16,7 @@ const pinkTheme = {
   borderRadius: "12px",
   borderWidth: "10px",
   textColor: "#FAFCFE",
-  textSecondary: "#96A1A9",
+  textSecondary: "#FAFCFE",
   borderColor: "#f774b3",
   editorBackground: "#ffdbe7",
   editorBackgroundMuted: "#db2e6a",

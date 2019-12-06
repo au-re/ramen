@@ -8,6 +8,11 @@ export const schema: ISchema = {
       icon: "",
       fields: [
         {
+          id: "number0",
+          dataType: "number",
+          controlType: "numberControl",
+        },
+        {
           id: "number1",
           dataType: "number",
           controlType: "numberControl",
@@ -16,25 +21,26 @@ export const schema: ISchema = {
         {
           id: "number2",
           dataType: "number",
+          hideControlOnConnection: true,
           controlType: "numberControl",
           input: true,
         },
         {
-          id: "result",
-          name: "Result",
+          id: "number4",
           dataType: "number",
+          controlType: "numberControl",
+          input: true,
           output: true,
         },
-      ],
-    },
-    log: {
-      name: "Log",
-      fields: [
         {
-          id: "data",
-          name: "Data",
-          dataType: "any",
+          id: "number3",
+          dataType: "number",
           input: true,
+        },
+        {
+          id: "result",
+          dataType: "number",
+          output: true,
         },
       ],
     },
@@ -57,14 +63,6 @@ export const schema: ISchema = {
       color: "#29abe1",
       validTargets: [
         "number",
-        "any",
-      ],
-    },
-    any: {
-      name: "Any",
-      color: "#7454a1",
-      validTargets: [
-        "any",
       ],
     },
   },
@@ -98,12 +96,6 @@ export const graph: IGraph = {
       name: "Add Two Numbers",
       type: "add",
     },
-    {
-      id: "3",
-      x: 850,
-      y: 130,
-      type: "log",
-    },
   ],
   connections: [
     {
@@ -117,12 +109,6 @@ export const graph: IGraph = {
       originField: "number",
       targetNode: "2",
       targetField: "number2",
-    },
-    {
-      originNode: "2",
-      originField: "result",
-      targetNode: "3",
-      targetField: "data",
     },
   ],
 };

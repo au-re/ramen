@@ -23,10 +23,12 @@ function Node(props: INodeProps) {
 
   const nodeType = get(schema, `nodeTypes.${type}`, {});
   const typeName = nodeType.name;
+  const width = nodeType.width || NODE_WIDTH;
 
   const nodeFields = get(nodeType, `fields`, [])
     .map((field: ISchemaField) => {
       const dataType = get(schema, `dataTypes.${field.dataType}`, {});
+      const controlProps = get(schema, `controlTypes.${field.controlType}`, {});
       const fieldName = field.name || dataType.name;
       return (
         <CustomField
@@ -38,7 +40,7 @@ function Node(props: INodeProps) {
           onMouseDown={() => onFieldOutMouseDown(id, field.id)}
           onMouseUp={() => onFieldInMouseUp(id, field.id)}
         >
-          {!field.controlType ? fieldName : <DefaultControl name={fieldName} />}
+          {!field.controlType ? fieldName : <DefaultControl name={fieldName} {...controlProps} />}
         </CustomField>
       );
     });
@@ -47,7 +49,7 @@ function Node(props: INodeProps) {
     <CustomNode
       {...rest}
       id={id}
-      width={NODE_WIDTH}
+      width={width}
       className={"node " + className}
     >
       <NodeTitle>

@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from "styled-components";
 import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
 import RamenProvider from "../../../src/context/RamenProvider";
 import { lightTheme } from "../../../src/themes";
+import * as complexGraph from "../../schemas/complexGraph";
 
 import "ace-builds/src-noconflict/ace";
 import "ace-builds/src-noconflict/mode-json";
@@ -23,85 +24,9 @@ const EditorContainer = styled.div`
   }
 `;
 
-const defaultSchema = {
-  nodeTypes: {
-    number: {
-      name: "Number",
-      fields: [
-        {
-          id: "number",
-          dataType: "number",
-          output: true,
-        },
-      ],
-    },
-    add: {
-      name: "Add",
-      fields: [
-        {
-          id: "number1",
-          dataType: "number",
-          input: true,
-        },
-        {
-          id: "number2",
-          dataType: "number",
-          input: true,
-        },
-      ],
-    },
-  },
-  dataTypes: {
-    number: {
-      name: "Number",
-      color: "#333",
-      validTargets: [
-        "number",
-      ],
-    },
-  },
-};
-
-const defaultGraph = {
-  nodes: [
-    {
-      id: "0",
-      x: 100,
-      y: 50,
-      type: "number",
-    },
-    {
-      id: "1",
-      x: 100,
-      y: 200,
-      type: "number",
-    },
-    {
-      id: "2",
-      x: 450,
-      y: 50,
-      type: "add",
-    },
-  ],
-  connections: [
-    {
-      originNode: "0",
-      originField: "number",
-      targetNode: "2",
-      targetField: "number1",
-    },
-    {
-      originNode: "1",
-      originField: "number",
-      targetNode: "2",
-      targetField: "number2",
-    },
-  ],
-};
-
 function Playground() {
-  const [schema, setSchema] = React.useState(JSON.stringify(defaultSchema, null, 4));
-  const [graph, setGraph] = React.useState(JSON.stringify(defaultGraph, null, 4));
+  const [schema, setSchema] = React.useState(JSON.stringify(complexGraph.schema, null, 4));
+  const [graph, setGraph] = React.useState(JSON.stringify(complexGraph.graph, null, 4));
 
   let parsedSchema;
   let parsedGraph;

@@ -12,6 +12,7 @@ export interface ISchema {
     [nodeTypeId: string]: {
       name?: string,
       icon?: string,
+      width?: number,
       fields?: ISchemaField[],
     },
   };
@@ -24,7 +25,7 @@ export interface ISchema {
   };
   controlTypes?: {
     [controlTypeId: string]: {
-      name?: string,
+      [name: string]: any,
     },
   };
 }
