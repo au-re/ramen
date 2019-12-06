@@ -17,6 +17,7 @@ function Node(props: INodeProps) {
     CustomNode = DefaultNode,
     CustomField = DefaultField,
     className,
+    isFieldInputConnected = () => false,
     onFieldOutMouseDown,
     onFieldInMouseUp,
     ...rest
@@ -28,11 +29,15 @@ function Node(props: INodeProps) {
 
   const nodeFields = get(nodeType, `fields`, [])
     .map((field: ISchemaField) => {
+
       const dataType = get(schema, `dataTypes.${field.dataType}`, {});
       const controlProps = get(schema, `controlTypes.${field.controlType}`, {});
       controlProps.defaultValue = field.defaultValue || controlProps.defaultValue;
       const fieldName = field.name || dataType.name;
       const Control = get(controls, `${field.controlType}`, DefaultControl);
+      const hasInputConnection = isFieldInputConnected(id, field.id);
+      const hideControl = field.hideControlOnInput && hasInputConnection || !field.controlType;
+
       return (
         <CustomField
           color={dataType.color}
@@ -43,7 +48,7 @@ function Node(props: INodeProps) {
           onMouseDown={() => onFieldOutMouseDown(id, field.id)}
           onMouseUp={() => onFieldInMouseUp(id, field.id)}
         >
-          {!field.controlType ? fieldName : <Control name={fieldName} {...controlProps} />}
+          {hideControl ? fieldName : <Control name={fieldName} {...controlProps} />}
         </CustomField>
       );
     });

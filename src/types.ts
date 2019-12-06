@@ -3,7 +3,7 @@ export interface ISchemaField {
   name?: string;
   dataType: string;
   controlType?: string;
-  hideControlOnConnection?: boolean;
+  hideControlOnInput?: boolean;
   defaultValue?: any;
   input?: boolean;
   output?: boolean;
@@ -84,6 +84,7 @@ export interface IGraphContext {
   deleteConnection: (connectionId: number) => void;
   getConnectionStart: (connection: IGraphConnection) => ILocation | null;
   getConnectionEnd: (connection: IGraphConnection) => ILocation | null;
+  isFieldInputConnected: (nodeId: string, fieldId: string) => boolean;
 }
 
 export interface ISelectionProvider {
@@ -162,6 +163,7 @@ export interface INodeProps {
   className?: string;
   CustomNode?: any;
   CustomField?: any;
+  isFieldInputConnected?: (nodeId: string, fieldId: string) => boolean;
   onFieldOutMouseDown?: (nodeId: string, fieldId: string) => void;
   onFieldInMouseUp?: (nodeId: string, fieldId: string) => void;
 }

@@ -10,7 +10,7 @@ import Node from "./components/Node/Node";
 function NodeLayer(props: any) {
   const { onNodeDrop, onNodeDrag, onFieldOutMouseDown, onFieldInMouseUp, controls } = props;
 
-  const { graph, schema } = React.useContext(GraphContext);
+  const { graph, schema, isFieldInputConnected } = React.useContext(GraphContext);
   const { zoom } = React.useContext(EditorContext);
   const { nodes } = graph;
 
@@ -32,6 +32,7 @@ function NodeLayer(props: any) {
               name={node.name}
               type={node.type}
               controls={controls}
+              isFieldInputConnected={isFieldInputConnected}
               schema={schema}
               onFieldOutMouseDown={onFieldOutMouseDown}
               onFieldInMouseUp={onFieldInMouseUp}

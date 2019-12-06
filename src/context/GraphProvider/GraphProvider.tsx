@@ -114,6 +114,15 @@ function GraphProvider(props: IGraphProviderProps) {
     return { x, y };
   }
 
+  /** returns true if the field as an input that is connected
+   * @param fieldId
+   */
+  function isFieldInputConnected(nodeId: string, fieldId: string): boolean {
+    return _graph.connections.some((connection) => (
+      connection.targetField === fieldId && connection.targetNode === nodeId
+    ));
+  }
+
   const contextValues: IGraphContext = {
     graph: _graph,
     schema,
@@ -123,6 +132,7 @@ function GraphProvider(props: IGraphProviderProps) {
     deleteConnection,
     getConnectionEnd,
     getConnectionStart,
+    isFieldInputConnected,
   };
 
   return (

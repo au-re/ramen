@@ -21,7 +21,7 @@ export const schema: ISchema = {
         {
           id: "number2",
           dataType: "number",
-          hideControlOnConnection: true,
+          hideControlOnInput: true,
           controlType: "numberControl",
           input: true,
         },

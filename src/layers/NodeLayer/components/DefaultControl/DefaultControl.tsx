@@ -16,6 +16,7 @@ const StyledInput = styled.input`
 
 const ControlBackground = styled.div`
   display: flex;
+  height: 100%;
   overflow: hidden;
   span {
     color: ${({ theme }) => theme.textSecondary};
@@ -33,8 +34,7 @@ function DefaultControl(props: any) {
 
   return (
     <ControlBackground className="noDrag">
-      <span>{name}</span>
-      <StyledInput onClick={onInputClick} {...rest} />
+      <StyledInput onClick={onInputClick} placeholder={name} {...rest} />
     </ControlBackground>
   );
 }
