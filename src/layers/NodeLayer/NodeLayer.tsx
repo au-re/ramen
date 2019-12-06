@@ -8,7 +8,7 @@ import { IGraphNode, ILocation } from "../../types";
 import Node from "./components/Node/Node";
 
 function NodeLayer(props: any) {
-  const { onNodeDrop, onNodeDrag, onFieldOutMouseDown, onFieldInMouseUp } = props;
+  const { onNodeDrop, onNodeDrag, onFieldOutMouseDown, onFieldInMouseUp, controls } = props;
 
   const { graph, schema } = React.useContext(GraphContext);
   const { zoom } = React.useContext(EditorContext);
@@ -31,6 +31,7 @@ function NodeLayer(props: any) {
               id={node.id}
               name={node.name}
               type={node.type}
+              controls={controls}
               schema={schema}
               onFieldOutMouseDown={onFieldOutMouseDown}
               onFieldInMouseUp={onFieldInMouseUp}

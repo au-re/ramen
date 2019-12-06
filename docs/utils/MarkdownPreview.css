@@ -97,7 +97,7 @@ table {
 
 table td,
 table th {
-  border: 1px solid #AAAAAA;
+  border: 1px solid transparent;
   padding: 8px;
 }
 
@@ -110,7 +110,7 @@ table tr:nth-child(even) {
 }
 
 table thead {
-  background: #1ea7fd;
+  background: #2d9cdb;
 }
 
 table thead th {

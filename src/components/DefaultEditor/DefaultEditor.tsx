@@ -10,7 +10,7 @@ import { IDefaultEditorProps } from "../../types";
 import ZoomPanWrapper from "../ZoomPanWrapper/ZoomPanWrapper";
 
 function DefaultEditor(props: IDefaultEditorProps) {
-  const { height, width, canZoom = true, canPan = true } = props;
+  const { height, width, canZoom = true, canPan = true, controls = {} } = props;
 
   const {
     startConnection,
@@ -24,6 +24,7 @@ function DefaultEditor(props: IDefaultEditorProps) {
       <BoxSelectionLayer />
       <ContextMenuLayer />
       <NodeLayer
+        controls={controls}
         onNodeDrop={updateNodeLocation}
         onNodeDrag={updateNodeLocation}
         onFieldInMouseUp={makeConnection}

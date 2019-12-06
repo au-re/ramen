@@ -42,7 +42,7 @@ const defaultSchema = {
 };
 
 function FieldsDoc() {
-  const [schema, setSchema] = React.useState(JSON.stringify(defaultSchema, null, 4));
+  const [schema, setSchema] = React.useState(JSON.stringify(get(defaultSchema, "dataTypes.myDataType", {}), null, 4));
 
   let parsedSchema;
 
@@ -60,7 +60,7 @@ function FieldsDoc() {
           <div>schema</div>
           <AceEditor
             style={{ fontSize: "1rem", border: "2px solid #e2e2e2", borderRadius: "4px", width: "100%" }}
-            value={JSON.stringify(get(parsedSchema, "dataTypes.myDataType", {}), null, 4)}
+            value={schema}
             onChange={setSchema}
             mode="json"
             theme="github"
@@ -73,7 +73,12 @@ function FieldsDoc() {
               id="test"
               type="demoNode"
               name={"Add two numbers"}
-              schema={parsedSchema}
+              schema={{
+                ...defaultSchema,
+                dataTypes: {
+                  myDataType: parsedSchema,
+                },
+              }}
             />
           </div>
         </ThemeProvider>

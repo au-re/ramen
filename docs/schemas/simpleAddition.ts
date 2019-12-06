@@ -10,12 +10,16 @@ export const schema: ISchema = {
         {
           id: "number1",
           dataType: "number",
+          name: "Number 1",
           controlType: "numberControl",
+          hideControlOnConnection: true,
+          defaultValue: 10,
           input: true,
         },
         {
           id: "number2",
           dataType: "number",
+          name: "Number 2",
           controlType: "numberControl",
           input: true,
         },
@@ -70,6 +74,7 @@ export const schema: ISchema = {
   },
   controlTypes: {
     numberControl: {
+      placeholder: "test",
       type: "number",
       min: 0,
       max: 100,

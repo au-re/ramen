@@ -3,6 +3,8 @@ export interface ISchemaField {
   name?: string;
   dataType: string;
   controlType?: string;
+  hideControlOnConnection?: boolean;
+  defaultValue?: any;
   input?: boolean;
   output?: boolean;
 }
@@ -61,12 +63,12 @@ export interface IEditorState {
   yPos: number;
 }
 
-export interface IComponents {
+export interface IControls {
   [component: string]: any;
 }
 
 export interface IDefaultEditorProps {
-  components?: IComponents;
+  controls?: IControls;
   canZoom?: boolean;
   canPan?: boolean;
   height?: number;
@@ -107,6 +109,7 @@ export interface IZoomPanWrapperProps extends IReactProps {
 
 export interface INodeLayerProps {
   nodes?: IGraphNode[];
+  controls?: IControls;
   selection?: string[];
   onNodeDrag?: (nodeId: string, newLocation: ILocation) => void;
   onNodeDrop?: (nodeId: string, newLocation: ILocation) => void;
@@ -155,6 +158,7 @@ export interface INodeProps {
   type: string;
   schema: ISchema;
   children?: any;
+  controls?: IControls;
   className?: string;
   CustomNode?: any;
   CustomField?: any;

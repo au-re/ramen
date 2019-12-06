@@ -13,6 +13,7 @@ function Node(props: INodeProps) {
     name,
     type,
     schema,
+    controls,
     CustomNode = DefaultNode,
     CustomField = DefaultField,
     className,
@@ -29,7 +30,9 @@ function Node(props: INodeProps) {
     .map((field: ISchemaField) => {
       const dataType = get(schema, `dataTypes.${field.dataType}`, {});
       const controlProps = get(schema, `controlTypes.${field.controlType}`, {});
+      controlProps.defaultValue = field.defaultValue || controlProps.defaultValue;
       const fieldName = field.name || dataType.name;
+      const Control = get(controls, `${field.controlType}`, DefaultControl);
       return (
         <CustomField
           color={dataType.color}
@@ -40,7 +43,7 @@ function Node(props: INodeProps) {
           onMouseDown={() => onFieldOutMouseDown(id, field.id)}
           onMouseUp={() => onFieldInMouseUp(id, field.id)}
         >
-          {!field.controlType ? fieldName : <DefaultControl name={fieldName} {...controlProps} />}
+          {!field.controlType ? fieldName : <Control name={fieldName} {...controlProps} />}
         </CustomField>
       );
     });
