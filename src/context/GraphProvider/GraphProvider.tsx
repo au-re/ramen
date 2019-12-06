@@ -2,7 +2,7 @@ import get from "lodash.get";
 import * as React from "react";
 
 import { FIELD_HEIGHT, NODE_HEADER_HEIGHT, NODE_WIDTH } from "../../constants";
-import { IGraph, IGraphConnection, IGraphContext, IGraphNode, IGraphProviderProps, ILocation, ISchema } from "../../types";
+import { IGraph, IGraphConnection, IGraphContext, IGraphNode, IGraphProviderProps, ILocation, ISchema, IGraphConnectionOrigin, ISchemaField } from "../../types";
 
 export const GraphContext = React.createContext({} as IGraphContext);
 
@@ -56,6 +56,23 @@ function GraphProvider(props: IGraphProviderProps) {
     setGraph(newGraph);
   }
 
+  /** returns a node given a node id
+   * @param nodeId
+   */
+  function getNode(nodeId: string) {
+    return _graph.nodes.find((node: IGraphNode) => node.id === nodeId);
+  }
+
+  /** returns a node given a node id
+   * @param nodeId
+   */
+  function getFieldSchema(nodeId: string, fieldId: string) {
+    const node = getNode(nodeId);
+    if (!node) return null;
+    const nodeType = node.type;
+    return schema.nodeTypes[nodeType].fields.find((field: ISchemaField) => field.id === fieldId);
+  }
+
   /** remove a connection
    * @param idx
    */
@@ -66,26 +83,33 @@ function GraphProvider(props: IGraphProviderProps) {
     setGraph(newGraph);
   }
 
+  /** check if a connection is valid
+   * @param originDataType
+   * @param targetDataType
+   */
+  function isValidConnection(connection: IGraphConnection) {
+    const { originNode, originField, targetNode, targetField } = connection;
+    const originDataType = getFieldSchema(originNode, originField).dataType;
+    const targetDataType = getFieldSchema(targetNode, targetField).dataType;
+    return get(schema, `dataTypes[${originDataType}].validTargets`, []).includes(targetDataType);
+  }
+
   /** create a connection between two fields
    * @param connection
    */
   function createConnection(connection: IGraphConnection) {
-    const newGraph = { ..._graph, connections: [connection, ..._graph.connections] };
-    // TODO: avoid duplicate connections
-    setGraph(newGraph);
-  }
+    if (!isValidConnection(connection)) return;
 
-  /** returns a node given a node id
-   * @param nodeId
-   */
-  function getNode(nodeId: string) {
-    return _graph.nodes.find((node: IGraphNode) => node.id === nodeId);
+    // TODO: avoid duplicate connections
+
+    const newGraph = { ..._graph, connections: [connection, ..._graph.connections] };
+    setGraph(newGraph);
   }
 
   /** given a connection return the start of it in x, y coordinates
    * @param connection
    */
-  function getConnectionStart(connection: IGraphConnection) {
+  function getConnectionStart(connection: IGraphConnection | IGraphConnectionOrigin) {
     const node = getNode(connection.originNode);
     const nodeSchema = get(schema, `nodeTypes[${get(node, "type")}]`);
     const fieldIdx = get(nodeSchema, "fields", [])

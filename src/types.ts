@@ -50,6 +50,7 @@ export interface IGraphConnection {
 export interface IGraphConnectionOrigin {
   originNode: string;
   originField: string;
+  originDataType?: string;
 }
 
 export interface IGraph {
@@ -82,7 +83,7 @@ export interface IGraphContext {
   setGraph: (graph: IGraph) => void;
   createConnection: (connection: IGraphConnection) => void;
   deleteConnection: (connectionId: number) => void;
-  getConnectionStart: (connection: IGraphConnection) => ILocation | null;
+  getConnectionStart: (connection: IGraphConnection | IGraphConnectionOrigin) => ILocation | null;
   getConnectionEnd: (connection: IGraphConnection) => ILocation | null;
   isFieldInputConnected: (nodeId: string, fieldId: string) => boolean;
 }
@@ -136,7 +137,7 @@ export interface IEditorContext {
   zoom: number;
   xPos: number;
   yPos: number;
-  dragOrigin?: IGraphConnection | null;
+  dragOrigin?: IGraphConnectionOrigin | null;
   mousePos?: ILocation;
   setDragOrigin?: (connectionOrigin: IGraphConnectionOrigin) => void;
   setPosition?: (newXPos: number, newYPos: number) => void;

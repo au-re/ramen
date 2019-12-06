@@ -23,15 +23,15 @@ function useRamenActions() {
    * @param originNodeId
    * @param originFieldId
    */
-  function startConnection(originNodeId: string, originFieldId: string) {
-    setDragOrigin({ originNode: originNodeId, originField: originFieldId });
+  function startConnection(originNodeId: string, originFieldId: string, originDataType: string) {
+    setDragOrigin({ originNode: originNodeId, originField: originFieldId, originDataType });
   }
 
   /** complete a connection given the target field and node id
    * @param targetNodeId
    * @param targetFieldId
    */
-  function makeConnection(targetNodeId: string, targetFieldId: string) {
+  function makeConnection(targetNodeId: string, targetFieldId: string, targetDataType: string) {
     if (!dragOrigin) return;
 
     createConnection({
