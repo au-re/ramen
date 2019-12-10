@@ -7,7 +7,7 @@ import Noodle from "./components/Noodle/Noodle";
 import Noodles from "./components/Noodles/Noodles";
 
 function NoodleLayer(props: INoodleLayerProps) {
-  const { onConnectionMouseDown } = props;
+  const { onConnectionMouseDown, height, width } = props;
   const {
     graph,
     getConnectionEnd,
@@ -22,7 +22,7 @@ function NoodleLayer(props: INoodleLayerProps) {
   const { connections } = graph;
 
   return (
-    <Noodles>
+    <Noodles height={height} width={width}>
       {
         connections.map((connection: IGraphConnection, idx: number) => {
           const connectionStart = getConnectionStart(connection);

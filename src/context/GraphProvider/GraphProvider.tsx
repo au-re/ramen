@@ -2,7 +2,7 @@ import get from "lodash.get";
 import * as React from "react";
 
 import { FIELD_HEIGHT, NODE_HEADER_HEIGHT, NODE_WIDTH } from "../../constants";
-import { IGraph, IGraphConnection, IGraphContext, IGraphNode, IGraphProviderProps, ILocation, ISchema, IGraphConnectionOrigin, ISchemaField } from "../../types";
+import { IGraph, IGraphConnection, IGraphConnectionOrigin, IGraphContext, IGraphNode, IGraphProviderProps, ILocation, ISchema, ISchemaField } from "../../types";
 
 export const GraphContext = React.createContext({} as IGraphContext);
 
@@ -47,7 +47,7 @@ function GraphProvider(props: IGraphProviderProps) {
 
     _graph.nodes.forEach((_node) => {
       if (_node.id === id) node = _node;
-      else rest.push(_node);
+      else rest.push({ ..._node });
     });
 
     const newNode = { ...node, x: location.x, y: location.y };

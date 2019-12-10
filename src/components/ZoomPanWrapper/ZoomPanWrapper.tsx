@@ -38,6 +38,7 @@ function ZoomPanWrapper(props: IZoomPanWrapperProps) {
     if (!wrapper || !wrapper.current) return;
 
     const zoomArea = wrapper.current;
+    const rect = zoomArea.getBoundingClientRect();
 
     const el = document.getElementById(EDITOR_ID);
     const minX = -el.offsetHeight - padding;
@@ -94,7 +95,6 @@ function ZoomPanWrapper(props: IZoomPanWrapperProps) {
       e.preventDefault();
 
       const scrollSpeed = normalizeScroll(e.deltaY);
-      const rect = zoomArea.getBoundingClientRect();
       const delta = (scrollSpeed ? scrollSpeed / 120 : scrollSpeed / 3) * zoomSpeed;
 
       const zoomChange = zoom * (1 + delta);

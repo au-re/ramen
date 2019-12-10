@@ -35,8 +35,8 @@ function Playground() {
     parsedSchema = JSON.parse(schema);
     parsedGraph = JSON.parse(graph);
   } catch (err) {
-    parsedSchema = defaultSchema;
-    parsedGraph = defaultGraph;
+    parsedSchema = complexGraph.schema;
+    parsedGraph = complexGraph.graph;
   }
 
   return (
@@ -68,7 +68,9 @@ function Playground() {
           <RamenProvider
             schema={parsedSchema}
             graph={parsedGraph}
-            onGraphChange={(newGraph) => setGraph(JSON.stringify(newGraph, null, 4))}
+            onGraphChange={(newGraph) => {
+              setGraph(JSON.stringify(newGraph, null, 4));
+            }}
           >
             <DefaultEditor
               height={4096}

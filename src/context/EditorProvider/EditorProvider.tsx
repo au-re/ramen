@@ -40,11 +40,14 @@ function EditorProvider(props: IEditorProvider) {
     const yOffset = boundingBoxRect.y;
 
     const onMouseMove = (e: MouseEvent) => {
-      const newMousePos = {
-        x: ((e.x - xOffset) / zoom) + scrollX,
-        y: ((e.y - yOffset) / zoom) + scrollY,
-      };
-      if (isDragging) setMousePos(newMousePos);
+      if (isDragging) {
+        const newMousePos = {
+          x: ((e.x - xOffset - xPos) / zoom),
+          y: ((e.y - yOffset - yPos) / zoom),
+        };
+
+        setMousePos(newMousePos);
+      }
     };
 
     const onMouseUp = () => {

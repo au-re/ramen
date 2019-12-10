@@ -1,4 +1,5 @@
 export const EDITOR_ID = "ramen-editor";
+export const NOODLE_LAYER = "ramen-noodles";
 
 export const NODE_WIDTH = 200;
 export const NODE_HEADER_HEIGHT = 52;

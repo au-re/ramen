@@ -151,6 +151,8 @@ export interface INoodleProps {
 }
 
 export interface INoodleLayerProps {
+  height: number;
+  width: number;
   onConnectionMouseDown: (connectionId: number) => void;
 }
 

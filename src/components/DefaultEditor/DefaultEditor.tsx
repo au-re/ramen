@@ -30,7 +30,7 @@ function DefaultEditor(props: IDefaultEditorProps) {
         onFieldInMouseUp={makeConnection}
         onFieldOutMouseDown={startConnection}
       />
-      <NoodleLayer onConnectionMouseDown={removeConnection} />
+      <NoodleLayer onConnectionMouseDown={removeConnection} height={height} width={width} />
       <BackgroundLayer height={height} width={width} />
     </ZoomPanWrapper>
   );

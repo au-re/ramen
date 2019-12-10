@@ -31,7 +31,7 @@ function useRamenActions() {
    * @param targetNodeId
    * @param targetFieldId
    */
-  function makeConnection(targetNodeId: string, targetFieldId: string, targetDataType: string) {
+  function makeConnection(targetNodeId: string, targetFieldId: string) {
     if (!dragOrigin) return;
 
     createConnection({
