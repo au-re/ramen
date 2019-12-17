@@ -1,4 +1,4 @@
-import _ from "lodash";
+import get from "lodash.get";
 import { CREATE_CONNECTION } from "./connections.actions";
 import { isValidConnection } from "./connections.selectors";
 
@@ -8,7 +8,7 @@ import { isValidConnection } from "./connections.selectors";
  * @param {*} store
  */
 const connectionMiddleware = (store: any) => (next: any) => (action: any) => {
-  const type = _.get(action, "type", "");
+  const type = get(action, "type", "");
   const storeState = store.getState();
 
   // validate connection attempt

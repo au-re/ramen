@@ -16,6 +16,8 @@ export function normalizeScroll(delta: number) {
 }
 
 /** given an action to zoom the viewport, calculate the new zoom level and position for the viewport
+ * return a new action with this information, or a ZOOM_BLOCKED action if no zoom action
+ * can be performed
  * @param state
  * @param action
  */
@@ -44,16 +46,14 @@ function transformZoomAction(state: IStoreState, action: any) {
     const minYBoundary = -Math.abs(minY * zoomChange + viewport.offsetHeight);
     const d = (zoom - zoomChange) / ((zoom - zoomChange) || 1);
 
-    const newXPos = (xPos - xPosChange) * d;
-    const newYPos = (yPos - yPosChange) * d;
+    let newXPos = (xPos + xPosChange) * d;
+    let newYPos = (yPos + yPosChange) * d;
 
-    if (newXPos > MAX_X
-      || newXPos < minXBoundary
-      || newYPos > MAX_Y
-      || newYPos < minYBoundary
-    ) {
-      return {};
-    }
+    if (newXPos >= MAX_X) newXPos = MAX_X;
+    else if (newXPos < minXBoundary) newXPos = minXBoundary;
+
+    if (newYPos >= MAX_Y) newYPos = MAX_Y;
+    else if (newYPos < minYBoundary) newYPos = minYBoundary;
 
     return {
       ...action,
@@ -65,7 +65,7 @@ function transformZoomAction(state: IStoreState, action: any) {
     };
   }
 
-  return {};
+  return { type: "ZOOM_BLOCKED" };
 }
 
 /** given an action to pan the viewport, calculate the new position for the viewport

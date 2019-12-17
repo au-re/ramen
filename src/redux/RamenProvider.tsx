@@ -10,7 +10,7 @@ import editorReducer from "./editor/editor.reducer";
 import nodesReducer from "./nodes/nodes.reducer";
 import referencesReducer from "./references/references.reducer";
 import schemaReducer from "./schema/schema.reducer";
-import { makeConnectionId } from "./utils";
+import { arrayToMap, connectionsToMap } from "./utils";
 import viewportMiddleware from "./viewport/viewport.middleware";
 import viewportReducer from "./viewport/viewport.reducer";
 
@@ -29,66 +29,37 @@ const middleware: any[] = [
   editorMiddleware,
 ];
 
-function arrayToMap(array: any[]) {
-  const map = array.reduce((map, item, idx) => {
-    const { id } = item;
-    const newItem = { ...item };
-    newItem.idx = idx;
-    map[id || idx] = newItem;
-    return map;
-  }, {});
-  return map;
-}
-
-function connectionsToMap(array: any[]) {
-  const map = array.reduce((map, item, idx) => {
-    const id = makeConnectionId(item);
-    const newItem = { ...item };
-    map[id] = newItem;
-    return map;
-  }, {});
-  return map;
-}
-
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let namespace = 0;
 
-/** provider for the editor data */
-class RamenProvider extends React.Component<any, any> {
+function RamenProvider(props: any) {
+  const { initialGraph, initialEditorState, schema, children } = props;
 
-  store: any;
+  namespace = namespace + 1;
 
-  constructor(props: any) {
-    super(props);
+  const initialState = {
+    references: {
+      editorId: `${BASE_EDITOR_ID}-${namespace}`,
+      viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
+    },
+    nodes: arrayToMap(initialGraph.nodes || []),
+    connections: connectionsToMap(initialGraph.connections || []),
+    editor: initialEditorState,
+    schema,
+  };
 
-    namespace = namespace + 1;
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(...middleware)),
+  );
 
-    const initialState = {
-      references: {
-        editorId: `${BASE_EDITOR_ID}-${namespace}`,
-        viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
-      },
-      nodes: arrayToMap(props.initialGraph.nodes || []),
-      connections: connectionsToMap(props.initialGraph.connections || []),
-      editor: props.initialEditorState,
-      schema: props.schema,
-    };
-
-    this.store = createStore(
-      rootReducer,
-      initialState,
-      composeEnhancers(applyMiddleware(...middleware)),
-    );
-  }
-
-  render() {
-    return (
-      <Provider store={this.store}>
-        {this.props.children}
-      </Provider>
-    );
-  }
+  return (
+    <Provider store={store}>
+      {children}
+    </Provider>
+  );
 }
 
 export default RamenProvider;
