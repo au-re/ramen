@@ -15,6 +15,10 @@ export function normalizeScroll(delta: number) {
   return direction;
 }
 
+/** given an action to zoom the viewport, calculate the new zoom level and position for the viewport
+ * @param state
+ * @param action
+ */
 function transformZoomAction(state: IStoreState, action: any) {
   const { zoom: zoomMovement, x, y } = action.payload;
   const { settings, zoom, xPos, yPos } = get(state, "viewport");

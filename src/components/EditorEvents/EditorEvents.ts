@@ -2,10 +2,13 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { types } from "../../constants";
-import { createConnection, deleteConnection } from "../../redux/connections/connections.actions";
+import { createConnection } from "../../redux/connections/connections.actions";
 import { setPendingConnectionEndPos, setPendingConnectionOrigin } from "../../redux/editor/editor.actions";
 import { getPendingConnection } from "../../redux/editor/editor.selectors";
 import { IStoreState } from "../../redux/types";
+
+// TODO: remove the editor events component in favor of events fired directly from the components:
+// editor background, fields
 
 function EditorEvents(): null {
 
@@ -24,14 +27,6 @@ function EditorEvents(): null {
 
       if (fieldId && isInput !== "true") {
         dispatch(setPendingConnectionOrigin({ originField: fieldId, originNode: nodeId }));
-      }
-    }
-
-    function onPointerDownNoodle(targetData: any) {
-      const connectionId = targetData.connectionid;
-
-      if (connectionId) {
-        dispatch(deleteConnection(connectionId));
       }
     }
 

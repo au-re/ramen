@@ -12,15 +12,15 @@ import DefaultField from "../DefaultField/DefaultField";
 import { NodeSubtitle, NodeTitle, NodeWrapper } from "./DefaultNode.styles";
 
 function NodeField(props: any) {
-  const { fieldId, nodeId, name, dataType, controlType, defaultValue } = props;
+  const { fieldId, nodeId, name, dataType, controlType, defaultValue, Control = DefaultControl } = props;
   const { hideControlOnInput, hasInput, hasOutput } = props;
 
-  const fieldDataType = useSelector((state: IStoreState) =>
+  const fieldDataTypeDetails = useSelector((state: IStoreState) =>
     getDataType(state, dataType), shallowEqual);
-  const fieldControlType = useSelector((state: IStoreState) =>
+  const fieldControlDetails = useSelector((state: IStoreState) =>
     getControlType(state, controlType), shallowEqual);
-  const fieldName = name || fieldDataType.name;
-  const controlProps = { defaultValue, ...fieldControlType };
+  const fieldName = name || fieldDataTypeDetails.name;
+  const controlProps = { defaultValue, ...fieldControlDetails };
 
   const hasInputConnection = useSelector(
     (state: IStoreState) => isFieldInputConnected(state, nodeId, fieldId),
@@ -31,13 +31,13 @@ function NodeField(props: any) {
     <DefaultField
       nodeId={nodeId}
       fieldId={fieldId}
-      color={fieldDataType.color}
+      color={fieldDataTypeDetails.color}
       key={fieldId}
       input={hasInput}
       output={hasOutput}
       height={FIELD_HEIGHT}
     >
-      {hideControl ? fieldName : <DefaultControl name={fieldName} {...controlProps} />}
+      {hideControl ? fieldName : <Control name={fieldName} {...controlProps} />}
     </DefaultField>
   );
 }
@@ -54,7 +54,7 @@ const MemoizedNodeField = React.memo(NodeField, (prevProps, nextProps) => {
 });
 
 function DefaultNode(props: any) {
-  const { nodeId, className, style, type, onMouseUpFieldIn, ...rest } = props;
+  const { nodeId, className, style, type, onMouseUpFieldIn, controls = {}, ...rest } = props;
 
   const nodeType = useSelector((state: IStoreState) => getNodeType(state, type));
   const typeName = nodeType.name;
@@ -68,6 +68,7 @@ function DefaultNode(props: any) {
         nodeId={nodeId}
         dataType={field.dataType}
         controlType={field.controlType}
+        Control={controls[field.controlType || ""]}
         hideControlOnInput={field.hideControlOnInput}
         name={field.name}
         hasInput={field.input}

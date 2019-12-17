@@ -5,7 +5,7 @@ import { getNodes } from "../../redux/nodes/nodes.selectors";
 import DefaultNode from "./components/DefaultNode/DefaultNode";
 import DragWrapper from "./components/DragWrapper/DragWrapper";
 
-function NodeLayer() {
+function NodeLayer(props: any) {
   const nodes = useSelector(getNodes, shallowEqual);
 
   return (
@@ -22,6 +22,7 @@ function NodeLayer() {
               nodeId={node.id}
               name={node.name}
               type={node.type}
+              controls={props.controls}
             />
           </DragWrapper>
         ))

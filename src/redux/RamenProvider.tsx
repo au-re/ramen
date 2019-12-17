@@ -5,9 +5,9 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
 import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
+import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
 import nodesReducer from "./nodes/nodes.reducer";
-import ramenMiddleware from "./ramenMiddleware";
 import referencesReducer from "./references/references.reducer";
 import schemaReducer from "./schema/schema.reducer";
 import { makeConnectionId } from "./utils";
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
 const middleware: any[] = [
   connectionMiddleware,
   viewportMiddleware,
-  ramenMiddleware,
+  editorMiddleware,
 ];
 
 function arrayToMap(array: any[]) {

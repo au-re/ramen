@@ -16,6 +16,7 @@ function Ramen(props: any) {
     width,
     canZoom = true,
     canPan = true,
+    controls,
     children,
   } = props;
 
@@ -29,7 +30,7 @@ function Ramen(props: any) {
         <EditorBackground height={height} width={width}>
           {children}
           <NoodleLayer />
-          <NodeLayer />
+          <NodeLayer controls={controls} />
           <EditorEvents />
         </EditorBackground>
       </EditorViewport>
