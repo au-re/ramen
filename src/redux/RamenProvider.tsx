@@ -2,15 +2,20 @@ import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 
+import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
+import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
 import editorReducer from "./editor/editor.reducer";
 import nodesReducer from "./nodes/nodes.reducer";
 import ramenMiddleware from "./ramenMiddleware";
+import referencesReducer from "./references/references.reducer";
 import schemaReducer from "./schema/schema.reducer";
-import viewportReducer from "./viewport/viewport.reducer";
 import { makeConnectionId } from "./utils";
+import viewportMiddleware from "./viewport/viewport.middleware";
+import viewportReducer from "./viewport/viewport.reducer";
 
 const rootReducer = combineReducers({
+  references: referencesReducer,
   editor: editorReducer,
   nodes: nodesReducer,
   viewport: viewportReducer,
@@ -19,6 +24,8 @@ const rootReducer = combineReducers({
 });
 
 const middleware: any[] = [
+  connectionMiddleware,
+  viewportMiddleware,
   ramenMiddleware,
 ];
 
@@ -45,6 +52,8 @@ function connectionsToMap(array: any[]) {
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+let namespace = 0;
+
 /** provider for the editor data */
 class RamenProvider extends React.Component<any, any> {
 
@@ -53,9 +62,15 @@ class RamenProvider extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
 
+    namespace = namespace + 1;
+
     const initialState = {
-      nodes: arrayToMap(props.initialGraph.nodes),
-      connections: connectionsToMap(props.initialGraph.connections),
+      references: {
+        editorId: `${BASE_EDITOR_ID}-${namespace}`,
+        viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
+      },
+      nodes: arrayToMap(props.initialGraph.nodes || []),
+      connections: connectionsToMap(props.initialGraph.connections || []),
       editor: props.initialEditorState,
       schema: props.schema,
     };

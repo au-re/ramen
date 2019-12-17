@@ -6,6 +6,9 @@ import { getFieldSchema, getNodeSchema } from "../schema/schema.selectors";
 import { IStoreState } from "../types";
 import { IGraphConnection, IGraphConnectionOrigin, IGraphConnectionTarget } from "./connections.types";
 
+/** returns the connection map as an array
+ * @param state
+ */
 export function getConnections(state: IStoreState) {
   return Object.values(state.connections) || [];
 }
@@ -55,6 +58,10 @@ export function getConnectionEnd(state: IStoreState, connection: IGraphConnectio
   return { x, y };
 }
 
+/** returns true if the schema allows for such a connection
+ * @param state
+ * @param connection
+ */
 export function isValidConnection(state: IStoreState, connection: IGraphConnection) {
   const { originNode, originField, targetNode, targetField } = connection;
   const originDataType = getFieldSchema(state, originNode, originField).dataType;

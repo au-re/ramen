@@ -1,10 +1,7 @@
 import * as React from "react";
-import styled, { ThemeProvider } from "styled-components";
 
-import * as ComplexGraph from "../../schemas/complexGraph";
-import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
-import RamenProvider from "../../../src/context/RamenProvider";
-import { lightTheme } from "../../../src/themes";
+import Ramen from "../../../src/Ramen";
+import { schema } from "../../schemas/complexGraph";
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -14,63 +11,38 @@ function getRandomInt(min, max) {
 
 const defaultGraph = {
   nodes: [
-    ...Array(10).fill(0).map((_, idx) => ({
+    ...Array(40).fill(0).map((_, idx) => ({
       id: "number" + idx,
-      x: getRandomInt(0, 1200),
-      y: getRandomInt(0, 1200),
+      x: getRandomInt(0, 2400),
+      y: getRandomInt(0, 2400),
       type: "number",
     })),
-    ...Array(10).fill(0).map((_, idx) => ({
+    ...Array(20).fill(0).map((_, idx) => ({
       id: "add" + idx,
-      x: getRandomInt(0, 1200),
-      y: getRandomInt(0, 1200),
+      x: getRandomInt(0, 2400),
+      y: getRandomInt(0, 2400),
       type: "add",
     })),
   ],
   connections: [
-    ...Array(20).fill(0).map((_, idx) => ({
-      originNode: "number" + getRandomInt(0, 10),
+    ...Array(40).fill(0).map((_, idx) => ({
+      originNode: "number" + getRandomInt(0, 40),
       originField: "number",
-      targetNode: "add" + getRandomInt(0, 10),
+      targetNode: "add" + getRandomInt(0, 40),
       targetField: "number1",
     })),
   ],
 };
 
-function StressTestControlled() {
-  const [graph, setGraph] = React.useState(defaultGraph);
-
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <RamenProvider
-        schema={ComplexGraph.schema}
-        graph={graph}
-        onGraphChange={(newGraph) => setGraph(newGraph)}
-      >
-        <DefaultEditor
-          height={4096}
-          width={4096}
-        />
-      </RamenProvider>
-    </ThemeProvider>
-  );
-}
-
 function StressTest() {
   return (
-    <ThemeProvider theme={lightTheme}>
-      <RamenProvider
-        schema={ComplexGraph.schema}
-        initialGraph={defaultGraph}
-      >
-        <DefaultEditor
-          height={4096}
-          width={4096}
-        />
-      </RamenProvider>
-    </ThemeProvider>
+    <Ramen
+      schema={schema}
+      initialGraph={defaultGraph}
+      height={4096}
+      width={4096}
+    />
   );
 }
 
-export { StressTest };
-export default StressTestControlled;
+export default StressTest;

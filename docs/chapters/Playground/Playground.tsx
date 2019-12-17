@@ -1,10 +1,8 @@
 import * as React from "react";
 import AceEditor from "react-ace";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
-import DefaultEditor from "../../../src/components/DefaultEditor/DefaultEditor";
-import RamenProvider from "../../../src/context/RamenProvider";
-import { lightTheme } from "../../../src/themes";
+import Ramen from "../../../src/Ramen";
 import * as complexGraph from "../../schemas/complexGraph";
 
 import "ace-builds/src-noconflict/ace";
@@ -64,20 +62,15 @@ function Playground() {
             />
           </div>
         </div>
-        <ThemeProvider theme={lightTheme}>
-          <RamenProvider
-            schema={parsedSchema}
-            graph={parsedGraph}
-            onGraphChange={(newGraph) => {
-              setGraph(JSON.stringify(newGraph, null, 4));
-            }}
-          >
-            <DefaultEditor
-              height={4096}
-              width={4096}
-            />
-          </RamenProvider>
-        </ThemeProvider>
+        <Ramen
+          height={4096}
+          width={4096}
+          schema={parsedSchema}
+          initialGraph={parsedGraph}
+          onGraphChange={(newGraph) => {
+            setGraph(JSON.stringify(newGraph, null, 4));
+          }}
+        />
       </div>
     </EditorContainer >
   );

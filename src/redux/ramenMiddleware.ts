@@ -1,10 +1,8 @@
 import _ from "lodash";
 
-import { VIEWPORT_ID } from "../constants";
-import { CREATE_CONNECTION } from "./connections/connections.actions";
-import { isValidConnection } from "./connections/connections.selectors";
 import { SET_PENDING_CONNECTION_END_POS } from "./editor/editor.actions";
 import { getPendingConnection } from "./editor/editor.selectors";
+import { getViewportId } from "./references/references.selectors";
 import { getViewport } from "./viewport/viewport.selectors";
 
 /**
@@ -13,21 +11,12 @@ import { getViewport } from "./viewport/viewport.selectors";
  * @param {*} store
  */
 const ramenMiddleware = (store: any) => (next: any) => {
-
   return (action: any) => {
     const type = _.get(action, "type", "");
     const storeState = store.getState();
-    const viewport = document.getElementById(VIEWPORT_ID);
+    const viewport = document.getElementById(getViewportId(storeState));
 
-    // validate connection attempt
-    if (type === CREATE_CONNECTION) {
-      if (isValidConnection(storeState, action.payload.connection)) {
-        return next(action);
-      }
-
-      return;
-    }
-
+    // update mouse position with viewport state
     if (type === SET_PENDING_CONNECTION_END_POS) {
       if (getPendingConnection(storeState)) {
         const { endPos } = action.payload;

@@ -1,5 +1,5 @@
-export const EDITOR_ID = "ramen-editor";
-export const VIEWPORT_ID = "ramen-viewport";
+export const BASE_EDITOR_ID = "ramen-editor";
+export const BASE_VIEWPORT_ID = "ramen-viewport";
 
 export const NODE_WIDTH = 200;
 export const NODE_HEADER_HEIGHT = 52;

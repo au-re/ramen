@@ -6,7 +6,7 @@ import FieldsDoc from "./chapters/Fields/Fields";
 import GettingStarted from "./chapters/GettingStarted/GettingStarted";
 import Nodes from "./chapters/Nodes/Nodes";
 import Playground from "./chapters/Playground/Playground";
-import StressTestControlled, { StressTest } from "./chapters/Playground/StressTest";
+import StressTest from "./chapters/Playground/StressTest";
 import Theming from "./chapters/Theming/Theming";
 import WriteMe from "./chapters/WriteMe";
 
@@ -30,5 +30,4 @@ storiesOf("Documentation|API", module)
 
 storiesOf("Documentation|Playground", module)
   .add("Playground", Playground)
-  .add("Stress Test", StressTest)
-  .add("Stress Test Controlled", StressTestControlled);
+  .add("Stress Test", StressTest);

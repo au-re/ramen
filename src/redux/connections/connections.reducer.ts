@@ -1,4 +1,4 @@
-import { createReducer } from "../utils";
+import { createReducer, makeConnectionId } from "../utils";
 import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections.actions";
 import { IConnectionsState } from "./connections.types";
 
@@ -6,15 +6,9 @@ const INITIAL_STATE: IConnectionsState = {};
 
 function createConnectionHandler(state: IConnectionsState, action: any): IConnectionsState {
   const { connection } = action.payload;
-
-  const originNode = connection.originNode;
-  const originField = connection.originField;
-  const targetNode = connection.targetNode;
-  const targetField = connection.targetField;
-
   return {
     ...state,
-    [`${originField}_${originNode}_${targetField}_${targetNode}`]: connection,
+    [makeConnectionId(connection)]: connection,
   };
 }
 

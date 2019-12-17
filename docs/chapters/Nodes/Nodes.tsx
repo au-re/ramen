@@ -1,9 +1,8 @@
 import * as React from "react";
 import AceEditor from "react-ace";
 
-import { ThemeProvider } from "styled-components";
-import Node from "../../../src/layers/NodeLayer/components/Node/Node";
-import { lightTheme } from "../../../src/themes";
+import Node from "../../../src/components/NodeLayer/components/DefaultNode/DefaultNode";
+import RamenProvider from "../../../src/redux/RamenProvider";
 import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import NodeInstances from "./NodeInstances.md";
@@ -57,22 +56,24 @@ function Nodes() {
             theme="github"
           />
         </div>
-        <ThemeProvider theme={lightTheme}>
-          <div style={{ flex: 1, padding: "2rem" }}>
-            <div>result</div>
+        <div style={{ flex: 1, padding: "2rem" }}>
+          <div>result</div>
+          <RamenProvider
+            initialGraph={{}}
+            schema={{
+              nodeTypes: {
+                example: parsedSchema,
+              },
+              dataTypes: {},
+            }}
+          >
             <Node
               id="test"
               type="example"
               name={"Add two numbers"}
-              schema={{
-                nodeTypes: {
-                  example: parsedSchema,
-                },
-                dataTypes: {},
-              }}
             />
-          </div>
-        </ThemeProvider>
+          </RamenProvider>
+        </div>
       </div>
       <MarkdownPreview text={NodeInstances} />
     </div>

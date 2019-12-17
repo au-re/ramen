@@ -1,5 +1,4 @@
 import { IStoreState } from "../types";
-import { IGraphConnection } from "../connections/connections.types";
 
 /** returns an array with all nodes
  */

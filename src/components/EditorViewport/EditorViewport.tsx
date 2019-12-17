@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
-import { VIEWPORT_ID } from "../../constants";
+import { getViewportId } from "../../redux/references/references.selectors";
 import { IStoreState } from "../../redux/types";
+import { getViewport } from "../../redux/viewport/viewport.selectors";
 import { EditorWrapperBackground, Viewport } from "./EditorViewport.styles";
 import usePanning from "./hooks/usePanning";
 import useZooming from "./hooks/useZooming";
 
 function EditorWrapper(props: any) {
-  const { xPos, yPos, zoom } = useSelector((state: IStoreState) => (state.viewport), shallowEqual);
+  const { xPos, yPos, zoom } = useSelector(getViewport, shallowEqual);
   return (
     <EditorWrapperBackground xPos={xPos} yPos={yPos} scale={zoom}>
       {props.children}
@@ -25,6 +26,7 @@ function EditorViewport(props: any) {
 
   const viewportRef = useRef(null);
   const [viewport, setViewport] = React.useState(null);
+  const viewportId = useSelector(getViewportId, shallowEqual);
 
   React.useEffect(() => {
     if (viewportRef.current && !viewport) {
@@ -39,7 +41,7 @@ function EditorViewport(props: any) {
   usePanning(canPan, viewport);
 
   return (
-    <Viewport id={VIEWPORT_ID} ref={viewportRef}>
+    <Viewport id={viewportId} ref={viewportRef}>
       <EditorWrapper>
         {children}
       </EditorWrapper>

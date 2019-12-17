@@ -21,7 +21,7 @@ export function getNodeSchema(state: IStoreState, nodeId: string) {
  */
 export function getFieldSchema(state: IStoreState, nodeId: string, fieldId: string) {
   return get(getNodeSchema(state, nodeId), `fields`, [])
-    .find((field: ISchemaField) => field.id === fieldId);
+    .find((field: ISchemaField) => field.id === fieldId) || {};
 }
 
 export function getNodeType(state: IStoreState, nodeType: string) {

@@ -1,6 +1,4 @@
-import { IGraph, ISchema } from "../../src/types";
-
-export const schema: ISchema = {
+export const schema = {
   nodeTypes: {
     add: {
       name: "Addition",
@@ -82,7 +80,7 @@ export const schema: ISchema = {
   },
 };
 
-export const graph: IGraph = {
+export const graph = {
   nodes: [
     {
       id: "0",

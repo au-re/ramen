@@ -1,19 +1,21 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { EDITOR_ID, types } from "../../constants";
+import { types } from "../../constants";
 import { createConnection, deleteConnection } from "../../redux/connections/connections.actions";
 import { setPendingConnectionEndPos, setPendingConnectionOrigin } from "../../redux/editor/editor.actions";
 import { getPendingConnection } from "../../redux/editor/editor.selectors";
+import { IStoreState } from "../../redux/types";
 
 function EditorEvents(): null {
 
   const dispatch = useDispatch();
 
   const pendingConnectionOrigin = useSelector(getPendingConnection);
+  const editorId = useSelector((state: IStoreState) => state.references.editorId);
 
   React.useEffect(() => {
-    const editor = document.getElementById(EDITOR_ID);
+    const editor = document.getElementById(editorId);
 
     function onPointerDownField(targetData: any) {
       const fieldId = targetData.fieldid;
@@ -62,7 +64,7 @@ function EditorEvents(): null {
       if (fieldId && isInput === "true" && pendingConnectionOrigin) {
         e.stopPropagation();
         e.preventDefault();
-        dispatch(createConnection({ targetField: fieldId, targetNode: nodeId, ...pendingConnectionOrigin }));
+        dispatch(createConnection({ ...pendingConnectionOrigin, targetField: fieldId, targetNode: nodeId }));
         dispatch(setPendingConnectionOrigin(null));
       }
     }

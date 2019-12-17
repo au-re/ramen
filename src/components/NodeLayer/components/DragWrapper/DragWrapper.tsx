@@ -4,10 +4,8 @@ import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { EDITOR_ID } from "../../../../constants";
 import { setNodePosition } from "../../../../redux/nodes/nodes.actions";
 import { IStoreState } from "../../../../redux/types";
-import { IPosition } from "../../../../types";
 
 const Wrap = styled.div`
   position: absolute;
@@ -21,11 +19,12 @@ function DragWrapper(props: any) {
 
   const dispatch = useDispatch();
   const zoom = useSelector((state: IStoreState) => state.viewport.zoom);
+  const editorId = useSelector((state: IStoreState) => state.references.editorId);
 
   return (
     <Draggable
       scale={zoom}
-      bounds={`#${EDITOR_ID}`}
+      bounds={`#${editorId}`}
       position={defaultPos}
       cancel=".noDrag"
       onDrag={(e: any, { x, y }) => { dispatch(setNodePosition(nodeId, { x, y })); }}

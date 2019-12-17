@@ -3,24 +3,28 @@ import * as React from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
 import { FIELD_HEIGHT, NODE_WIDTH } from "../../../../constants";
+import { isFieldInputConnected } from "../../../../redux/connections/connections.selectors";
 import { getControlType, getDataType, getNodeType } from "../../../../redux/schema/schema.selectors";
 import { ISchemaField } from "../../../../redux/schema/schema.types";
 import { IStoreState } from "../../../../redux/types";
 import DefaultControl from "../DefaultControl/DefaultControl";
 import DefaultField from "../DefaultField/DefaultField";
 import { NodeSubtitle, NodeTitle, NodeWrapper } from "./DefaultNode.styles";
-import { isFieldInputConnected } from "../../../../redux/connections/connections.selectors";
 
 function NodeField(props: any) {
   const { fieldId, nodeId, name, dataType, controlType, defaultValue } = props;
   const { hideControlOnInput, hasInput, hasOutput } = props;
 
-  const fieldDataType = useSelector((state: IStoreState) => getDataType(state, dataType), shallowEqual);
-  const fieldControlType = useSelector((state: IStoreState) => getControlType(state, controlType), shallowEqual);
+  const fieldDataType = useSelector((state: IStoreState) =>
+    getDataType(state, dataType), shallowEqual);
+  const fieldControlType = useSelector((state: IStoreState) =>
+    getControlType(state, controlType), shallowEqual);
   const fieldName = name || fieldDataType.name;
   const controlProps = { defaultValue, ...fieldControlType };
 
-  const hasInputConnection = useSelector((state: IStoreState) => isFieldInputConnected(state, fieldId, fieldId));
+  const hasInputConnection = useSelector(
+    (state: IStoreState) => isFieldInputConnected(state, nodeId, fieldId),
+    shallowEqual);
   const hideControl = hideControlOnInput && hasInputConnection || !controlType;
 
   return (
@@ -64,6 +68,7 @@ function DefaultNode(props: any) {
         nodeId={nodeId}
         dataType={field.dataType}
         controlType={field.controlType}
+        hideControlOnInput={field.hideControlOnInput}
         name={field.name}
         hasInput={field.input}
         hasOutput={field.output}

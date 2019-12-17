@@ -7,6 +7,8 @@ export interface IViewportState {
   isPanning?: boolean;
   panOrigin?: IPosition | null;
   settings: {
+    canZoom?: boolean;
+    canPan?: boolean;
     zoomSpeed: number;
     minZoom: number;
     maxZoom: number;

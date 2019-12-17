@@ -1,12 +1,11 @@
 import get from "lodash.get";
 import * as React from "react";
 import AceEditor from "react-ace";
-import { ThemeProvider } from "styled-components";
 
-import Node from "../../../src/layers/NodeLayer/components/Node/Node";
-import { lightTheme } from "../../../src/themes";
+import DefaultNode from "../../../src/components/NodeLayer/components/DefaultNode/DefaultNode";
 import MarkdownPreview from "../../utils/MarkdownPreview";
 
+import RamenProvider from "../../../src/redux/RamenProvider";
 import FieldsOverview from "./FieldsOverview.md";
 
 const defaultSchema = {
@@ -66,22 +65,25 @@ function FieldsDoc() {
             theme="github"
           />
         </div>
-        <ThemeProvider theme={lightTheme}>
-          <div style={{ flex: 1, padding: "2rem" }}>
-            <div>result</div>
-            <Node
+        <div style={{ flex: 1, padding: "2rem" }}>
+          <div>result</div>
+          <RamenProvider
+            initialGraph={{}}
+            schema={{
+              ...defaultSchema,
+              dataTypes: {
+                myDataType: parsedSchema,
+              },
+            }}
+          >
+            <DefaultNode
               id="test"
               type="demoNode"
               name={"Add two numbers"}
-              schema={{
-                ...defaultSchema,
-                dataTypes: {
-                  myDataType: parsedSchema,
-                },
-              }}
             />
-          </div>
-        </ThemeProvider>
+          </RamenProvider>
+
+        </div>
       </div>
     </div>
   );
