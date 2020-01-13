@@ -10,14 +10,14 @@ import { IGraphConnection, IGraphConnectionOrigin, IGraphConnectionTarget } from
  * @param state
  */
 export function getConnections(state: IStoreState) {
-  return Object.values(state.connections) || [];
+  return Object.values(state.history.present.connections) || [];
 }
 
 /** returns true if the field as an input that is connected
  * @param fieldId
  */
 export function isFieldInputConnected(state: IStoreState, nodeId: string, fieldId: string): boolean {
-  return Object.values(state.connections).some((connection: IGraphConnection) => (
+  return Object.values(state.history.present.connections).some((connection: IGraphConnection) => (
     connection.targetField === fieldId && connection.targetNode === nodeId
   ));
 }

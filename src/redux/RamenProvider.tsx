@@ -1,12 +1,14 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import undoable, { excludeAction, groupByActionTypes } from "redux-undo";
 
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
 import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
 import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
+import { DROP_NODE, SET_NODE_POSITION } from "./nodes/nodes.actions";
 import nodesReducer from "./nodes/nodes.reducer";
 import referencesReducer from "./references/references.reducer";
 import { setSchema } from "./schema/schema.actions";
@@ -18,9 +20,13 @@ import viewportReducer from "./viewport/viewport.reducer";
 const rootReducer = combineReducers({
   references: referencesReducer,
   editor: editorReducer,
-  nodes: nodesReducer,
+  history: undoable(combineReducers({
+    connections: connectionsReducer,
+    nodes: nodesReducer,
+  }), {
+      filter: excludeAction(SET_NODE_POSITION),
+    }),
   viewport: viewportReducer,
-  connections: connectionsReducer,
   schema: schemaReducer,
 });
 
@@ -44,8 +50,14 @@ function RamenProvider(props: any) {
       editorId: `${BASE_EDITOR_ID}-${namespace}`,
       viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
     },
-    nodes: arrayToMap(initialGraph.nodes || []),
-    connections: connectionsToMap(initialGraph.connections || []),
+    history: {
+      past: [] as any[],
+      present: {
+        nodes: arrayToMap(initialGraph.nodes || []),
+        connections: connectionsToMap(initialGraph.connections || []),
+      },
+      future: [] as any[],
+    },
     editor: initialEditorState,
     schema,
   };

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ActionCreators } from "redux-undo";
 
 import { types } from "../../constants";
 import { createConnection } from "../../redux/connections/connections.actions";

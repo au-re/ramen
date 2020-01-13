@@ -1,5 +1,5 @@
 import { createReducer } from "../utils";
-import { SET_NODE_POSITION } from "./nodes.actions";
+import { DROP_NODE, SET_NODE_POSITION } from "./nodes.actions";
 import { ISetNodeLocationResult } from "./nodes.types";
 
 const INITIAL_STATE = {};
@@ -21,6 +21,7 @@ function nodePositionHandler(state: any, action: ISetNodeLocationResult) {
 
 const nodesReducer = createReducer(INITIAL_STATE, {
   [SET_NODE_POSITION]: nodePositionHandler,
+  [DROP_NODE]: nodePositionHandler,
 });
 
 export default nodesReducer;

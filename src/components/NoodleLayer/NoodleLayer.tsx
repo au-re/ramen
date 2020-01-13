@@ -17,6 +17,7 @@ import Noodles from "./components/Noodles/Noodles";
 function NoodleWrapper(props: any) {
   const { id, connection } = props;
   const dispatch = useDispatch();
+
   const connectionStart = useSelector((state: IStoreState) => getConnectionStart(state, connection));
   const connectionEnd = useSelector((state: IStoreState) => getConnectionEnd(state, connection));
   return (

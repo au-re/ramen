@@ -11,7 +11,19 @@ export interface IStoreState {
   };
   editor: IEditorState;
   viewport: IViewportState;
-  nodes: INodesState;
-  connections: IConnectionsState;
+  history: {
+    past: [{
+      nodes: INodesState,
+      connections: IConnectionsState,
+    }];
+    present: {
+      nodes: INodesState,
+      connections: IConnectionsState,
+    };
+    future: [{
+      nodes: INodesState,
+      connections: IConnectionsState,
+    }];
+  };
   schema: ISchema;
 }

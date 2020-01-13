@@ -3,7 +3,7 @@ import get from "lodash.get";
 import { getViewportId } from "../references/references.selectors";
 import { IStoreState } from "../types";
 import { getViewport } from "../viewport/viewport.selectors";
-import { SET_PENDING_CONNECTION_END_POS } from "./editor.actions";
+import { SET_PENDING_CONNECTION_END_POS, SET_PENDING_CONNECTION_ORIGIN } from "./editor.actions";
 import { getPendingConnection } from "./editor.selectors";
 
 /** when a noodle is dragged, calculate its end position based on the current viewport state
@@ -38,8 +38,18 @@ const editorMiddleware = (store: any) => (next: any) => (action: any) => {
   // update dragged noodle end pos with viewport state
   if (type === SET_PENDING_CONNECTION_END_POS) {
     if (getPendingConnection(storeState)) {
+
+      // refocus on the viewport, this solves issues with undo/redo
+      document.getElementById(getViewportId(storeState)).focus();
+      //
+
       return next(transformMoveAction(storeState, action));
     }
+  }
+
+  // refocus on the viewport, this solves issues with undo/redo
+  if (type === SET_PENDING_CONNECTION_ORIGIN) {
+    document.getElementById(getViewportId(storeState)).focus();
   }
 
   return next(action);

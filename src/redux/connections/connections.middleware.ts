@@ -1,5 +1,6 @@
 import get from "lodash.get";
-import { CREATE_CONNECTION } from "./connections.actions";
+import { getViewportId } from "../references/references.selectors";
+import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections.actions";
 import { isValidConnection } from "./connections.selectors";
 
 /**
@@ -17,6 +18,11 @@ const connectionMiddleware = (store: any) => (next: any) => (action: any) => {
       return next(action);
     }
     return;
+  }
+
+  // refocus on the viewport, this solves issues with undo/redo
+  if (type === DELETE_CONNECTION) {
+    document.getElementById(getViewportId(storeState)).focus();
   }
 
   return next(action);

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { setNodePosition } from "../../../../redux/nodes/nodes.actions";
+import { setNodePosition, dropNode } from "../../../../redux/nodes/nodes.actions";
 import { IStoreState } from "../../../../redux/types";
 
 const Wrap = styled.div`
@@ -28,7 +28,7 @@ function DragWrapper(props: any) {
       position={defaultPos}
       cancel=".noDrag"
       onDrag={(e: any, { x, y }) => { dispatch(setNodePosition(nodeId, { x, y })); }}
-      onStop={(e: any, { x, y }) => { dispatch(setNodePosition(nodeId, { x, y })); }}
+      onStop={(e: any, { x, y }) => { dispatch(dropNode(nodeId, { x, y })); }}
     >
       <Wrap>
         {children}

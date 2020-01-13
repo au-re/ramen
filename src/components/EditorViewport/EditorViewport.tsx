@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
 import { getViewportId } from "../../redux/references/references.selectors";
-import { IStoreState } from "../../redux/types";
 import { getViewport } from "../../redux/viewport/viewport.selectors";
 import { EditorWrapperBackground, Viewport } from "./EditorViewport.styles";
+import useKeyEvents from "./hooks/useKeyEvents";
 import usePanning from "./hooks/usePanning";
 import useZooming from "./hooks/useZooming";
 
@@ -40,8 +40,11 @@ function EditorViewport(props: any) {
   // pan functionality
   usePanning(canPan, viewport);
 
+  // key binds
+  useKeyEvents(viewport);
+
   return (
-    <Viewport id={viewportId} ref={viewportRef}>
+    <Viewport id={viewportId} ref={viewportRef} tabIndex={viewportId}>
       <EditorWrapper>
         {children}
       </EditorWrapper>
