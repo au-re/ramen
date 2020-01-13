@@ -1,6 +1,6 @@
 {
   "name": "@au-re/ramen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Aurélien Franky",
   "license": "MIT",
   "description": "Node editor for visual programming",
