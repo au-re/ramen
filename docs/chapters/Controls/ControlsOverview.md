@@ -81,16 +81,16 @@ function MyCustomControl(props) {
   return(<button >I'm custom!</button>);
 }
 
-<RamenProvider initialGraph={graph} schema={schema}>
-  <Editor
-    canZoom={false}
-    canPan={false}
-    height={400}
-    controls={{
-      MyCustomControl,
-    }}
-  />
-</RamenProvider>
+<Ramen
+  schema={schema}
+  initialGraph={graph}
+  canZoom={false}
+  canPan={false}
+  height={400}
+  controls={{
+    MyCustomControl,
+  }}
+/>
 ```
 
 You can then use your custom control by referencing it in the schema:

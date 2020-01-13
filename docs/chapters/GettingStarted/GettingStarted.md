@@ -48,13 +48,13 @@ With the schema and the initial graph state ready we can initialize our editor:
 ```js
 import Editor, { RamenProvider } from "ramen";
 
-<RamenProvider initialGraph={graph} schema={schema}>
-  <Editor
-    canZoom={false}
-    canPan={false}
-    height={400}
-  />
-</RamenProvider>
+<Ramen
+  schema={schema}
+  initialGraph={graph}
+  canZoom={false}
+  canPan={false}
+  height={400}
+/>
 ```
 
 You can see the resulting graph below, it consists of a single Node with no fields and with no connections:

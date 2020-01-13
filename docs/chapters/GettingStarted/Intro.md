@@ -9,16 +9,13 @@
 [build-status-image]: https://travis-ci.org/au-re/ramen.svg?branch=master
 [sonar-cloud]: https://sonarcloud.io/dashboard?id=au-re_ramen
 [sonar-cloud-image]: https://sonarcloud.io/api/project_badges/measure?project=au-re_ramen&metric=alert_status
-[package-size-url]: https://packagephobia.now.sh/result?p=@au-re/ramen
-[package-size-image]: https://packagephobia.now.sh/badge?p=@au-re/ramen
+[lib-size]: https://img.badgesize.io/https://unpkg.com/@au-re/ramen/lib/ramen.min.js?compression=gzip
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/au-re/ramen/master/assets/ramen.png"/>
 </p>
 
-# Ramen
-
-> **work in progress** - this library is not ready for use yet
+# ramen
 
 **Ramen** is a simple but extensible react library for building node editors for visual programming.
 
@@ -27,4 +24,4 @@
 [![Quality Gate Status][sonar-cloud-image]][sonar-cloud]
 [![Build Status][build-status-image]][build-status]
 [![dependencies Status][dependencies-image]][dependencies-url]
-[![install size][package-size-image]][package-size-url]
+![size][lib-size]
