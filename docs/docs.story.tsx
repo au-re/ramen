@@ -23,10 +23,10 @@ storiesOf("Documentation|Customization", module)
   .add("Custom Controls", WriteMe)
   .add("Extending Functionality", WriteMe);
 
-storiesOf("Documentation|API", module)
-  .add("Editor API", WriteMe)
-  .add("Schema Definition", WriteMe)
-  .add("Graph Definition", WriteMe);
+// storiesOf("Documentation|API", module)
+//   .add("Editor API", WriteMe)
+//   .add("Schema Definition", WriteMe)
+//   .add("Graph Definition", WriteMe);
 
 storiesOf("Documentation|Playground", module)
   .add("Playground", Playground)

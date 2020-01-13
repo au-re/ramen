@@ -11,13 +11,13 @@ function getRandomInt(min, max) {
 
 const defaultGraph = {
   nodes: [
-    ...Array(50).fill(0).map((_, idx) => ({
+    ...Array(40).fill(0).map((_, idx) => ({
       id: "number" + idx,
       x: getRandomInt(0, 3600),
       y: getRandomInt(0, 3600),
       type: "number",
     })),
-    ...Array(25).fill(0).map((_, idx) => ({
+    ...Array(40).fill(0).map((_, idx) => ({
       id: "add" + idx,
       x: getRandomInt(0, 3600),
       y: getRandomInt(0, 3600),
@@ -26,9 +26,9 @@ const defaultGraph = {
   ],
   connections: [
     ...Array(100).fill(0).map((_, idx) => ({
-      originNode: "number" + getRandomInt(0, 40),
+      originNode: "number" + getRandomInt(0, 25),
       originField: "number",
-      targetNode: "add" + getRandomInt(0, 40),
+      targetNode: "add" + getRandomInt(0, 25),
       targetField: "number1",
     })),
   ],

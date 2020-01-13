@@ -9,6 +9,7 @@ import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
 import nodesReducer from "./nodes/nodes.reducer";
 import referencesReducer from "./references/references.reducer";
+import { setSchema } from "./schema/schema.actions";
 import schemaReducer from "./schema/schema.reducer";
 import { arrayToMap, connectionsToMap } from "./utils";
 import viewportMiddleware from "./viewport/viewport.middleware";
@@ -54,6 +55,10 @@ function RamenProvider(props: any) {
     initialState,
     composeEnhancers(applyMiddleware(...middleware)),
   );
+
+  React.useEffect(() => {
+    store.dispatch(setSchema(schema));
+  }, [schema]);
 
   return (
     <Provider store={store}>
