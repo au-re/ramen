@@ -28,6 +28,14 @@ export function arrayToMap(array: any[]) {
   return map;
 }
 
+export function stringArrayToMap(array: any[]) {
+  const map = array.reduce((map, item) => {
+    map[item] = true;
+    return map;
+  }, {});
+  return map;
+}
+
 export function connectionsToMap(array: any[]) {
   const map = array.reduce((map, item, idx) => {
     const id = makeConnectionId(item);

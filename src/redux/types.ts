@@ -25,5 +25,8 @@ export interface IStoreState {
       connections: IConnectionsState,
     }];
   };
+  selection: {
+    [elementId: string]: boolean,
+  };
   schema: ISchema;
 }

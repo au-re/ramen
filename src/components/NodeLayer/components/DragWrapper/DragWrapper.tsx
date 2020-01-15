@@ -4,22 +4,24 @@ import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { setNodePosition, dropNode } from "../../../../redux/nodes/nodes.actions";
-import { IStoreState } from "../../../../redux/types";
+import { dropNode, setNodePosition } from "../../../../redux/nodes/nodes.actions";
+import { getEditorId } from "../../../../redux/references/references.selectors";
+import { getViewportZoom } from "../../../../redux/viewport/viewport.selectors";
+import { IPosition } from "../../../../types";
 
-const Wrap = styled.div`
+const Wrap: any = styled.div`
   position: absolute;
-  z-index: 100;
+  z-index: ${(props: any) => props.selected ? 120 : 100};
   cursor: move;
 `;
 
 function DragWrapper(props: any) {
-  const { children, defaultX, defaultY, nodeId } = props;
+  const { children, defaultX, defaultY, selected, onDrag, onStop } = props;
   const defaultPos = { x: defaultX, y: defaultY };
 
   const dispatch = useDispatch();
-  const zoom = useSelector((state: IStoreState) => state.viewport.zoom);
-  const editorId = useSelector((state: IStoreState) => state.references.editorId);
+  const zoom = useSelector(getViewportZoom);
+  const editorId = useSelector(getEditorId);
 
   return (
     <Draggable
@@ -27,10 +29,10 @@ function DragWrapper(props: any) {
       bounds={`#${editorId}`}
       position={defaultPos}
       cancel=".noDrag"
-      onDrag={(e: any, { x, y }) => { dispatch(setNodePosition(nodeId, { x, y })); }}
-      onStop={(e: any, { x, y }) => { dispatch(dropNode(nodeId, { x, y })); }}
+      onDrag={onDrag}
+      onStop={onStop}
     >
-      <Wrap>
+      <Wrap selected={selected}>
         {children}
       </Wrap>
     </Draggable>
@@ -40,5 +42,6 @@ function DragWrapper(props: any) {
 export default React.memo(DragWrapper, (prevProps, nextProps) => {
   return prevProps.defaultX === nextProps.defaultX
     && prevProps.defaultY === nextProps.defaultY
-    && prevProps.nodeId === nextProps.nodeId;
+    && prevProps.nodeId === nextProps.nodeId
+    && prevProps.selected === nextProps.selected;
 });

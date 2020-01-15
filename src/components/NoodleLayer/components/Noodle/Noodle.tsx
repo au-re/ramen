@@ -49,6 +49,8 @@ function Noodle(props: INoodleProps) {
   return (
     <g>
       <NoodlePath
+        id={`noodle-${id}`}
+        className="ramen-noodle"
         d={pathString}
         fill="none"
         strokeWidth="4"

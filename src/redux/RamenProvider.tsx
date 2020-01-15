@@ -1,18 +1,19 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import undoable, { excludeAction, groupByActionTypes } from "redux-undo";
+import undoable, { excludeAction } from "redux-undo";
 
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
 import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
 import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
-import { DROP_NODE, SET_NODE_POSITION } from "./nodes/nodes.actions";
+import { DRAG_NODES } from "./nodes/nodes.actions";
 import nodesReducer from "./nodes/nodes.reducer";
 import referencesReducer from "./references/references.reducer";
 import { setSchema } from "./schema/schema.actions";
 import schemaReducer from "./schema/schema.reducer";
+import selectionReducer from "./selection/selection.reducer";
 import { arrayToMap, connectionsToMap } from "./utils";
 import viewportMiddleware from "./viewport/viewport.middleware";
 import viewportReducer from "./viewport/viewport.reducer";
@@ -24,9 +25,10 @@ const rootReducer = combineReducers({
     connections: connectionsReducer,
     nodes: nodesReducer,
   }), {
-      filter: excludeAction(SET_NODE_POSITION),
+      filter: excludeAction(DRAG_NODES),
     }),
   viewport: viewportReducer,
+  selection: selectionReducer,
   schema: schemaReducer,
 });
 
@@ -42,35 +44,45 @@ let namespace = 0;
 
 function RamenProvider(props: any) {
   const { initialGraph, initialEditorState, schema, children } = props;
-
-  namespace = namespace + 1;
-
-  const initialState = {
-    references: {
-      editorId: `${BASE_EDITOR_ID}-${namespace}`,
-      viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
-    },
-    history: {
-      past: [] as any[],
-      present: {
-        nodes: arrayToMap(initialGraph.nodes || []),
-        connections: connectionsToMap(initialGraph.connections || []),
-      },
-      future: [] as any[],
-    },
-    editor: initialEditorState,
-    schema,
-  };
-
-  const store = createStore(
-    rootReducer,
-    initialState,
-    composeEnhancers(applyMiddleware(...middleware)),
-  );
+  const [store, setStore] = React.useState(null);
 
   React.useEffect(() => {
+
+    namespace = namespace + 1;
+
+    const initialState = {
+      references: {
+        editorId: `${BASE_EDITOR_ID}-${namespace}`,
+        viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
+      },
+      history: {
+        past: [] as any[],
+        present: {
+          nodes: arrayToMap(initialGraph.nodes || []),
+          connections: connectionsToMap(initialGraph.connections || []),
+        },
+        future: [] as any[],
+      },
+      selection: {},
+      editor: initialEditorState,
+      schema,
+    };
+
+    const store = createStore(
+      rootReducer,
+      initialState,
+      composeEnhancers(applyMiddleware(...middleware)),
+    );
+
+    setStore(store);
+  }, []);
+
+  React.useEffect(() => {
+    if (!store) return;
     store.dispatch(setSchema(schema));
-  }, [schema]);
+  }, [store, schema]);
+
+  if (!store) return null;
 
   return (
     <Provider store={store}>

@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { lightTheme } from "../../../../themes";
+
+const selected = css`
+  background: ${({ theme }) => theme.nodeBackgroundSelected || lightTheme.nodeBackgroundSelected};
+  border-color: ${({ theme }) => theme.nodeBorderSelected || lightTheme.nodeBorderSelected};
+`;
 
 export const NodeWrapper: any = styled.div`
   display: inline-block;
@@ -10,6 +15,7 @@ export const NodeWrapper: any = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius || lightTheme.borderRadius};
   min-height: 108px;
   border: ${({ theme }) => theme.borderWidth || lightTheme.borderWidth} solid ${({ theme }) => theme.borderColor || lightTheme.borderColor};
+  ${(props: any) => props.selected && selected};
 `;
 
 export const NodeTitle = styled.div`

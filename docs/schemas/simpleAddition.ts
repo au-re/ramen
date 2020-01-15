@@ -83,26 +83,26 @@ export const schema = {
 export const graph = {
   nodes: [
     {
-      id: "0",
+      id: "node-0",
       x: 100,
       y: 50,
       type: "number",
     },
     {
-      id: "1",
+      id: "node-1",
       x: 100,
       y: 200,
       type: "number",
     },
     {
-      id: "2",
+      id: "node-2",
       x: 450,
       y: 50,
       name: "Add Two Numbers",
       type: "add",
     },
     {
-      id: "3",
+      id: "node-3",
       x: 850,
       y: 130,
       type: "log",
@@ -110,21 +110,21 @@ export const graph = {
   ],
   connections: [
     {
-      originNode: "0",
+      originNode: "node-0",
       originField: "number",
-      targetNode: "2",
+      targetNode: "node-2",
       targetField: "number1",
     },
     {
-      originNode: "1",
+      originNode: "node-1",
       originField: "number",
-      targetNode: "2",
+      targetNode: "node-2",
       targetField: "number2",
     },
     {
-      originNode: "2",
+      originNode: "node-2",
       originField: "result",
-      targetNode: "3",
+      targetNode: "node-3",
       targetField: "data",
     },
   ],

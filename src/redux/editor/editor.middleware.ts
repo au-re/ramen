@@ -40,7 +40,8 @@ const editorMiddleware = (store: any) => (next: any) => (action: any) => {
     if (getPendingConnection(storeState)) {
 
       // refocus on the viewport, this solves issues with undo/redo
-      document.getElementById(getViewportId(storeState)).focus();
+      const viewport = document.getElementById(getViewportId(storeState));
+      if (viewport) viewport.focus();
       //
 
       return next(transformMoveAction(storeState, action));
@@ -49,7 +50,8 @@ const editorMiddleware = (store: any) => (next: any) => (action: any) => {
 
   // refocus on the viewport, this solves issues with undo/redo
   if (type === SET_PENDING_CONNECTION_ORIGIN) {
-    document.getElementById(getViewportId(storeState)).focus();
+    const viewport = document.getElementById(getViewportId(storeState));
+    if (viewport) viewport.focus();
   }
 
   return next(action);
