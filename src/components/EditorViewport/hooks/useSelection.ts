@@ -26,7 +26,7 @@ function useSelection(viewport: any): null {
     if (!viewport) return;
 
     function resetSelection(e: MouseEvent) {
-      if (!isSelecting && e.target.tagName === "svg") dispatch(setSelection([]));
+      if (!isSelecting && (e.target as HTMLInputElement).tagName === "svg") dispatch(setSelection([]));
     }
 
     viewport.addEventListener("pointerdown", resetSelection);
