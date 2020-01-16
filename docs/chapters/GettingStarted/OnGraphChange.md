@@ -3,7 +3,7 @@
 You can access changes to the graph with the **onGraphChange** property.
 
 ```js
-import Editor, { RamenProvider } from "ramen";
+import Ramen from "@au-re/ramen";
 
 <Ramen
   schema={schema}

@@ -46,7 +46,7 @@ const graph = {
 With the schema and the initial graph state ready we can initialize our editor:
 
 ```js
-import Editor, { RamenProvider } from "ramen";
+import Ramen from "@au-re/ramen";
 
 <Ramen
   schema={schema}

@@ -75,7 +75,7 @@ const schema = {
 You can pass a custom controls to Ramen.
 
 ```js
-import Editor, { RamenProvider } from "ramen";
+import Ramen from "@au-re/ramen";
 
 function MyCustomControl(props) {
   return(<button >I'm custom!</button>);

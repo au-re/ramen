@@ -1,5 +1,3 @@
-import "./SelectionArea/SelectionArea.css";
-
 import React, { useRef } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 
@@ -8,8 +6,8 @@ import { getViewport } from "../../redux/viewport/viewport.selectors";
 import { EditorWrapperBackground, Viewport } from "./EditorViewport.styles";
 import useKeyEvents from "./hooks/useKeyEvents";
 import usePanning from "./hooks/usePanning";
-import useZooming from "./hooks/useZooming";
 import useSelection from "./hooks/useSelection";
+import useZooming from "./hooks/useZooming";
 
 function EditorWrapper(props: any) {
   const { xPos, yPos, zoom } = useSelector(getViewport, shallowEqual);

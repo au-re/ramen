@@ -5,6 +5,7 @@ import EditorEvents from "./components/EditorEvents/EditorEvents";
 import EditorViewport from "./components/EditorViewport/EditorViewport";
 import NodeLayer from "./components/NodeLayer/NodeLayer";
 import NoodleLayer from "./components/NoodleLayer/NoodleLayer";
+import GlobalStyle from "./GlobalStyle";
 import RamenProvider from "./redux/RamenProvider";
 
 function Ramen(props: any) {
@@ -32,6 +33,7 @@ function Ramen(props: any) {
           <NoodleLayer />
           <NodeLayer controls={controls} />
           <EditorEvents />
+          <GlobalStyle />
         </EditorBackground>
       </EditorViewport>
     </RamenProvider>

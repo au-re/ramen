@@ -41,7 +41,7 @@ $ npm i -S @au-re/ramen
 ### Example Usage
 
 ```js
-import NodeEditor  from "@au-re/ramen";
+import Ramen  from "@au-re/ramen";
 ```
 
 Start by creating a schema. The schema defines the types of nodes, fields and connections that can exist in your graph.
@@ -136,7 +136,7 @@ const graph = {
 To initialize a node editor you can pass both the schema and the graph. **Note that connections in `graph` that are not allowed by the schema will be ignored**.
 
 ```jsx
-<NodeEditor
+<Ramen
   schema={schema}
   initialGraph={graph}
 />
@@ -145,7 +145,7 @@ To initialize a node editor you can pass both the schema and the graph. **Note t
 The NodeEditor can be either controlled or uncontrolled. By adding a graph property to the editor, it becomes controlled: Passing a new graph value to the editor will cause the editor to rerender and the graph will no longer update its own state internally. Instead you should use a callback to check changes in the graph.
 
 ```jsx
-<NodeEditor
+<Ramen
   graph={graph}
 />
 ```
@@ -153,7 +153,7 @@ The NodeEditor can be either controlled or uncontrolled. By adding a graph prope
 You can listen to changes to the graph structure, e.g. a new connection is created, removed.
 
 ```jsx
-<NodeEditor
+<Ramen
   onNodeCreated
   onNodeDeleted
   onConnectionCreated
@@ -297,9 +297,6 @@ function MiniMap(props) {
   <MiniMap />
 </NodeEditor>
 ```
-
-## API
-
 
 ## License
 

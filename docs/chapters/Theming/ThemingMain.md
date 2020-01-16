@@ -8,7 +8,7 @@ Ramen uses the _styled-components_ library for styling. You can use styled-compo
 This is how you would use the default dark theme:
 
 ```jsx
-import Ramen, { darkTheme } from "ramen";
+import Ramen, { darkTheme } from "@au-re/ramen";
 import { ThemeProvider } from "styled-components";
 
 <ThemeProvider theme={darkTheme}>
@@ -21,7 +21,7 @@ import { ThemeProvider } from "styled-components";
 You can also create your own theme from scratch or by overriding one of the default themes:
 
 ```jsx
-import Ramen, { lightTheme } from "ramen";
+import Ramen, { lightTheme } from "@au-re/ramen";
 import { ThemeProvider } from "styled-components";
 
 const myTheme = {
