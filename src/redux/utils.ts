@@ -6,11 +6,11 @@ import get from "lodash.get";
  * @param handlers
  */
 export function createReducer(initialState: any, handlers: any) {
-  return produce((state = initialState, action) => {
+  return (state: any = initialState, action: any) => {
     const type = Object.keys(handlers).find((actionType) => get(action, "type") === actionType);
-    if (type) return produce(handlers[type])(state, action);
-    return state;
-  });
+    if (!type) return state;
+    return produce(state, (draft: any) => handlers[type](draft, action));
+  };
 }
 
 export function makeConnectionId(connection: any): string {

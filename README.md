@@ -41,7 +41,7 @@ $ npm i -S @au-re/ramen
 ### Example Usage
 
 ```js
-import Ramen  from "@au-re/ramen";
+import Ramen from "@au-re/ramen";
 ```
 
 Start by creating a schema. The schema defines the types of nodes, fields and connections that can exist in your graph.
