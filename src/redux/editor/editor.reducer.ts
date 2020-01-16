@@ -16,7 +16,10 @@ function pendingConnectionOriginHandler(state: IEditorState, action: any) {
   const { connectionOrigin } = action.payload;
 
   if (!connectionOrigin) {
-    return { pendingConnectionEndPos: null, pendingConnectionOrigin: null };
+    return {
+      pendingConnectionEndPos: null,
+      pendingConnectionOrigin: null,
+    };
   }
 
   return { ...state, pendingConnectionOrigin: connectionOrigin };

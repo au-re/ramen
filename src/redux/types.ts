@@ -1,4 +1,5 @@
 import { IConnectionsState } from "./connections/connections.types";
+import { IContextMenuState } from "./contextMenu/contextMenu.types";
 import { IEditorState } from "./editor/editor.types";
 import { INodesState } from "./nodes/nodes.types";
 import { ISchema } from "./schema/schema.types";
@@ -28,5 +29,6 @@ export interface IStoreState {
   selection: {
     [elementId: string]: boolean,
   };
+  contextMenu: IContextMenuState;
   schema: ISchema;
 }

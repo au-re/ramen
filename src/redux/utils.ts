@@ -45,3 +45,8 @@ export function connectionsToMap(array: any[]) {
   }, {});
   return map;
 }
+
+export function isChildOfClass(el: any, className: any): boolean {
+  if (typeof el.className === "string" && el.className.split(" ").indexOf(className) >= 0) return true;
+  return !!(el.parentNode && isChildOfClass(el.parentNode, className));
+}

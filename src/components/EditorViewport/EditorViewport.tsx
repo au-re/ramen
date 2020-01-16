@@ -8,6 +8,7 @@ import useKeyEvents from "./hooks/useKeyEvents";
 import usePanning from "./hooks/usePanning";
 import useSelection from "./hooks/useSelection";
 import useZooming from "./hooks/useZooming";
+import useContextMenu from "./hooks/useContextMenu";
 
 function EditorWrapper(props: any) {
   const { xPos, yPos, zoom } = useSelector(getViewport, shallowEqual);
@@ -46,6 +47,9 @@ function EditorViewport(props: any) {
 
   // selection events
   useSelection(viewport);
+
+  // context menu
+  useContextMenu(viewport);
 
   return (
     <Viewport id={viewportId} ref={viewportRef} tabIndex={viewportId}>

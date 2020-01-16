@@ -26,6 +26,8 @@
 [![dependencies Status][dependencies-image]][dependencies-url]
 ![size][lib-size]
 
+> this library is work in progress. Not all features are implemented yet.
+
 ## Getting Started
 
 > You can find examples and the complete documentation [here](https://au-re.github.io/ramen).

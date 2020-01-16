@@ -6,6 +6,7 @@ import undoable, { excludeAction } from "redux-undo";
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
 import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
+import contextMenuReducer from "./contextMenu/contextMenu.reducer";
 import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
 import { DRAG_NODES } from "./nodes/nodes.actions";
@@ -19,6 +20,7 @@ import viewportMiddleware from "./viewport/viewport.middleware";
 import viewportReducer from "./viewport/viewport.reducer";
 
 const rootReducer = combineReducers({
+  contextMenu: contextMenuReducer,
   references: referencesReducer,
   editor: editorReducer,
   history: undoable(combineReducers({

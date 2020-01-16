@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import ContextMenu from "./components/ContextMenu/ContextMenu";
 import EditorBackground from "./components/EditorBackground/EditorBackground";
 import EditorEvents from "./components/EditorEvents/EditorEvents";
 import EditorViewport from "./components/EditorViewport/EditorViewport";
@@ -33,6 +34,7 @@ function Ramen(props: any) {
           <NoodleLayer />
           <NodeLayer controls={controls} />
           <EditorEvents />
+          <ContextMenu />
           <GlobalStyle />
         </EditorBackground>
       </EditorViewport>
