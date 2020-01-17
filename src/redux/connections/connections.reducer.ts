@@ -1,5 +1,5 @@
-import { createReducer, makeConnectionId } from "../utils";
-import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections.actions";
+import { connectionsToMap, createReducer, makeConnectionId } from "../utils";
+import { CREATE_CONNECTION, DELETE_CONNECTION, SET_CONNECTIONS } from "./connections.actions";
 import { IConnectionsState } from "./connections.types";
 
 const INITIAL_STATE: IConnectionsState = {};
@@ -18,9 +18,15 @@ function deleteConnectionHandler(state: IConnectionsState, action: any): IConnec
   return { ...rest };
 }
 
+function replaceConnectionsHandler(state: IConnectionsState, action: any): IConnectionsState {
+  const { connections } = action.payload;
+  return connectionsToMap(connections || []);
+}
+
 const connectionsReducer = createReducer(INITIAL_STATE, {
   [CREATE_CONNECTION]: createConnectionHandler,
   [DELETE_CONNECTION]: deleteConnectionHandler,
+  [SET_CONNECTIONS]: replaceConnectionsHandler,
 });
 
 export default connectionsReducer;

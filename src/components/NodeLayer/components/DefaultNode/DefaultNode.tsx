@@ -55,7 +55,7 @@ const MemoizedNodeField = React.memo(NodeField, (prevProps, nextProps) => {
 });
 
 function DefaultNode(props: any) {
-  const { nodeId, className, style, type, onMouseUpFieldIn, controls = {}, selected = false, ...rest } = props;
+  const { nodeId, className, style, type, onMouseUpFieldIn, controls = {}, selected = false, name, ...rest } = props;
 
   const nodeType = useSelector((state: IStoreState) => getNodeType(state, type));
   const dispatch = useDispatch();

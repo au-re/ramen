@@ -1,5 +1,5 @@
-import { createReducer } from "../utils";
-import { DRAG_NODES, DROP_NODE, SET_NODE_POSITION } from "./nodes.actions";
+import { arrayToMap, createReducer } from "../utils";
+import { DRAG_NODES, DROP_NODE, SET_NODE_POSITION, SET_NODES } from "./nodes.actions";
 import { ISetNodeLocationResult } from "./nodes.types";
 
 const INITIAL_STATE = {};
@@ -51,7 +51,13 @@ function dragNodesHandler(state: any, action: any) {
   return newGraph;
 }
 
+function replaceNodesHandler(state: any, action: any) {
+  const { nodes } = action.payload;
+  return arrayToMap(nodes || []);
+}
+
 const nodesReducer = createReducer(INITIAL_STATE, {
+  [SET_NODES]: replaceNodesHandler,
   [SET_NODE_POSITION]: nodePositionHandler,
   [DROP_NODE]: nodePositionHandler,
   [DRAG_NODES]: dragNodesHandler,

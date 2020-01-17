@@ -1,11 +1,17 @@
 import { IPosition } from "../../types";
-import { ISetNodeLocationResult } from "./nodes.types";
+import { IGraphNode, ISetNodeLocationResult } from "./nodes.types";
 
+export const SET_NODES = "SET_NODES";
 export const SET_NODE_POSITION = "SET_NODE_POSITION";
 export const DRAG_NODES = "DRAG_NODES";
 
 export const DRAG_NODE = "DRAG_NODE";
 export const DROP_NODE = "DROP_NODE";
+
+export function setNodes(nodes: IGraphNode[]) {
+  const payload = { nodes };
+  return { type: SET_NODES, payload };
+}
 
 export function dragNodes(nodeIds: string[], position: IPosition) {
   const payload = { nodeIds, position };

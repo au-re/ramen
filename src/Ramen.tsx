@@ -7,11 +7,13 @@ import NodeLayer from "./components/NodeLayer/NodeLayer";
 import NoodleLayer from "./components/NoodleLayer/NoodleLayer";
 import GlobalStyle from "./GlobalStyle";
 import RamenProvider from "./redux/RamenProvider";
+import { IRamenProps } from "./types";
 
-function Ramen(props: any) {
+function Ramen(props: IRamenProps) {
   const {
     initialGraph,
     initialEditorState,
+    graph,
     schema,
     height,
     width,
@@ -19,13 +21,16 @@ function Ramen(props: any) {
     canPan = true,
     controls,
     children,
+    onGraphChange = () => { },
   } = props;
 
   return (
     <RamenProvider
+      onGraphChange={onGraphChange}
       initialEditorState={initialEditorState}
       initialGraph={initialGraph}
       schema={schema}
+      graph={graph}
     >
       <EditorViewport canZoom={canZoom} canPan={canPan}>
         <EditorBackground height={height} width={width}>

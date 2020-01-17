@@ -1,7 +1,7 @@
 import * as React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { dropNode, setNodePosition, dragNodes } from "../../redux/nodes/nodes.actions";
+import { dragNodes, dropNode } from "../../redux/nodes/nodes.actions";
 import { getNodes } from "../../redux/nodes/nodes.selectors";
 import { getSelection } from "../../redux/selection/selection.selectors";
 import { IPosition } from "../../types";
@@ -23,8 +23,12 @@ function NodeLayer(props: any) {
             nodeId={node.id}
             defaultX={node.x}
             defaultY={node.y}
-            onDrag={(e: any, { deltaX, deltaY }: any) => { dispatch(dragNodes(Object.keys(selection), { x: deltaX, y: deltaY })); }}
-            onStop={(e: any, { x, y }: IPosition) => { dispatch(dropNode(node.id, { x, y })); }}
+            onDrag={(e: any, { deltaX, deltaY }: any) => {
+              dispatch(dragNodes(Object.keys(selection), { x: deltaX, y: deltaY }));
+            }}
+            onStop={(e: any, { x, y }: IPosition) => {
+              dispatch(dropNode(node.id, { x, y }));
+            }}
           >
             <DefaultNode
               selected={selection[`${node.id}`]}
