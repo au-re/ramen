@@ -6,9 +6,9 @@ import { Background, FieldContent, InputPin, OutputPin, PinContainer } from "./D
 function DefaultField(props: any) {
   const { input, output, children, height, color, fieldId, nodeId } = props;
 
-  let textAlign = "center";
-  if (input && !output) textAlign = "left";
-  if (output && !input) textAlign = "right";
+  let align = "center";
+  if (input && !output) align = "left";
+  if (output && !input) align = "right";
 
   return (
     <Background
@@ -30,7 +30,7 @@ function DefaultField(props: any) {
           )
           : <PinContainer radius={PIN_RADIUS} />
       }
-      <FieldContent textAlign={textAlign}>
+      <FieldContent align={align}>
         {children}
       </FieldContent>
       {

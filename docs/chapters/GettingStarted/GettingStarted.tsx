@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import Ramen from "../../../src/Ramen";
+import * as connectionStart from "../../schemas/connectionStart";
 import * as simpleAddition from "../../schemas/simpleAddition";
 import * as simpleNode from "../../schemas/simpleNode";
 import * as simpleNodeWithField from "../../schemas/simpleNodeWithField";
@@ -46,6 +47,15 @@ function GettingStarted() {
         />
       </div>
       <MarkdownPreview text={ConnectingNodes} />
+      <div style={{ width: "100%", height: "400px", overflow: "hidden" }}>
+        <Ramen
+          schema={connectionStart.schema}
+          initialGraph={connectionStart.graph}
+          canZoom={false}
+          canPan={false}
+          height={400}
+        />
+      </div>
       <MarkdownPreview text={OnGraphChange} />
     </div>
   );

@@ -22,9 +22,11 @@ export const NodeTitle = styled.div`
   padding: .5rem .8rem;
   font-size: 1.1rem;
   height: 36px;
+  text-align: left;
 `;
 
 export const NodeSubtitle = styled.div`
   color: ${({ theme }) => theme.textSecondary || lightTheme.textSecondary};
   font-size: .9rem;
+  text-align: left;
 `;

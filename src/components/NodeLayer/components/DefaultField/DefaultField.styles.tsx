@@ -40,7 +40,14 @@ export const Background: any = styled.div`
 
 export const FieldContent: any = styled.div`
   overflow: hidden;
+  display: flex;
   flex: 1;
+  font-size: 1rem;
   color: ${({ theme }) => theme.textSecondary || lightTheme.textSecondary};
-  text-align: ${(props: any) => props.textAlign};
+  text-align: ${(props: any) => props.align};
+  justify-content: ${(props: any) => props.align};
+
+  > * {
+    align-self: center;
+  }
 `;

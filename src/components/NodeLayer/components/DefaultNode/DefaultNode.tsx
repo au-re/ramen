@@ -1,16 +1,16 @@
 import get from "lodash.get";
 import * as React from "react";
-import { shallowEqual, useSelector, useDispatch } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { FIELD_HEIGHT, NODE_CLASSNAME, NODE_WIDTH } from "../../../../constants";
 import { isFieldInputConnected } from "../../../../redux/connections/connections.selectors";
 import { getControlType, getDataType, getNodeType } from "../../../../redux/schema/schema.selectors";
 import { ISchemaField } from "../../../../redux/schema/schema.types";
+import { setSelection } from "../../../../redux/selection/selection.actions";
 import { IStoreState } from "../../../../redux/types";
 import DefaultControl from "../DefaultControl/DefaultControl";
 import DefaultField from "../DefaultField/DefaultField";
 import { NodeSubtitle, NodeTitle, NodeWrapper } from "./DefaultNode.styles";
-import { setSelection } from "../../../../redux/selection/selection.actions";
 
 function NodeField(props: any) {
   const { fieldId, nodeId, name, dataType, controlType, defaultValue, Control = DefaultControl } = props;

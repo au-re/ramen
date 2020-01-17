@@ -66,5 +66,6 @@ export function isValidConnection(state: IStoreState, connection: IGraphConnecti
   const { originNode, originField, targetNode, targetField } = connection;
   const originDataType = getFieldSchema(state, originNode, originField).dataType;
   const targetDataType = getFieldSchema(state, targetNode, targetField).dataType;
+  if (!get(state, `schema.dataTypes[${originDataType}].validTargets`)) return true;
   return get(state, `schema.dataTypes[${originDataType}].validTargets`, []).includes(targetDataType);
 }
