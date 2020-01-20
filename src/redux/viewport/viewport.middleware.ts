@@ -110,7 +110,7 @@ function transformPanAction(state: IStoreState, action: any) {
 /** enrich viewport actions
  * @param store
  */
-const viewportMiddleware = (events: IRamenEvents) => (store: any) => (next: any) => (action: any) => {
+const viewportMiddleware = (store: any) => (next: any) => (action: any) => {
   const storeState = store.getState();
 
   if (action.type === SET_VIEWPORT_ZOOM) {

@@ -10,8 +10,8 @@ import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
 import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
+import eventsMiddleware from "./events.middleware";
 import { DRAG_NODES, setNodes } from "./nodes/nodes.actions";
-import nodesMiddleware from "./nodes/nodes.middleware";
 import nodesReducer from "./nodes/nodes.reducer";
 import referencesReducer from "./references/references.reducer";
 import { setSchema } from "./schema/schema.actions";
@@ -41,10 +41,10 @@ const rootReducer = combineReducers({
 
 function configureStore(preloadedState: any, events: IRamenEvents) {
   const middlewares = [
-    nodesMiddleware(events),
-    connectionMiddleware(events),
-    viewportMiddleware(events),
-    editorMiddleware(events),
+    connectionMiddleware,
+    viewportMiddleware,
+    editorMiddleware,
+    eventsMiddleware(events),
   ];
 
   const middlewareEnhancer = applyMiddleware(...middlewares);
@@ -59,16 +59,17 @@ function configureStore(preloadedState: any, events: IRamenEvents) {
   return store;
 }
 
-/**
- * The ramen provider encapsulates the store, ensuring that multiple ramen instances can coexist on
- * the same page
+/** The ramen provider encapsulates the store provider
  * @param props
  */
 function RamenProvider(props: any) {
   const { initialGraph = {}, graph, initialEditorState, schema, children } = props;
-  const { onConnectionCreate, onConnectionDelete, onGraphChange } = props;
+  const { onConnectionCreate, onConnectionDelete, onGraphChange, onNodePositionChange } = props;
   const [store, setStore] = React.useState(null);
 
+  // on load, initialize a new store with a namespace
+  // the namespace is used to differentiate between editor instances
+  // this is necessary in order to have multiple editors in the same page
   React.useEffect(() => {
 
     namespace = namespace + 1;
@@ -97,22 +98,25 @@ function RamenProvider(props: any) {
       history,
     };
 
-    const callbacks = {
+    const events = {
       onGraphChange,
       onConnectionCreate,
       onConnectionDelete,
+      onNodePositionChange,
     };
 
-    const store = configureStore(initialState, callbacks);
+    const store = configureStore(initialState, events);
 
     setStore(store);
   }, []);
 
+  // if the schema property changes, update the graph
   React.useEffect(() => {
     if (!store) return;
     store.dispatch(setSchema(schema));
   }, [store, schema]);
 
+  // if the graph property changes, update the graph
   React.useEffect(() => {
     if (!store || !graph) return;
     store.dispatch(setNodes(graph.nodes));

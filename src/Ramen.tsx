@@ -26,6 +26,7 @@ function Ramen(props: IRamenProps) {
     onGraphChange = fn,
     onConnectionCreate = fn,
     onConnectionDelete = fn,
+    onNodePositionChange = fn,
   } = props;
 
   return (
@@ -33,6 +34,7 @@ function Ramen(props: IRamenProps) {
       onGraphChange={onGraphChange}
       onConnectionCreate={onConnectionCreate}
       onConnectionDelete={onConnectionDelete}
+      onNodePositionChange={onNodePositionChange}
       initialEditorState={initialEditorState}
       initialGraph={initialGraph}
       schema={schema}

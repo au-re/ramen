@@ -17,6 +17,7 @@ export interface IRamenEvents {
   onGraphChange?: (newGraph: IGraph) => void;
   onConnectionCreate?: (newConnection: IGraphConnection) => void;
   onConnectionDelete?: (deletedConnection: IGraphConnection) => void;
+  onNodePositionChange?: (nodeId: string, position: IPosition) => void;
 }
 
 export interface IRamenProps extends IRamenEvents {

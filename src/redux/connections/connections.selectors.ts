@@ -13,6 +13,13 @@ export function getConnections(state: IStoreState) {
   return Object.values(state.history.present.connections) || [];
 }
 
+/** returns the a connection given an id
+ * @param state
+ */
+export function getConnectionById(state: IStoreState, connectionId: string) {
+  return state.history.present.connections[connectionId];
+}
+
 /** returns true if the field as an input that is connected
  * @param fieldId
  */

@@ -8,6 +8,9 @@ function useKeyEvents(viewport: any): null {
   React.useEffect(() => {
     if (!viewport) return;
 
+    // make sure the viewport can be focused
+    viewport.focus();
+
     // handle ctrl + z, ctrl + y
     function onKeyDown(e: KeyboardEvent) {
 
