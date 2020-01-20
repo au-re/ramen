@@ -1,5 +1,5 @@
 import get from "lodash.get";
-import { IRamenCallbacks } from "../../types";
+import { IRamenEvents } from "../../types";
 import { getNodes } from "../nodes/nodes.selectors";
 import { getViewportId } from "../references/references.selectors";
 import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections.actions";
@@ -10,7 +10,7 @@ import { getConnections, isValidConnection } from "./connections.selectors";
  *
  * @param {*} store
  */
-const connectionMiddleware = (callbacks: IRamenCallbacks) => (store: any) => (next: any) => (action: any) => {
+const connectionMiddleware = (callbacks: IRamenEvents) => (store: any) => (next: any) => (action: any) => {
   const type = get(action, "type", "");
   const storeState = store.getState();
 
