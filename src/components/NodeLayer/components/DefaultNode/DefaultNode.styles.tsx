@@ -23,6 +23,7 @@ export const NodeTitle = styled.div`
   font-size: 1.1rem;
   height: 36px;
   text-align: left;
+  box-sizing: content-box;
 `;
 
 export const NodeSubtitle = styled.div`
