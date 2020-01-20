@@ -19,7 +19,7 @@ export const NodeWrapper: any = styled.div`
 `;
 
 export const NodeTitle = styled.div`
-  padding: .5rem .8rem;
+  padding: 12px 8px;
   font-size: 1.1rem;
   height: 36px;
   text-align: left;

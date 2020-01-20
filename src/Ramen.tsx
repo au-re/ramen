@@ -9,6 +9,8 @@ import GlobalStyle from "./GlobalStyle";
 import RamenProvider from "./redux/RamenProvider";
 import { IRamenProps } from "./types";
 
+const fn = () => { };
+
 function Ramen(props: IRamenProps) {
   const {
     initialGraph,
@@ -21,12 +23,16 @@ function Ramen(props: IRamenProps) {
     canPan = true,
     controls,
     children,
-    onGraphChange = () => { },
+    onGraphChange = fn,
+    onConnectionCreate = fn,
+    onConnectionDelete = fn,
   } = props;
 
   return (
     <RamenProvider
       onGraphChange={onGraphChange}
+      onConnectionCreate={onConnectionCreate}
+      onConnectionDelete={onConnectionDelete}
       initialEditorState={initialEditorState}
       initialGraph={initialGraph}
       schema={schema}

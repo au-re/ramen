@@ -1,27 +1,40 @@
 import get from "lodash.get";
+import { IRamenCallbacks } from "../../types";
+import { getNodes } from "../nodes/nodes.selectors";
 import { getViewportId } from "../references/references.selectors";
 import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections.actions";
-import { isValidConnection } from "./connections.selectors";
+import { getConnections, isValidConnection } from "./connections.selectors";
 
 /**
  * middleware
  *
  * @param {*} store
  */
-const connectionMiddleware = (store: any) => (next: any) => (action: any) => {
+const connectionMiddleware = (callbacks: IRamenCallbacks) => (store: any) => (next: any) => (action: any) => {
   const type = get(action, "type", "");
   const storeState = store.getState();
 
   // validate connection attempt
   if (type === CREATE_CONNECTION) {
     if (isValidConnection(storeState, action.payload.connection)) {
+      callbacks.onConnectionCreate(action.payload.connection);
+      callbacks.onGraphChange({
+        nodes: getNodes(storeState),
+        connections: getConnections(storeState),
+      });
       return next(action);
     }
     return;
   }
 
-  // refocus on the viewport, this solves issues with undo/redo
   if (type === DELETE_CONNECTION) {
+    callbacks.onConnectionDelete(action.payload.connectionId);
+    callbacks.onGraphChange({
+      nodes: getNodes(storeState),
+      connections: getConnections(storeState),
+    });
+
+    // refocus on the viewport, this solves issues with undo/redo
     document.getElementById(getViewportId(storeState)).focus();
   }
 

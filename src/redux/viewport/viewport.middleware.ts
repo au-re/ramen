@@ -2,6 +2,7 @@ import get from "lodash.get";
 
 import { IStoreState } from "../types";
 import { SET_VIEWPORT_POS, SET_VIEWPORT_ZOOM } from "./viewport.actions";
+import { IRamenCallbacks } from "../../types";
 
 const MAX_X = 0;
 const MAX_Y = 0;
@@ -109,7 +110,7 @@ function transformPanAction(state: IStoreState, action: any) {
 /** enrich viewport actions
  * @param store
  */
-const viewportMiddleware = (store: any) => (next: any) => (action: any) => {
+const viewportMiddleware = (callbacks: IRamenCallbacks) => (store: any) => (next: any) => (action: any) => {
   const storeState = store.getState();
 
   if (action.type === SET_VIEWPORT_ZOOM) {

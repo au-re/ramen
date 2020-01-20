@@ -4,15 +4,15 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import undoable, { excludeAction } from "redux-undo";
 
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
+import { IRamenEvents } from "../types";
 import { setConnections } from "./connections/connections.actions";
 import connectionMiddleware from "./connections/connections.middleware";
 import connectionsReducer from "./connections/connections.reducer";
-import { getConnections } from "./connections/connections.selectors";
 import editorMiddleware from "./editor/editor.middleware";
 import editorReducer from "./editor/editor.reducer";
 import { DRAG_NODES, setNodes } from "./nodes/nodes.actions";
+import nodesMiddleware from "./nodes/nodes.middleware";
 import nodesReducer from "./nodes/nodes.reducer";
-import { getNodes } from "./nodes/nodes.selectors";
 import referencesReducer from "./references/references.reducer";
 import { setSchema } from "./schema/schema.actions";
 import schemaReducer from "./schema/schema.reducer";
@@ -20,74 +20,90 @@ import selectionReducer from "./selection/selection.reducer";
 import { arrayToMap, connectionsToMap } from "./utils";
 import viewportMiddleware from "./viewport/viewport.middleware";
 import viewportReducer from "./viewport/viewport.reducer";
-import { isEqual } from "lodash";
+
+let namespace = 0;
+
+const undoableReducers = combineReducers({
+  connections: connectionsReducer,
+  nodes: nodesReducer,
+});
 
 const rootReducer = combineReducers({
   references: referencesReducer,
   editor: editorReducer,
-  history: undoable(combineReducers({
-    connections: connectionsReducer,
-    nodes: nodesReducer,
-  }), {
-      filter: excludeAction(DRAG_NODES),
-    }),
   viewport: viewportReducer,
   selection: selectionReducer,
   schema: schemaReducer,
+  history: undoable(undoableReducers, {
+    filter: excludeAction(DRAG_NODES),
+  }),
 });
 
-const middleware: any[] = [
-  connectionMiddleware,
-  viewportMiddleware,
-  editorMiddleware,
-];
+function configureStore(preloadedState: any, events: IRamenEvents) {
+  const middlewares = [
+    nodesMiddleware(events),
+    connectionMiddleware(events),
+    viewportMiddleware(events),
+    editorMiddleware(events),
+  ];
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const middlewareEnhancer = applyMiddleware(...middlewares);
 
-let namespace = 0;
+  const enhancers = [
+    middlewareEnhancer,
+  ];
 
+  const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composedEnhancers = composeEnhancers(...enhancers);
+  const store = createStore(rootReducer, preloadedState, composedEnhancers);
+  return store;
+}
+
+/**
+ * The ramen provider encapsulates the store, ensuring that multiple ramen instances can coexist on
+ * the same page
+ * @param props
+ */
 function RamenProvider(props: any) {
-  const { initialGraph = {}, graph, initialEditorState, schema, children, onGraphChange } = props;
+  const { initialGraph = {}, graph, initialEditorState, schema, children } = props;
+  const { onConnectionCreate, onConnectionDelete, onGraphChange } = props;
   const [store, setStore] = React.useState(null);
-  const [graphState, setGraphState] = React.useState(null);
 
   React.useEffect(() => {
 
     namespace = namespace + 1;
 
+    const references = {
+      editorId: `${BASE_EDITOR_ID}-${namespace}`,
+      viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
+    };
+
+    const presentState = {
+      nodes: arrayToMap((initialGraph || graph).nodes || []),
+      connections: connectionsToMap((initialGraph || graph).connections || []),
+    };
+
+    const history = {
+      past: [] as any[],
+      present: presentState,
+      future: [] as any[],
+    };
+
     const initialState = {
-      references: {
-        editorId: `${BASE_EDITOR_ID}-${namespace}`,
-        viewportId: `${BASE_VIEWPORT_ID}-${namespace}`,
-      },
-      history: {
-        past: [] as any[],
-        present: {
-          nodes: arrayToMap((initialGraph || graph).nodes || []),
-          connections: connectionsToMap((initialGraph || graph).connections || []),
-        },
-        future: [] as any[],
-      },
       selection: {},
       editor: initialEditorState,
       schema,
+      references,
+      history,
     };
 
-    const store = createStore(
-      rootReducer,
-      initialState,
-      composeEnhancers(applyMiddleware(...middleware)),
-    );
+    const callbacks = {
+      onGraphChange,
+      onConnectionCreate,
+      onConnectionDelete,
+    };
 
-    store.subscribe(() => {
-      // this is very inefficient, it is called even on unrelated updates such as
-      // dragging a noodle, zooming, panning
-      const state = store.getState();
-      onGraphChange({
-        nodes: getNodes(state as any),
-        connections: getConnections(state as any),
-      });
-    });
+    const store = configureStore(initialState, callbacks);
 
     setStore(store);
   }, []);

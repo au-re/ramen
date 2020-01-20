@@ -13,7 +13,13 @@ export interface IGraph {
   connections: IGraphConnection[];
 }
 
-export interface IRamenProps {
+export interface IRamenEvents {
+  onGraphChange?: (newGraph: IGraph) => void;
+  onConnectionCreate?: (newConnection: IGraphConnection) => void;
+  onConnectionDelete?: (deletedConnection: IGraphConnection) => void;
+}
+
+export interface IRamenProps extends IRamenEvents {
   initialGraph?: IGraph;
   graph?: IGraph;
   initialEditorState?: IEditorState;
@@ -26,5 +32,4 @@ export interface IRamenProps {
     [controlId: string]: JSX.Element;
   };
   children?: JSX.Element[] | JSX.Element;
-  onGraphChange?: (newGraph: IGraph) => void;
 }

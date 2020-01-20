@@ -1,5 +1,6 @@
 import get from "lodash.get";
 
+import { IRamenEvents } from "../../types";
 import { getViewportId } from "../references/references.selectors";
 import { IStoreState } from "../types";
 import { getViewport } from "../viewport/viewport.selectors";
@@ -31,7 +32,7 @@ function transformMoveAction(state: IStoreState, action: any) {
  *
  * @param {*} store
  */
-const editorMiddleware = (store: any) => (next: any) => (action: any) => {
+const editorMiddleware = (events: IRamenEvents) => (store: any) => (next: any) => (action: any) => {
   const type = get(action, "type", "");
   const storeState = store.getState();
 
