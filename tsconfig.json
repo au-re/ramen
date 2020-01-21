@@ -5,7 +5,7 @@
     ],
     "jsx": "react",
     "declaration": true,
-    "target": "es5",
+    "target": "ES2015",
     "module": "amd",
     "sourceMap": true,
     "rootDir": "./src",
