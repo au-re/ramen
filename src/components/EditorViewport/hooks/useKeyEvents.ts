@@ -9,7 +9,9 @@ function useKeyEvents(viewport: any): null {
     if (!viewport) return;
 
     // make sure the viewport can be focused
-    viewport.focus();
+    function setFocus() {
+      viewport.focus();
+    }
 
     // handle ctrl + z, ctrl + y
     function onKeyDown(e: KeyboardEvent) {
@@ -23,9 +25,11 @@ function useKeyEvents(viewport: any): null {
       }
     }
 
+    viewport.addEventListener("click", setFocus);
     viewport.addEventListener("keydown", onKeyDown);
 
     return () => {
+      viewport.removeEventListener("click", setFocus);
       viewport.removeEventListener("keydown", onKeyDown);
     };
 
