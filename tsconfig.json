@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
     "lib": [
-      "dom"
+      "dom",
+      "es2017"
     ],
     "jsx": "react",
     "declaration": true,
-    "target": "ES2015",
-    "module": "amd",
+    "declarationDir": "./lib/types",
+    "target": "ESNext",
+    "module": "ESNext",
     "sourceMap": true,
     "rootDir": "./src",
-    "out": "./lib/index.js",
+    "outDir": "./lib",
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "removeComments": false
   },
   "include": [
     "src/**/*"

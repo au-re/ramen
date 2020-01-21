@@ -5,6 +5,7 @@
   "license": "MIT",
   "description": "Node editor for visual programming",
   "main": "lib/index.js",
+  "module": "lib/index.es.js",
   "types": "lib/index.d.ts",
   "files": [
     "/lib"
@@ -19,7 +20,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "prepare": "npm run build",
     "browserify": "browserify --debug ./lib/index.js -s ramen | terser -m -c --source-map \"content=inline\" -o ./lib/ramen.min.js",
-    "build": "tsc --build && npm run browserify",
+    "build": "rollup -c && npm run browserify",
     "build:storybook": "build-storybook",
     "deploy": "gh-pages -d storybook-static",
     "predeploy": "npm run build-storybook",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@storybook/addon-options": "^5.3.4",
     "@storybook/addons": "^5.3.4",
     "@storybook/react": "^5.3.4",
@@ -87,6 +89,12 @@
     "react-markdown": "^4.2.2",
     "react-syntax-highlighter": "^11.0.2",
     "react-test-renderer": "^16.11.0",
+    "rollup": "^1.29.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
     "source-map-explorer": "^2.1.0",
     "source-map-loader": "^0.2.4",
     "storybook-readme": "^5.0.8",
