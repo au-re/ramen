@@ -6,9 +6,12 @@ export const Viewport: any = styled.div`
   overflow: hidden;
 `;
 
-export const EditorWrapperBackground: any = styled.div`
+export const EditorWrapperBackground: any = styled.div.attrs(({ xPos, yPos, scale }: any) => ({
+  style: {
+    transform: `translate(${xPos}px, ${yPos}px) scale(${scale})`,
+  }
+}))`
   display: inline-block;
-  ${(props: any) => !props.width && "width: 100%;"}
+  ${(props: any) => !props.width && "width: 100%;"};
   transform-origin: 0px 0px 0px;
-  transform: translate(${(props: any) => props.xPos}px, ${(props: any) => props.yPos}px) scale(${(props: any) => props.scale});
 `;
