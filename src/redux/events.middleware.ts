@@ -7,6 +7,7 @@ import { CREATE_CONNECTION, DELETE_CONNECTION } from "./connections/connections.
 import { getConnectionById, getConnections, isValidConnection } from "./connections/connections.selectors";
 import { DROP_NODE } from "./nodes/nodes.actions";
 import { getNodes } from "./nodes/nodes.selectors";
+import { SET_SELECTION } from "./selection/selection.actions";
 
 /**
  * event middleware to notify consumers of Ramen about state changes
@@ -45,6 +46,10 @@ const eventsMiddleware = (events: IRamenEvents) => (store: any) => (next: any) =
       nodes: getNodes(storeState),
       connections: getConnections(storeState),
     });
+  }
+
+  if (type === SET_SELECTION) {
+    events.onSelection(action.payload.selection);
   }
 };
 

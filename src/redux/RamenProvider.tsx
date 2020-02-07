@@ -64,7 +64,7 @@ function configureStore(preloadedState: any, events: IRamenEvents) {
  */
 function RamenProvider(props: any) {
   const { initialGraph = {}, graph, initialEditorState, schema, children } = props;
-  const { onConnectionCreate, onConnectionDelete, onGraphChange, onNodePositionChange } = props;
+  const { onConnectionCreate, onConnectionDelete, onGraphChange, onNodePositionChange, onSelection } = props;
   const [store, setStore] = React.useState(null);
 
   // on load, initialize a new store with a namespace
@@ -103,6 +103,7 @@ function RamenProvider(props: any) {
       onConnectionCreate,
       onConnectionDelete,
       onNodePositionChange,
+      onSelection,
     };
 
     const store = configureStore(initialState, events);

@@ -27,10 +27,12 @@ function Ramen(props: IRamenProps) {
     onConnectionCreate = fn,
     onConnectionDelete = fn,
     onNodePositionChange = fn,
+    onSelection = fn,
   } = props;
 
   return (
     <RamenProvider
+      onSelection={onSelection}
       onGraphChange={onGraphChange}
       onConnectionCreate={onConnectionCreate}
       onConnectionDelete={onConnectionDelete}
