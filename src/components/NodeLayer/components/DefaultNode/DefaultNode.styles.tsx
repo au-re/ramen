@@ -31,3 +31,8 @@ export const NodeSubtitle = styled.div`
   font-size: .9rem;
   text-align: left;
 `;
+
+export const ControlWrapper = styled.span`
+  display: flex;
+  max-width: 100%;
+`;

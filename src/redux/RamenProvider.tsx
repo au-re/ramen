@@ -1,63 +1,16 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import undoable, { excludeAction } from "redux-undo";
 
 import { BASE_EDITOR_ID, BASE_VIEWPORT_ID } from "../constants";
-import { IRamenEvents } from "../types";
-import { setConnections } from "./connections/connections.actions";
-import connectionMiddleware from "./connections/connections.middleware";
-import connectionsReducer from "./connections/connections.reducer";
-import editorMiddleware from "./editor/editor.middleware";
-import editorReducer from "./editor/editor.reducer";
-import eventsMiddleware from "./events.middleware";
-import { DRAG_NODES, setNodes } from "./nodes/nodes.actions";
-import nodesReducer from "./nodes/nodes.reducer";
-import referencesReducer from "./references/references.reducer";
+import { initConnections, setConnections } from "./connections/connections.actions";
+import { initNodes, setNodes } from "./nodes/nodes.actions";
 import { setSchema } from "./schema/schema.actions";
-import schemaReducer from "./schema/schema.reducer";
-import selectionReducer from "./selection/selection.reducer";
 import { arrayToMap, connectionsToMap } from "./utils";
-import viewportMiddleware from "./viewport/viewport.middleware";
-import viewportReducer from "./viewport/viewport.reducer";
+import configureStore from "./store";
+import { getNodes } from "./nodes/nodes.selectors";
+import { getConnections } from "./connections/connections.selectors";
 
 let namespace = 0;
-
-const undoableReducers = combineReducers({
-  connections: connectionsReducer,
-  nodes: nodesReducer,
-});
-
-const rootReducer = combineReducers({
-  references: referencesReducer,
-  editor: editorReducer,
-  viewport: viewportReducer,
-  selection: selectionReducer,
-  schema: schemaReducer,
-  history: undoable(undoableReducers, {
-    filter: excludeAction(DRAG_NODES),
-  }),
-});
-
-function configureStore(preloadedState: any, events: IRamenEvents) {
-  const middlewares = [
-    connectionMiddleware,
-    viewportMiddleware,
-    editorMiddleware,
-    eventsMiddleware(events),
-  ];
-
-  const middlewareEnhancer = applyMiddleware(...middlewares);
-
-  const enhancers = [
-    middlewareEnhancer,
-  ];
-
-  const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const composedEnhancers = composeEnhancers(...enhancers);
-  const store = createStore(rootReducer, preloadedState, composedEnhancers);
-  return store;
-}
 
 /** The ramen provider encapsulates the store provider
  * @param props
@@ -120,9 +73,17 @@ function RamenProvider(props: any) {
   // if the graph property changes, update the graph
   React.useEffect(() => {
     if (!store || !graph) return;
-    store.dispatch(setNodes(graph.nodes));
-    store.dispatch(setConnections(graph.connections));
+    store.dispatch(initNodes(graph.nodes));
+    store.dispatch(initConnections(graph.connections));
   }, [store, graph]);
+
+  //
+  // create an action on first load to avoid user undoing to empty state
+  React.useEffect(() => {
+    if (!store) return;
+    store.dispatch(setNodes(getNodes(store.getState())));
+    store.dispatch(setConnections(getConnections(store.getState())));
+  }, [store]);
 
   if (!store) return null;
 

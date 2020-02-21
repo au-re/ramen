@@ -16,7 +16,11 @@ const EditorBackground: any = styled.div`
 
 function Background(props: any) {
   const editorId = useSelector((state: IStoreState) => state.references.editorId);
-  return <EditorBackground {...props} id={editorId} />;
+  return (
+    <EditorBackground
+      {...props}
+      id={editorId}
+    />);
 }
 
 export default React.memo(Background);

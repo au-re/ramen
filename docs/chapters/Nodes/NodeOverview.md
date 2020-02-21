@@ -47,7 +47,7 @@ Besides **fields** a node can contain **controls**. A control is an interface us
 | `dataType` | `string` | data type of the field (needs to be defined in dataTypes) | - | defaultDataType |
 | `controlType` | `string` | type of the control (no control is displayed if omited) | - | null |
 | `hideControlOnConnection` | `boolean` | hide the control if the field is connected | - | false |
-| `defaultValue` | `any` | defaultValue for this field, will be passed to the control | - | null |
+| `controlProps` | `object` | props that will be passed to the control | - | {} |
 | `input` | `boolean` | does the field contain an output node  | - | false |
 | `output` | `boolean` |  does the field contain an input node  | - | false |
 

@@ -4,7 +4,7 @@ import { PIN_RADIUS, types } from "../../../../constants";
 import { Background, FieldContent, InputPin, OutputPin, PinContainer } from "./DefaultField.styles";
 
 function DefaultField(props: any) {
-  const { input, output, children, height, color, fieldId, nodeId } = props;
+  const { input, output, children, height, color, fieldId, nodeId, className } = props;
 
   let align = "center";
   if (input && !output) align = "left";

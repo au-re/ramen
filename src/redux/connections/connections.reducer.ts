@@ -1,5 +1,5 @@
 import { connectionsToMap, createReducer, makeConnectionId } from "../utils";
-import { CREATE_CONNECTION, DELETE_CONNECTION, SET_CONNECTIONS } from "./connections.actions";
+import { CREATE_CONNECTION, DELETE_CONNECTION, SET_CONNECTIONS, INIT_CONNECTIONS } from "./connections.actions";
 import { IConnectionsState } from "./connections.types";
 
 const INITIAL_STATE: IConnectionsState = {};
@@ -27,6 +27,7 @@ const connectionsReducer = createReducer(INITIAL_STATE, {
   [CREATE_CONNECTION]: createConnectionHandler,
   [DELETE_CONNECTION]: deleteConnectionHandler,
   [SET_CONNECTIONS]: replaceConnectionsHandler,
+  [INIT_CONNECTIONS]: replaceConnectionsHandler,
 });
 
 export default connectionsReducer;

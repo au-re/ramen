@@ -18,16 +18,20 @@ export const Pin: any = styled(PinContainer)`
   cursor: pointer;
 `;
 
-function getTransform(props: any) {
-  return (props.radius + parseInt(props.theme.borderWidth || lightTheme.borderWidth, 10));
+function getTransform({ isInput }: any) {
+  return (props: any) => {
+    const pinBorderWidth = parseInt(props.theme.borderWidth || lightTheme.borderWidth, 10);
+    const transformX = (props.radius + pinBorderWidth);
+    return `translate(${isInput ? "-" : ""}${transformX}px, -${pinBorderWidth}px)`;
+  };
 }
 
 export const InputPin = styled(Pin)`
-  transform: translate(-${getTransform}px);
+  transform: ${getTransform({ isInput: true })};
 `;
 
 export const OutputPin = styled(Pin)`
-  transform: translate(${getTransform}px);
+  transform: ${getTransform({ isInput: false })};
 `;
 
 export const Background: any = styled.div`

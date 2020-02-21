@@ -31,20 +31,25 @@ function EditorEvents(): null {
       }
     }
 
+    /**
+     * start dragging noodle
+     * @param e
+     */
     function onPointerDown(e: MouseEvent) {
       const target = e.target as HTMLInputElement;
       const type = target.dataset.type;
 
-      if (type) {
+      if (type === types.FIELD) {
         e.stopPropagation();
         e.preventDefault();
-      }
-
-      if (type === types.FIELD) {
         onPointerDownField(target.dataset);
       }
     }
 
+    /**
+     * stop dragging noodle
+     * @param e
+     */
     function onPointerUp(e: MouseEvent) {
       const target = e.target as HTMLInputElement;
       const fieldId = target.dataset.fieldid;

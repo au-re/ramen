@@ -9,7 +9,7 @@ export const schema = {
           id: "number1",
           dataType: "number",
           name: "Number 1",
-          controlType: "NumberControl",
+          controlType: "InputControl",
           hideControlOnInput: true,
           input: true,
         },
@@ -17,7 +17,7 @@ export const schema = {
           id: "number2",
           dataType: "number",
           name: "Number 2",
-          controlType: "NumberControl",
+          controlType: "InputControl",
           hideControlOnInput: true,
           input: true,
         },
@@ -48,7 +48,7 @@ export const schema = {
         {
           id: "number",
           dataType: "number",
-          controlType: "NumberControl",
+          controlType: "InputControl",
           output: true,
         },
       ],
@@ -72,7 +72,7 @@ export const schema = {
     },
   },
   controlTypes: {
-    NumberControl: {
+    InputControl: {
       type: "number",
       min: 0,
       max: 100,

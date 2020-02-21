@@ -1,5 +1,5 @@
 import { arrayToMap, createReducer } from "../utils";
-import { DRAG_NODES, DROP_NODE, SET_NODE_POSITION, SET_NODES } from "./nodes.actions";
+import { DRAG_NODES, DROP_NODE, SET_NODE_POSITION, SET_NODES, INIT_NODES } from "./nodes.actions";
 import { ISetNodeLocationResult } from "./nodes.types";
 
 const INITIAL_STATE = {};
@@ -58,6 +58,7 @@ function replaceNodesHandler(state: any, action: any) {
 
 const nodesReducer = createReducer(INITIAL_STATE, {
   [SET_NODES]: replaceNodesHandler,
+  [INIT_NODES]: replaceNodesHandler,
   [SET_NODE_POSITION]: nodePositionHandler,
   [DROP_NODE]: nodePositionHandler,
   [DRAG_NODES]: dragNodesHandler,

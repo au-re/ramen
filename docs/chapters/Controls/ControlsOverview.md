@@ -45,8 +45,10 @@ const schema = {
         {
           id: "field1",
           dataType: "number",
-          controlType: "defaultControl",
           output: true,
+          controlType: "defaultControl",
+          // properties passed to this control instance
+          controlProps: { }
         }
       ]
     },
@@ -58,6 +60,7 @@ const schema = {
     },
   },
   controlTypes: {
+    // general values shared by all "defaultControl" fields
     defaultControl: {
       min: 0,
       max: 100,

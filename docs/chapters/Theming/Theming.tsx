@@ -13,16 +13,18 @@ const pinkTheme = {
   fontName: "Helvetica, Oswald, sans-serif",
   fontSize: "14px",
   borderRadius: "12px",
-  borderWidth: "10px",
+  borderWidth: "12px",
+  inputBackground: "#f774b3",
   textColor: "#FAFCFE",
   textSecondary: "#FAFCFE",
   borderColor: "#f774b3",
   editorBackground: "#ffdbe7",
   editorBackgroundMuted: "#db2e6a",
   nodeBackground: "rgb(247, 116, 179, .8)",
-  nodeBackgroundSelected: "#333",
+  nodeBackgroundSelected: "rgb(247, 116, 179, .8)",
   pinBorder: "#f774b3",
   noodleColor: "#db2e6a",
+  nodeBorderSelected: "#FFFFFF",
 };
 
 function Theming() {

@@ -7,8 +7,8 @@ import MarkdownPreview from "../../utils/MarkdownPreview";
 
 import ControlsOverview from "./ControlsOverview.md";
 
-function MyCustomControl(props) {
-  return (<button >I'm custom!</button>);
+function MyCustomControl(props: any) {
+  return (<button onClick={() => console.log("CLICK")}>I'm custom!</button>);
 }
 
 function ControlsDoc() {
