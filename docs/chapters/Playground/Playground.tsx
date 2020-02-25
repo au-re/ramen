@@ -36,16 +36,20 @@ const CodeContainer = styled.div`
 function Playground() {
   const [schema, setSchema] = React.useState(JSON.stringify(complexGraph.schema, null, 4));
   const [graph, setGraph] = React.useState(JSON.stringify(complexGraph.graph, null, 4));
+  const [graphState, setGraphState] = React.useState(JSON.stringify(complexGraph.graph, null, 4));
 
   let parsedSchema;
   let parsedGraph;
+  let parsedGraphState;
 
   try {
     parsedSchema = JSON.parse(schema);
     parsedGraph = JSON.parse(graph);
+    parsedGraphState = JSON.parse(graphState);
   } catch (err) {
     parsedSchema = complexGraph.schema;
     parsedGraph = complexGraph.graph;
+    parsedGraphState = complexGraph.graphState;
   }
 
   return (
@@ -62,6 +66,21 @@ function Playground() {
                   try {
                     JSON.parse(newSchema);
                     setSchema(newSchema);
+                  } catch (err) { }
+                }}
+                mode="json"
+                theme="github"
+              />
+            </div>
+            <div style={{ background: "white" }}>
+              <h3>Graph State</h3>
+              <AceEditor
+                style={{ width: "520px" }}
+                value={parsedGraphState}
+                onChange={(newGraphState) => {
+                  try {
+                    JSON.parse(newGraphState);
+                    setGraphState(newGraphState);
                   } catch (err) { }
                 }}
                 mode="json"
