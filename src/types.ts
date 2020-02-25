@@ -13,6 +13,14 @@ export interface IGraph {
   connections: IGraphConnection[];
 }
 
+export interface IGraphState {
+  [nodeId: string]: {
+    [fieldId: string]: {
+      [prop: string]: any;
+    };
+  };
+}
+
 export interface IRamenEvents {
   onGraphChange?: (newGraph: IGraph) => void;
   onConnectionCreate?: (newConnection: IGraphConnection) => void;
@@ -24,6 +32,7 @@ export interface IRamenEvents {
 export interface IRamenProps extends IRamenEvents {
   initialGraph?: IGraph;
   graph?: IGraph;
+  graphState?: IGraphState;
   initialEditorState?: IEditorState;
   schema: ISchema;
   height?: number;

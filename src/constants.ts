@@ -11,3 +11,5 @@ export const PIN_RADIUS = 8;
 export const types = {
   FIELD: "FIELD",
 };
+
+export const DEFAULT_CONTROL_TYPE = "InputControl";

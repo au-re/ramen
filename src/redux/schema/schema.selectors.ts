@@ -32,6 +32,10 @@ export function getDataType(state: IStoreState, dataType: string) {
   return get(state, `schema.dataTypes.${dataType}`, {});
 }
 
-export function getControlType(state: IStoreState, controlType: string) {
-  return get(state, `schema.controlTypes.${controlType}`, {});
+export function getControlType(state: IStoreState, dataType: string) {
+  return get(state, `schema.dataTypes.${dataType}.controlType`, {});
+}
+
+export function getControlProps(state: IStoreState, dataType: string) {
+  return get(state, `schema.dataTypes.${dataType}.controlProps`, {});
 }

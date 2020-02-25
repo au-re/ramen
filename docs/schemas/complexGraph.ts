@@ -10,25 +10,21 @@ export const schema: ISchema = {
         {
           id: "number0",
           dataType: "number",
-          controlType: "numberControl",
         },
         {
           id: "number1",
           dataType: "number",
-          controlType: "numberControl",
           input: true,
         },
         {
           id: "number2",
           dataType: "number",
           hideControlOnInput: true,
-          controlType: "numberControl",
           input: true,
         },
         {
           id: "number4",
           dataType: "number",
-          controlType: "numberControl",
           input: true,
           output: true,
         },
@@ -61,18 +57,15 @@ export const schema: ISchema = {
     number: {
       name: "Number",
       color: "#29abe1",
+      controlType: "InputControl",
+      controlProps: {
+        type: "number"
+      },
       validTargets: [
         "number",
       ],
     },
-  },
-  controlTypes: {
-    numberControl: {
-      type: "number",
-      min: 0,
-      max: 100,
-    },
-  },
+  }
 };
 
 export const graph: IGraph = {
@@ -111,4 +104,12 @@ export const graph: IGraph = {
       targetField: "number2",
     },
   ],
+};
+
+export const graphState = {
+  "1": {
+    "number": {
+      defaultValue: 42,
+    }
+  }
 };

@@ -36,6 +36,7 @@ function NodeLayer(props: any) {
               name={node.name}
               type={node.type}
               controls={props.controls}
+              nodeState={(props.graphState || {})[`${node.id}`]}
             />
           </DragWrapper>
         ))

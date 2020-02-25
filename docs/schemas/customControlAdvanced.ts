@@ -50,3 +50,12 @@ export const graph: IGraph = {
   ],
   connections: [],
 };
+
+export const graphState = {
+  "0": {
+    "field1": {
+      value: "#00ff00",
+    }
+  }
+};
+

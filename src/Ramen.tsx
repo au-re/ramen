@@ -16,6 +16,7 @@ function Ramen(props: IRamenProps) {
     initialGraph,
     initialEditorState,
     graph,
+    graphState,
     schema,
     height,
     width,
@@ -46,7 +47,7 @@ function Ramen(props: IRamenProps) {
         <EditorBackground height={height} width={width}>
           {children}
           <NoodleLayer />
-          <NodeLayer controls={controls} />
+          <NodeLayer controls={controls} graphState={graphState} />
           <EditorEvents />
           <GlobalStyle />
         </EditorBackground>

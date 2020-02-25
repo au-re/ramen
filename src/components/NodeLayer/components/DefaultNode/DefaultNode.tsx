@@ -2,9 +2,9 @@ import get from "lodash.get";
 import * as React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { FIELD_HEIGHT, NODE_CLASSNAME, NODE_WIDTH } from "../../../../constants";
+import { FIELD_HEIGHT, NODE_CLASSNAME, NODE_WIDTH, DEFAULT_CONTROL_TYPE } from "../../../../constants";
 import { isFieldInputConnected } from "../../../../redux/connections/connections.selectors";
-import { getControlType, getDataType, getNodeType } from "../../../../redux/schema/schema.selectors";
+import { getControlType, getDataType, getNodeType, getControlProps } from "../../../../redux/schema/schema.selectors";
 import { ISchemaField } from "../../../../redux/schema/schema.types";
 import { setSelection } from "../../../../redux/selection/selection.actions";
 import { IStoreState } from "../../../../redux/types";
@@ -18,7 +18,7 @@ function getFieldControl(controls: any, controlType: any, dataTypeControlType: a
     return FieldControl;
   }
 
-  if (controlType === "InputControl" || dataTypeControlType === "InputControl") {
+  if (controlType === DEFAULT_CONTROL_TYPE || dataTypeControlType === DEFAULT_CONTROL_TYPE) {
     return DefaultControl;
   }
   return null;
@@ -26,13 +26,13 @@ function getFieldControl(controls: any, controlType: any, dataTypeControlType: a
 
 
 function NodeField(props: any) {
-  const { fieldId, nodeId, name, dataType, controlType, controlProps } = props;
+  const { fieldId, nodeId, name, dataType, controlType, controlProps, fieldProps = {} } = props;
   const { hideControlOnInput, hasInput, hasOutput, controls = {} } = props;
 
   const fieldDataTypeDetails = useSelector((state: IStoreState) =>
     getDataType(state, dataType), shallowEqual);
-  const fieldControlDetails = useSelector((state: IStoreState) =>
-    getControlType(state, controlType), shallowEqual);
+  const dataTypeControlProps = useSelector((state: IStoreState) =>
+    getControlProps(state, dataType), shallowEqual);
   const hasInputConnection = useSelector(
     (state: IStoreState) => isFieldInputConnected(state, nodeId, fieldId),
     shallowEqual);
@@ -40,7 +40,7 @@ function NodeField(props: any) {
   const FieldControl = getFieldControl(controls, controlType, fieldDataTypeDetails.controlType);
 
   const fieldName = name || fieldDataTypeDetails.name;
-  const customControlProps = { ...controlProps, ...fieldControlDetails };
+  const customControlProps = { ...fieldProps, ...(controlProps || dataTypeControlProps || {}) };
 
   const hideControl = hideControlOnInput && hasInputConnection || !FieldControl;
 
@@ -75,7 +75,18 @@ const MemoizedNodeField = React.memo(NodeField, (prevProps, nextProps) => {
 });
 
 function DefaultNode(props: any) {
-  const { nodeId, className, style, type, onMouseUpFieldIn, selected = false, name, controls, ...rest } = props;
+  const {
+    nodeId,
+    className,
+    style,
+    type,
+    onMouseUpFieldIn,
+    selected = false,
+    name,
+    controls,
+    nodeState = {},
+    ...rest
+  } = props;
 
   const nodeType = useSelector((state: IStoreState) => getNodeType(state, type));
   const dispatch = useDispatch();
@@ -91,6 +102,7 @@ function DefaultNode(props: any) {
         dataType={field.dataType}
         controlType={field.controlType}
         controlProps={field.controlProps}
+        fieldProps={nodeState[field.id]}
         controls={controls}
         hideControlOnInput={field.hideControlOnInput}
         name={field.name}

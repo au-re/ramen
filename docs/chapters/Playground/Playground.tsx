@@ -90,6 +90,7 @@ function Playground() {
           width={4096}
           schema={parsedSchema}
           graph={parsedGraph}
+          graphState={complexGraph.graphState}
           onGraphChange={(newGraph) => {
             setGraph(JSON.stringify(newGraph, null, 4));
           }}

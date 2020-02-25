@@ -16,23 +16,19 @@ export interface ISchemaField {
 export interface ISchema {
   nodeTypes?: {
     [nodeTypeId: string]: {
-      name?: string,
-      icon?: string,
-      width?: number,
-      fields?: ISchemaField[],
+      name?: string;
+      icon?: string;
+      width?: number;
+      fields?: ISchemaField[];
     },
   };
   dataTypes?: {
     [dataTypeId: string]: {
-      name?: string,
-      color?: string,
-      validTargets?: string[],
+      name?: string;
+      color?: string;
+      validTargets?: string[];
       controlType?: string;
-    },
-  };
-  controlTypes?: {
-    [controlTypeId: string]: {
-      [name: string]: any,
+      controlProps?: IControlProps;
     },
   };
 }

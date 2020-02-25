@@ -46,8 +46,9 @@ const schema = {
           id: "field1",
           dataType: "number",
           output: true,
-          controlType: "defaultControl",
-          // properties passed to this control instance
+
+          // you can override control values on a field level
+          controlType: "MyControl",
           controlProps: { }
         }
       ]
@@ -56,18 +57,18 @@ const schema = {
   dataTypes: {
     number: {
       name: "Number",
-      color: "#7454a1"
+      color: "#7454a1",
+
+      // general control field shared by all Number fields
+      controlType: "InputControl",
+      controlProps: {
+        min: 0,
+        max: 100,
+        step: 2,
+        type: "number"
+      }
     },
   },
-  controlTypes: {
-    // general values shared by all "defaultControl" fields
-    defaultControl: {
-      min: 0,
-      max: 100,
-      step: 2,
-      type: "number"
-    }
-  }
 };
 ```
 
