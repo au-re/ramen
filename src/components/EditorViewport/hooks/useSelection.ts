@@ -7,7 +7,6 @@ import { NODE_CLASSNAME, NOODLE_CLASSNAME } from "../../../constants";
 import { setSelection } from "../../../redux/selection/selection.actions";
 
 function isValidSelectionStart(evt: any) {
-  console.log("IS VALID SELECTION", evt);
   const selectionClassName = get(evt, "selected[0].classList");
   if (
     selectionClassName &&
@@ -47,7 +46,6 @@ function useSelection(viewport: any): null {
     });
 
     function beforeSelection(evt: any) {
-      console.log(evt);
       return evt.oe.target.tagName !== "INPUT"
         && evt.oe.target.tagName !== "TEXTAREA";
     }
