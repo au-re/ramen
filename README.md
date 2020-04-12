@@ -2,7 +2,7 @@
 [npm-image]: https://img.shields.io/npm/v/@au-re/ramen
 [commitizen-url]: http://commitizen.github.io/cz-cli/
 [commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
-[license-url]: https://github.com/au-re/rimless/LICENSE
+[license-url]: https://github.com/au-re/ramen/LICENSE
 [dependencies-url]: https://david-dm.org/au-re/ramen
 [dependencies-image]: https://david-dm.org/au-re/ramen/status.svg
 [build-status]: https://travis-ci.org/au-re/ramen
