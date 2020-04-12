@@ -84,11 +84,7 @@ object-assign
  * @license  MIT
  */
 
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
+/*! Selectionjs 1.6.0 MIT | https://github.com/Simonwep/selection */
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
