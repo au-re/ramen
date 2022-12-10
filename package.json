@@ -120,7 +120,7 @@
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
     "react-draggable": "^4.4.5",
-    "react-redux": "^7.2.0",
+    "react-redux": "^7.2.9",
     "redux": "^4.2.0",
     "redux-undo": "^1.0.1",
     "reselect": "^4.1.7"
