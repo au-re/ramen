@@ -61,7 +61,7 @@
     "@babel/core": "^7.20.2",
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@storybook/addon-options": "^5.3.21",
-    "@storybook/addons": "^5.3.4",
+    "@storybook/addons": "^5.3.22",
     "@storybook/react": "^5.3.21",
     "@storybook/theming": "^5.3.4",
     "@types/jest": "^29.2.4",
