@@ -63,7 +63,7 @@
     "@storybook/addon-options": "^5.3.21",
     "@storybook/addons": "^5.3.22",
     "@storybook/react": "^5.3.21",
-    "@storybook/theming": "^5.3.4",
+    "@storybook/theming": "^6.5.14",
     "@types/jest": "^29.2.4",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.isequal": "^4.5.6",
