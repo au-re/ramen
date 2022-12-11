@@ -97,7 +97,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "source-map-explorer": "^2.5.3",
-    "source-map-loader": "^0.2.4",
+    "source-map-loader": "^1.0.0",
     "storybook-readme": "^5.0.9",
     "styled-components": "^5.3.6",
     "terser": "^5.16.1",
@@ -106,7 +106,7 @@
     "tslint-config-airbnb": "^5.11.2",
     "tslint-react": "^4.1.0",
     "typescript": "^3.9.10",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^4.0.0"
   },
   "config": {
     "cz-emoji": {},
