@@ -100,7 +100,7 @@
     "source-map-loader": "^0.2.4",
     "storybook-readme": "^5.0.9",
     "styled-components": "^5.3.6",
-    "terser": "^4.8.1",
+    "terser": "^5.16.1",
     "ts-jest": "^25.5.1",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
