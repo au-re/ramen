@@ -1,3 +1,5 @@
+**THIS REPOSITORY IS ARCHIVED** if you are looking for a react library to build node based uis, checkout https://reactflow.dev/
+
 [npm-url]: https://www.npmjs.com/package/@au-re/ramen
 [npm-image]: https://img.shields.io/npm/v/@au-re/ramen
 [commitizen-url]: http://commitizen.github.io/cz-cli/
